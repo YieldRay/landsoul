@@ -1,0 +1,175 @@
+@import "colors";
+
+.jumbotron {
+    display: grid;
+    place-content: center;
+    text-align: center;
+    min-height: 400px;
+    overflow: hidden;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    > .jumbotron-title {
+        color: $global-black;
+        font-size: 4rem;
+        word-wrap: break-word;
+        line-height: 0.85em;
+        letter-spacing: 1px;
+        font-weight: 500;
+    }
+
+    > .jumbotron-content {
+        margin-top: 0.75em;
+        color: $grey;
+    }
+}
+
+.card {
+    background-color: $white;
+    box-shadow: 0 1px 1px $shadow-2;
+    border-radius: 6px;
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.25rem;
+    overflow: auto;
+    * {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 64em) {
+    .container {
+        padding: 0.25rem;
+    }
+}
+.container {
+    max-width: 1024px;
+    margin: auto;
+}
+
+.badge {
+    font-size: smaller;
+    padding: 0.25em 0.5em;
+    border-radius: 2em;
+    background-color: lightblue;
+    max-height: 1.85em;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+}
+
+.list-group {
+    list-style-type: none;
+    padding-left: 0;
+    border-radius: 0.75em;
+    border: solid 1px $grey;
+}
+.list-group-item {
+    padding: 0.5em 0.55em;
+    border-bottom: solid 1px $grey;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.footer {
+    margin-top: 1rem;
+    padding: 1.25rem 0;
+    background-color: $shadow-1;
+    font-size: small;
+    text-align: center;
+}
+
+.nav-bar {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    backdrop-filter: blur(0.25em);
+    color: $white;
+    background-color: $grey-t;
+    box-shadow: 0 1px 1px $shadow-1;
+    line-height: 2.25rem;
+    padding: 0.25rem 1rem;
+    .nav-title {
+        font-size: large;
+    }
+    // 隐藏按钮（单选框）
+    .nav-toggle,
+    label[for="nav-toggle"] {
+        display: none;
+    }
+    .nav-list {
+        margin: 0;
+        > li {
+            display: inline-block;
+            list-style: none;
+            > a {
+                color: $white;
+                text-decoration: none;
+                font-weight: 300;
+                border-radius: 0.3rem;
+                padding: 0.3rem 0.5rem;
+                transition: 0.3s;
+                &:hover {
+                    background-color: $shadow-1;
+                }
+            }
+        }
+    }
+}
+
+@keyframes show-nav-list {
+    from {
+        opacity: 0;
+        transform: translate(0, -5em);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+@media screen and (max-width: 64rem) {
+    .nav-bar {
+        padding-left: 0;
+        line-height: 2rem;
+        .nav-title {
+            padding-left: 0.5rem;
+        }
+        .nav-list {
+            // adjust this to debug
+            display: none;
+            // adjust this to debug
+            animation: show-nav-list 0.3s linear;
+            position: fixed;
+            padding: 0;
+            text-align: center;
+            width: 100%;
+            top: 2.4rem;
+            background-color: $grey-t;
+            li {
+                display: block;
+                a {
+                    display: block;
+                }
+            }
+        }
+        label[for="nav-toggle"] {
+            display: block;
+            width: 2rem;
+            height: 2rem;
+            cursor: pointer;
+        }
+        .menu-icon {
+            display: block;
+            line-height: 2rem;
+            > svg path {
+                fill: $white;
+            }
+        }
+        input#nav-toggle:checked ~ .nav-list {
+            // 点击显示
+            display: block;
+        }
+    }
+}
