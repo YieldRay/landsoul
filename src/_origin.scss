@@ -75,3 +75,51 @@ pre,
 code {
     font-family: Consolas;
 }
+hr {
+    border: none;
+    border-top: 2px solid $shadow-1;
+    overflow: visible;
+    border-radius: 2px;
+    padding: 0 1px;
+}
+
+hr::after {
+    content: "∞";
+    color: $shadow-2;
+    position: relative;
+    left: 50%;
+    top: -13px;
+}
+
+details {
+    transition: all 0.5s;
+    transform: translateY(-2px);
+}
+details[open] {
+    transform: translateY(2px);
+}
+
+table {
+    border-collapse: collapse;
+    border-radius: 0.5em;
+    background-color: $shadow-1;
+}
+
+thead {
+    color: $global-white;
+    background-color: $grey-x;
+}
+tbody tr {
+    transition: background-color 0.5s;
+    &:nth-child(2n) {
+        background-color: $shadow-1;
+    }
+    &:hover {
+        background-color: $shadow-2;
+    }
+}
+
+th,
+td {
+    padding: 0.4em 1.1em;
+}

@@ -1,114 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Landsoul Preview</title>
+        <link href="./dist/landsoul.css" rel="stylesheet" />
+        <link href="./dist/util.css" rel="stylesheet" />
+        <style>
+            /* For this page */
+            html,
+            body {
+                height: 100%;
+            }
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Landsoul Preview</title>
-    <link href="./dist/landsoul.css" rel="stylesheet" />
-    <link href="./dist/util.css" rel="stylesheet" />
-    <style>
-        /* For this page */
-        html,
-        body {
-            height: 100%;
-        }
+            body {
+                display: grid;
+                grid-template-rows: auto 1fr auto;
+            }
+        </style>
+    </head>
 
-        body {
-            display: grid;
-            grid-template-rows: auto 1fr auto;
-        }
-    </style>
-</head>
-
-<body>
-    <header>
-        <nav class="nav-bar">
-            <span class="nav-title">
-                Landsoul
-            </span>
-            <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-            <label for="nav-toggle">
-                <span class="menu-icon">
-                    <svg viewBox="0 0 100 100">
-                        <path d="M83.8 31.2H16.2c-3.5 0-6.2-2.8-6.2-6.2s2.8-6.2 6.2-6.2h67.5c3.5 0 6.2 2.8 6.2 6.2s-2.7 6.2-6.1 6.2z"></path>
-                        <path d="M83.8 56.2H16.2c-3.5 0-6.2-2.8-6.2-6.2s2.8-6.2 6.2-6.2h67.5c3.5 0 6.2 2.8 6.2 6.2s-2.7 6.2-6.1 6.2z" ></path>
-                        <path d="M83.8 81.2H16.2c-3.5 0-6.2-2.8-6.2-6.2s2.8-6.2 6.2-6.2h67.5c3.5 0 6.2 2.8 6.2 6.2s-2.7 6.2-6.1 6.2z" ></path>
-                   </svg>
-                </span>
-            </label>
-            <ul class="nav-list">
-                <li><a href="#">menu1</a></li>
-                <li><a href="#">menu2</a></li>
-                <li><a href="#">menu3</a></li>
-                </div>
-        </nav>
-    </header>
-
-    <div class="jumbotron">
-        <div class="jumbotron-title">Landsoul Preview</div>
-        <div class="jumbotron-content">
-            A light-weight and easy css library
-        </div>
-    </div>
-
-    <main class="container">
-        <div style="display: grid;grid-template-columns: 1fr 1fr;grid-gap:4px;" class="text-center">
-            <div class="card">I am a card</div>
-            <div class="card">
-                I'm <a href="https://github.com/YieldRay">YieldRay</a>
-            </div>
-        </div>
-
-        <div style="display: grid;grid-template-columns: 1fr 1fr;grid-gap:4px;">
-
-            <div class="card">
-                <img src="https://sdfsdf.dev/600x400.jpg" class="rounded" alt="sdfsdf.dev">
-                <input />
-                <button>Button</button>
-                <textarea></textarea>
-            </div>
-
-            <div class="card">
-                <code>$ npm install</code>
-                <ul class="list-group">
-                    <li class="list-group-item space-between">
-                        <span>Messages</span>
-                        <span class="badge">99+</span>
-                    </li>
-                    <li class="list-group-item space-between">
-                        <span>Ohhhhhhhhhhh, soooooooooooooooooooooooooo
-                            long!!!</span>
-                        <span class="badge">99+</span>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">99+</span>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">99+</span>
-                    </li>
+    <body>
+        <header>
+            <nav class="nav-bar">
+                <span class="nav-title"> Landsoul </span>
+                <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+                <label for="nav-toggle">
+                    <span class="menu-icon">
+                        <svg viewbox="0 0 100 100">
+                            <path
+                                d="M83.8 31.2H16.2c-3.5 0-6.2-2.8-6.2-6.2s2.8-6.2 6.2-6.2h67.5c3.5 0 6.2 2.8 6.2 6.2s-2.7 6.2-6.1 6.2z"
+                            ></path>
+                            <path
+                                d="M83.8 56.2H16.2c-3.5 0-6.2-2.8-6.2-6.2s2.8-6.2 6.2-6.2h67.5c3.5 0 6.2 2.8 6.2 6.2s-2.7 6.2-6.1 6.2z"
+                            ></path>
+                            <path
+                                d="M83.8 81.2H16.2c-3.5 0-6.2-2.8-6.2-6.2s2.8-6.2 6.2-6.2h67.5c3.5 0 6.2 2.8 6.2 6.2s-2.7 6.2-6.1 6.2z"
+                            ></path>
+                        </svg>
+                    </span>
+                </label>
+                <ul class="nav-list">
+                    <li><a href="#">menu1</a></li>
+                    <li><a href="#">menu2</a></li>
+                    <li><a href="#">menu3</a></li>
                 </ul>
+            </nav>
+        </header>
+
+        <div class="jumbotron">
+            <div class="jumbotron-title">Landsoul Preview</div>
+            <div class="jumbotron-content">
+                A light-weight and easy css library
+            </div>
+        </div>
+
+        <main class="container">
+            <div
+                style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-gap: 4px;
+                "
+                class="text-center"
+            >
+                <div class="card">I am a card</div>
+                <div class="card">
+                    I'm <a href="https://github.com/YieldRay">YieldRay</a>
+                </div>
             </div>
 
-        </div>
+            <div
+                style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-gap: 4px;
+                "
+            >
+                <div class="card">
+                    <img
+                        src="https://sdfsdf.dev/600x400.jpg"
+                        class="rounded"
+                        alt="sdfsdf.dev"
+                    />
+                    <input />
+                    <button>Button</button>
+                    <textarea></textarea>
+                </div>
 
-        <div class="card">
-            <pre>
-        build
-           amaing
-               things
-            </pre>
-        </div>
-        
-    </main>
+                <div class="card">
+                    <code>$ npm install</code>
+                    <hr />
+                    <ul class="list-group">
+                        <li class="list-group-item space-between">
+                            <span>Messages</span>
+                            <span class="badge">99+</span>
+                        </li>
+                        <li class="list-group-item space-between">
+                            <span
+                                >Ohhhhhhhhhhh, soooooooooooooooooooooooooo
+                                long!!!</span
+                            >
+                            <span class="badge">99+</span>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">99+</span>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">99+</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-    <footer class="footer">
-        <div class="container">
-            Made with ❤ by
-            <a href="https://github.com/YieldRay">YieldRay</a>
-        </div>
-    </footer>
-</body>
+            <div class="card">
+                <details open>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Larry the Bird</td>
+                                <td></td>
+                                <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </details>
+            </div>
+        </main>
 
+        <footer class="footer">
+            <div class="container">
+                Made with ❤ by
+                <a href="https://github.com/YieldRay">YieldRay</a>
+            </div>
+        </footer>
+    </body>
 </html>

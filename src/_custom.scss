@@ -47,6 +47,7 @@
 }
 
 .badge {
+    display: inline;
     font-size: smaller;
     padding: 0.25em 0.5em;
     border-radius: 2em;
@@ -67,8 +68,12 @@
     border-bottom: solid 1px $grey;
     word-break: break-all;
     text-overflow: ellipsis;
+    transition: all 0.4s;
     &:last-child {
         border-bottom: none;
+    }
+    &:hover {
+        background-color: $shadow-1;
     }
 }
 
