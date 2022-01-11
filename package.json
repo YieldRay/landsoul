@@ -4,8 +4,8 @@
     "description": "CSS library landsoul",
     "main": "./dist/landsoul.css",
     "scripts": {
-        "dev": "npx sass --watch src:dist --no-source-map",
-        "build": "npx sass src:dist --no-source-map && npx postcss ./dist/*.css -d ./dist"
+        "dev": "sass --watch src:dist --no-source-map",
+        "build": "sass src:dist --no-source-map && postcss ./dist/*.css -d ./dist"
     },
     "repository": {
         "type": "git",

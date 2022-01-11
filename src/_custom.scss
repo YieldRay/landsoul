@@ -62,6 +62,7 @@
     padding-left: 0;
     border-radius: 0.75em;
     border: solid 1px $grey;
+    overflow: hidden;
 }
 .list-group-item {
     padding: 0.5em 0.55em;
@@ -90,6 +91,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     backdrop-filter: blur(0.25em);
     color: $white;
     background-color: $grey-t;
@@ -135,9 +137,14 @@
     }
 }
 @media screen and (max-width: 64rem) {
+    $height: 2.4rem;
     .nav-bar {
         padding-left: 0;
-        line-height: 2rem;
+        height: $height;
+        line-height: $height;
+        .nav-toggle {
+            line-height: $height;
+        }
         .nav-title {
             padding-left: 0.5rem;
         }
@@ -150,7 +157,7 @@
             padding: 0;
             text-align: center;
             width: 100%;
-            top: 2.4rem;
+            top: $height;
             background-color: $grey-t;
             li {
                 display: block;
