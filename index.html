@@ -49,25 +49,37 @@
             </nav>
         </header>
 
+        <div style="height: 3rem; visibility: hidden">Nav-Bar</div>
+
         <div class="jumbotron">
-            <div class="jumbotron-title">Landsoul Preview</div>
+            <p class="jumbotron-title">Landsoul Preview</p>
             <div class="jumbotron-content">
-                A light-weight and easy css library
+                <p>A light-weight and easy css library</p>
+                <p>Currently IE11 is not well supported</p>
             </div>
         </div>
 
         <main class="container">
-            <div
-                style="
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    grid-gap: 4px;
-                "
-                class="text-center"
-            >
-                <div class="card">I am a card</div>
-                <div class="card">
-                    I'm <a href="https://github.com/YieldRay">YieldRay</a>
+            <div class="card space-between" style="align-items: center">
+                <div
+                    style="
+                        border-radius: 50%;
+                        background: conic-gradient(
+                            from 0.5turn,
+                            #d2e8ff,
+                            120deg,
+                            #2988ff
+                        );
+                        filter: blur(1px);
+                    "
+                >
+                    <div style="width: 5rem; height: 5rem">
+                        <dialog open>dialog</dialog>
+                    </div>
+                </div>
+                <div>
+                    I'm
+                    <a href="https://github.com/YieldRay">YieldRay</a>
                 </div>
             </div>
 
@@ -111,11 +123,18 @@
                             <span class="badge">99+</span>
                         </li>
                     </ul>
+                    <select>
+                        You browser do not support select
+                        <option>opt1</option>
+                        <option>opt2</option>
+                        <option>opt3</option>
+                    </select>
                 </div>
             </div>
 
             <div class="card">
                 <details open>
+                    <summary>Table</summary>
                     <table>
                         <thead>
                             <tr>
@@ -147,6 +166,32 @@
                         </tbody>
                     </table>
                 </details>
+            </div>
+
+            <div class="card">
+                <h1>h1</h1>
+                Esse pariatur ex cillum minim mollit. Fugiat mollit laboris
+                voluptate ut minim consequat pariatur aliquip officia. Mollit
+                excepteur duis non labore ipsum reprehenderit tempor ad.
+            </div>
+            <div class="card" style="height: 8rem">
+                <progress value="60" max="100"></progress>
+                <meter value="0.6">
+                    60% (IE is not support, so no css for this element)
+                </meter>
+                <p>
+                    Dolore nulla ea et aliquip ad. Commodo ad veniam minim
+                    fugiat mollit. Anim occaecat cupidatat quis adipisicing.
+                    Dolore exercitation adipisicing cupidatat anim proident
+                    aliquip occaecat irure ut cillum elit est commodo irure.
+                    Anim deserunt id enim elit dolore ad irure quis nulla amet
+                    do amet velit tempor. Aliqua aute et amet dolore adipisicing
+                    est non adipisicing fugiat incididunt ipsum. Adipisicing
+                    minim cupidatat labore consequat velit anim. Minim aute
+                    dolore officia qui ad in veniam id adipisicing velit elit.
+                    Velit elit nisi cillum aliqua et nostrud ea ullamco anim.
+                    Duis ea Lorem dolore aliquip.
+                </p>
             </div>
         </main>
 

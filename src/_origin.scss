@@ -19,7 +19,7 @@ a {
         text-decoration: underline;
     }
 }
-
+select,
 input,
 button,
 textarea {
@@ -31,6 +31,7 @@ textarea {
         outline: none;
     }
 }
+select,
 input,
 textarea {
     padding: 0.5rem;
@@ -46,6 +47,13 @@ textarea {
     max-width: 100%;
     min-height: 3rem;
 }
+option {
+    color: $global-black;
+    background-color: $global-white;
+    text-indent: 0.8rem;
+    font-size: 0.9rem;
+}
+
 button {
     cursor: pointer;
     padding: 0 0.75rem;
@@ -132,4 +140,46 @@ td {
     td {
         padding: 0.6em 1em;
     }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    text-shadow: 0 1px $shadow;
+}
+
+progress {
+    transform: translateY(-0.3rem);
+    box-shadow: 1px 1px 1px $shadow-3;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    background-color: $global-white; /*IE*/
+    color: $link; /*IE*/
+    overflow: hidden;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+progress::-moz-progress-bar {
+    background: $global-white;
+}
+progress::-webkit-progress-bar {
+    background: $global-white;
+}
+progress::-webkit-progress-value {
+    background: $link;
+}
+
+dialog {
+    padding: 0.5rem 1rem;
+    border: none;
+    box-shadow: 1px 1px 1px $shadow-3, -1px -1px 1px $shadow-1;
+    overflow: hidden;
+    border-radius: 0.3rem;
 }
