@@ -14,8 +14,28 @@ html {
     scrollbar-track-color: $white;
 }
 
+a {
+    // for IE
+    background-color: transparent;
+}
+
+progress {
+    // for chrome
+    vertical-align: baseline;
+}
+
+main {
+    display: block;
+}
+
 ::-webkit-scrollbar {
-    width: 0.75rem;
+    width: 1rem;
+}
+
+@media screen and (max-width: 64rem) {
+    ::-webkit-scrollbar {
+        width: 0.5rem;
+    }
 }
 
 ::-webkit-scrollbar-track {

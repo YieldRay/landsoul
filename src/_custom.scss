@@ -127,16 +127,6 @@
     }
 }
 
-@keyframes show-nav-list {
-    from {
-        opacity: 0;
-        transform: translate(0, -5em);
-    }
-    to {
-        opacity: 1;
-        transform: translate(0, 0);
-    }
-}
 @media screen and (max-width: 64rem) {
     $height: 2.4rem;
     .nav-bar {
@@ -150,10 +140,10 @@
             padding-left: 0.5rem;
         }
         .nav-list {
-            // adjust this to debug
-            display: none;
-            // adjust this to debug
-            animation: show-nav-list 0.3s linear;
+            // transition here
+            max-height: 0;
+            overflow-y: hidden;
+            transition: max-height 0.6s;
             position: fixed;
             padding: 0;
             text-align: center;
@@ -181,8 +171,8 @@
             }
         }
         input#nav-toggle:checked ~ .nav-list {
-            // 点击显示
-            display: block;
+            // click to show
+            max-height: 40vh; // keep in mind that this height should fit content!!!
         }
     }
 }

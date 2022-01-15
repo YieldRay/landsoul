@@ -84,6 +84,7 @@ code {
     font-family: Consolas;
 }
 hr {
+    background: currentColor;
     border: none;
     border-top: 0.15rem solid $shadow-1;
     overflow: visible;
@@ -91,14 +92,13 @@ hr {
     padding: 0;
     margin: 0;
     transform: translateY(1rem);
-}
-
-hr::after {
-    content: "§";
-    color: $shadow-2;
-    position: relative;
-    left: 50%;
-    top: -0.7rem;
+    &::after {
+        content: "§";
+        color: $shadow-2;
+        position: relative;
+        left: 50%;
+        top: -0.7rem;
+    }
 }
 
 details {
@@ -155,7 +155,6 @@ h6 {
 }
 
 progress {
-    transform: translateY(-0.3rem);
     box-shadow: 1px 1px 1px $shadow-3;
     height: 0.5rem;
     line-height: 0.5rem;
@@ -164,16 +163,15 @@ progress {
     overflow: hidden;
     border: none;
     border-radius: 0.5rem;
-}
-
-progress::-moz-progress-bar {
-    background: $global-white;
-}
-progress::-webkit-progress-bar {
-    background: $global-white;
-}
-progress::-webkit-progress-value {
-    background: $link;
+    &::-moz-progress-bar {
+        background-color: $global-white;
+    }
+    &::-webkit-progress-bar {
+        background-color: $global-white;
+    }
+    &::-webkit-progress-value {
+        background-color: $link;
+    }
 }
 
 dialog {
