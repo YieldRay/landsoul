@@ -100,7 +100,8 @@
     backdrop-filter: saturate(180%) blur(0.3em);
     box-shadow: 0 1px 1px $shadow-1;
     line-height: $height;
-    padding: 0.25rem 2.5rem auto 0.25rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
     .nav-title {
         font-size: 1.5rem;
     }
@@ -118,8 +119,8 @@
                 color: $black-t;
                 text-decoration: none;
                 border-radius: 0.3rem;
-                padding: 0.5rem 0.6rem;
-                transition: 0.3s;
+                padding: 0.75rem;
+                transition: 0.4s;
                 &:hover {
                     background-color: $shadow-1;
                 }
@@ -132,6 +133,7 @@
     $height: 2.75rem;
     .nav-bar {
         padding-left: 0.25rem;
+        padding-right: 0.25rem;
         height: $height;
         line-height: $height;
         .nav-toggle {
