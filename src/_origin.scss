@@ -84,7 +84,7 @@ code {
     font-family: Consolas;
 }
 hr {
-    background: currentColor;
+    background: inherit;
     border: none;
     border-top: 0.15rem solid $shadow-1;
     overflow: visible;
@@ -164,7 +164,7 @@ progress {
     border: none;
     border-radius: 0.5rem;
     &::-moz-progress-bar {
-        background-color: $global-white;
+        background-color: $link;
     }
     &::-webkit-progress-bar {
         background-color: $global-white;

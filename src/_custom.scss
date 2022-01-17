@@ -85,22 +85,24 @@
     font-size: small;
     text-align: center;
 }
-
 .nav-bar {
+    $height: 3rem;
     z-index: 1;
     position: fixed;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    backdrop-filter: blur(0.25em);
-    color: $white;
-    background-color: $grey-t;
+    font-family: "Noto Serif SC", Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: $black-t;
+    background-color: $shadow-t;
+    backdrop-filter: saturate(180%) blur(0.3em);
     box-shadow: 0 1px 1px $shadow-1;
-    line-height: 2.25rem;
-    padding: 0.25rem 1rem;
+    line-height: $height;
+    padding: 0.25rem 2.5rem auto 0.25rem;
     .nav-title {
-        font-size: large;
+        font-size: 1.5rem;
     }
     // 隐藏按钮（单选框）
     .nav-toggle,
@@ -113,11 +115,10 @@
             display: inline-block;
             list-style: none;
             > a {
-                color: $white;
+                color: $black-t;
                 text-decoration: none;
-                font-weight: 300;
                 border-radius: 0.3rem;
-                padding: 0.3rem 0.5rem;
+                padding: 0.5rem 0.6rem;
                 transition: 0.3s;
                 &:hover {
                     background-color: $shadow-1;
@@ -128,32 +129,39 @@
 }
 
 @media screen and (max-width: 64rem) {
-    $height: 2.4rem;
+    $height: 2.75rem;
     .nav-bar {
-        padding-left: 0;
+        padding-left: 0.25rem;
         height: $height;
         line-height: $height;
         .nav-toggle {
             line-height: $height;
         }
         .nav-title {
+            font-weight: normal;
             padding-left: 0.5rem;
         }
         .nav-list {
             // transition here
             max-height: 0;
+            box-shadow: 0 1px 2px $shadow-2;
             overflow-y: hidden;
-            transition: max-height 0.6s;
+            transition: max-height 0.7s;
             position: fixed;
             padding: 0;
             text-align: center;
             width: 100%;
             top: $height;
-            background-color: $grey-t;
+            background-color: $shadow-t;
+            border-radius: 0 0 0.6rem 0.6rem;
             li {
+                background-color: $shadow-tt;
                 display: block;
+                line-height: 1.25rem;
                 a {
                     display: block;
+                    color: $grey-tt;
+                    font-size: 80%;
                 }
             }
         }
@@ -163,12 +171,8 @@
             height: 2rem;
             cursor: pointer;
         }
-        .menu-icon {
+        .nav-icon {
             display: block;
-            line-height: 2rem;
-            > svg path {
-                fill: $white;
-            }
         }
         input#nav-toggle:checked ~ .nav-list {
             // click to show
