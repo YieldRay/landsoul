@@ -1,3 +1,4 @@
+@import "colors";
 .text-center {
     text-align: center;
 }
@@ -35,4 +36,17 @@
 
 .circle {
     border-radius: 50%;
+}
+
+.text-grey {
+    color: $grey;
+}
+.text-red {
+    color: $code-bg;
+}
+.text-white {
+    color: $global-white;
+}
+.text-black {
+    color: $global-black;
 }

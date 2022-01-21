@@ -1,5 +1,5 @@
 @import "colors";
-
+@import "custom";
 * {
     box-sizing: border-box;
 }
@@ -24,14 +24,16 @@ input,
 button,
 textarea {
     border: none;
-    border-radius: 0.35rem;
-    height: 2rem;
+    border-radius: 0.3rem;
     box-shadow: 0 0 2px $shadow-2;
     &:focus {
         outline: none;
     }
 }
-select,
+button,
+input[type="submit"] {
+    line-height: 2rem;
+}
 input,
 textarea {
     padding: 0.5rem;
@@ -41,6 +43,10 @@ textarea {
     &:focus {
         border-bottom: solid $grey-x 0.2rem;
     }
+}
+select {
+    height: 1.6rem;
+    padding: 0 0.5rem;
 }
 textarea {
     display: block;
@@ -56,6 +62,7 @@ option {
 
 button {
     cursor: pointer;
+    font-weight: bolder;
     padding: 0 0.75rem;
     transition: 0.3s;
     &:hover {
@@ -84,21 +91,10 @@ code {
     font-family: Consolas;
 }
 hr {
+    margin: 0 0 0.5rem 0;
     background: inherit;
     border: none;
-    border-top: 0.15rem solid $shadow-1;
-    overflow: visible;
-    border-radius: 2px;
-    padding: 0;
-    margin: 0;
-    transform: translateY(1rem);
-    &::after {
-        content: "§";
-        color: $shadow-2;
-        position: relative;
-        left: 50%;
-        top: -0.7rem;
-    }
+    border-top: 0.1rem solid $shadow-1;
 }
 
 details {
@@ -175,9 +171,23 @@ progress {
 }
 
 dialog {
+    @include card-mixin(2px, 1px);
     padding: 0.5rem 1rem;
+    position: fixed;
+    width: 85%;
+    top: 50%;
     border: none;
-    box-shadow: 1px 1px 1px $shadow-3, -1px -1px 1px $shadow-1;
-    overflow: hidden;
-    border-radius: 0.3rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 1s;
+}
+dialog[open] {
+    opacity: 1;
+}
+
+@media screen and (min-width: 64rem) {
+    dialog {
+        width: 64rem;
+    }
 }

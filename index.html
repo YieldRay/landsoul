@@ -18,6 +18,12 @@
                 display: grid;
                 grid-template-rows: auto 1fr auto;
             }
+            @media screen and (min-width: 60rem) {
+                main.container {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
         </style>
     </head>
 
@@ -64,76 +70,46 @@
         </div>
 
         <main class="container">
-            <div class="card space-between" style="align-items: center">
-                <div
-                    style="
-                        border-radius: 50%;
-                        background: conic-gradient(
-                            from 0.5turn,
-                            #d2e8ff,
-                            120deg,
-                            #2988ff
-                        );
-                        filter: blur(1px);
-                    "
-                >
-                    <div style="width: 5rem; height: 5rem">
-                        <dialog open>dialog</dialog>
-                    </div>
-                </div>
-                <div>
-                    I'm
-                    <a href="https://github.com/YieldRay">YieldRay</a>
-                </div>
+            <div class="card">
+                <img
+                    src="https://sdfsdf.dev/600x400.jpg"
+                    class="rounded"
+                    alt="sdfsdf.dev"
+                />
+                <input />
+                <button>Button</button>
+                <textarea></textarea>
             </div>
 
-            <div
-                style="
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    grid-gap: 4px;
-                "
-            >
-                <div class="card">
-                    <img
-                        src="https://sdfsdf.dev/600x400.jpg"
-                        class="rounded"
-                        alt="sdfsdf.dev"
-                    />
-                    <input />
-                    <button>Button</button>
-                    <textarea></textarea>
-                </div>
-
-                <div class="card">
-                    <code>$ npm install</code>
-                    <hr />
-                    <ul class="list-group">
-                        <li class="list-group-item space-between">
-                            <span>Messages</span>
-                            <span class="badge">99+</span>
-                        </li>
-                        <li class="list-group-item space-between">
-                            <span
-                                >Ohhhhhhhhhhh, soooooooooooooooooooooooooo
-                                long!!!</span
-                            >
-                            <span class="badge">99+</span>
-                        </li>
-                        <li class="list-group-item">
-                            <span class="badge">99+</span>
-                        </li>
-                        <li class="list-group-item">
-                            <span class="badge">99+</span>
-                        </li>
-                    </ul>
-                    <select>
-                        You browser do not support select
-                        <option>opt1</option>
-                        <option>opt2</option>
-                        <option>opt3</option>
-                    </select>
-                </div>
+            <div class="card">
+                <code>$ npm install</code>
+                <ul class="list-group">
+                    <li class="list-group-item space-between">
+                        <span>Messages</span>
+                        <span class="badge">99+</span>
+                    </li>
+                    <li class="list-group-item space-between">
+                        <span
+                            >Ohhhhhhhhhhh, soooooooooooooooooooooooooo
+                            long!!!</span
+                        >
+                        <span class="badge">99+</span>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">99+</span>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge"
+                            >999999999999999999999999999999999999999+</span
+                        >
+                    </li>
+                </ul>
+                <select>
+                    You browser do not support select
+                    <option>opt1</option>
+                    <option>opt2</option>
+                    <option>opt3</option>
+                </select>
             </div>
 
             <div class="card">
@@ -174,6 +150,7 @@
 
             <div class="card">
                 <h1>h1</h1>
+                <hr />
                 Esse pariatur ex cillum minim mollit. Fugiat mollit laboris
                 voluptate ut minim consequat pariatur aliquip officia. Mollit
                 excepteur duis non labore ipsum reprehenderit tempor ad.
@@ -198,12 +175,35 @@
                 </p>
             </div>
         </main>
-
+        <dialog id="$dialog" open>
+            <p>Welcome to Landsoul Preview</p>
+            <p>
+                you can only view this modal via chrome&gt;37 due to only
+                chromium supports HTMLDialogElement currently, this is just for
+                test
+            </p>
+            <button
+                onclick="$dialog.close();localStorage.dialog='1'"
+                class="float-right"
+            >
+                close
+            </button>
+        </dialog>
         <footer class="footer">
             <div class="container">
                 Made with ❤ by
                 <a href="https://github.com/YieldRay">YieldRay</a>
             </div>
         </footer>
+
+        <script>
+            if ($dialog.close) {
+                if (localStorage.dialog) {
+                    $dialog.close();
+                }
+            } else {
+                $dialog.remove();
+            }
+        </script>
     </body>
 </html>
