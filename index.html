@@ -7,6 +7,10 @@
         <title>Landsoul Preview</title>
         <link href="./dist/landsoul.css" rel="stylesheet" />
         <link href="./dist/util.css" rel="stylesheet" />
+        <link
+            href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css"
+            rel="stylesheet"
+        />
         <style>
             /* For this page */
             html,
@@ -18,6 +22,7 @@
                 display: grid;
                 grid-template-rows: auto 1fr auto;
             }
+
             @media screen and (min-width: 60rem) {
                 main.container {
                     display: grid;
@@ -62,7 +67,10 @@
 
         <div class="jumbotron">
             <p class="jumbotron-title">Landsoul Preview</p>
-            <div class="jumbotron-content" style="font-family: 'Noto Serif SC'">
+            <div
+                class="jumbotron-content"
+                style="font-family: 'Noto Serif SC', monospace"
+            >
                 <p>A light-weight and easy css library</p>
                 <p>Currently IE11 is not well supported</p>
                 <p>use this font by adding font-family: 'Noto Serif SC'</p>
@@ -110,6 +118,63 @@
                     <option>opt2</option>
                     <option>opt3</option>
                 </select>
+                <div class="button-group">
+                    <button>Button</button>
+                    <button>Button</button>
+                    <button>Button</button>
+                </div>
+
+                <br />
+                <div class="dropdown">
+                    <button>
+                        <label title="打开下拉菜单" for="dropdownID">
+                            <i class="fa fa-user fa-fw"></i> 用户
+                            <i class="fa fa-caret-down"></i>
+                        </label>
+                    </button>
+                    <input type="checkbox" id="dropdownID" data-dropdown />
+                    <div data-dropdown>
+                        <ul class="list-group" data-dropdown>
+                            <li class="list-group-item">
+                                <i class="fa fa-pencil fa-fw"></i> 编辑
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa fa-trash-o fa-fw"></i> 删除
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa fa-ban fa-fw"></i> 屏蔽
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa fa-unlock"></i> 锁定管理员
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <br />
+
+                <div class="card">
+                    <div class="chat-left">
+                        <div class="chat-name">
+                            我的名字很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长
+                        </div>
+                        <img
+                            src="https://cdn.shibe.online/shibes/e7fc77071a1eeae5853b9f8b9e0eb57b060f6fab.jpg"
+                            alt="chat"
+                            class="chat-avatar circle"
+                        />
+                        <div class="chat-content chat-content-left">?</div>
+                    </div>
+                    <br />
+                    <div class="chat-right">
+                        <div class="chat-name">dog</div>
+                        <img
+                            src="https://cdn.shibe.online/shibes/28c559bd4162d9d26481ee81bbb21574c424fd30.jpg"
+                            alt="chat"
+                            class="chat-avatar circle"
+                        />
+                        <div class="chat-content">!</div>
+                    </div>
+                </div>
             </div>
 
             <div class="card">
@@ -160,48 +225,71 @@
                 <meter value="0.6">
                     60% (IE is not support, so no css for this element)
                 </meter>
-                <p>
-                    Dolore nulla ea et aliquip ad. Commodo ad veniam minim
-                    fugiat mollit. Anim occaecat cupidatat quis adipisicing.
-                    Dolore exercitation adipisicing cupidatat anim proident
-                    aliquip occaecat irure ut cillum elit est commodo irure.
-                    Anim deserunt id enim elit dolore ad irure quis nulla amet
-                    do amet velit tempor. Aliqua aute et amet dolore adipisicing
-                    est non adipisicing fugiat incididunt ipsum. Adipisicing
-                    minim cupidatat labore consequat velit anim. Minim aute
-                    dolore officia qui ad in veniam id adipisicing velit elit.
-                    Velit elit nisi cillum aliqua et nostrud ea ullamco anim.
-                    Duis ea Lorem dolore aliquip.
-                </p>
+                <i
+                    class="fa fa-quote-left fa-3x fa-pull-left fa-border"
+                    aria-hidden="true"
+                ></i>
+                ...独坐在路边街角
+                冷风吹醒，默默地伴着我的孤影，只想将结他紧抱，诉出辛酸，就在这刻想起往事，心中一股冲劲勇闯，抛开那现实没有顾虑，仿佛身边拥有一切，看似与别人筑起隔膜。
+            </div>
+            <div class="card">
+                <div class="list-group">
+                    <a class="list-group-item" href="#"
+                        ><i class="fa fa-home fa-fw" aria-hidden="true"></i
+                        >&nbsp; 首页</a
+                    >
+                    <a class="list-group-item" href="#"
+                        ><i class="fa fa-book fa-fw" aria-hidden="true"></i
+                        >&nbsp; 关于我们</a
+                    >
+                    <a class="list-group-item" href="#"
+                        ><i class="fa fa-pencil fa-fw" aria-hidden="true"></i
+                        >&nbsp; 后台应用编辑</a
+                    >
+                    <a class="list-group-item" href="#"
+                        ><i class="fa fa-cog fa-fw" aria-hidden="true"></i
+                        >&nbsp; 系统设置</a
+                    >
+                </div>
             </div>
         </main>
         <dialog id="$dialog" open>
             <p>Welcome to Landsoul Preview</p>
             <p>
-                you can only view this modal via chrome&gt;37 due to only
+                you can only view this modal directly via chrome&gt;37 as only
                 chromium supports HTMLDialogElement currently, this is just for
                 test
             </p>
-            <button
-                onclick="$dialog.close();localStorage.dialog='1'"
-                class="float-right"
-            >
-                close
-            </button>
+            <button onclick="closeDialog()" class="float-right">close</button>
         </dialog>
         <footer class="footer">
             <div class="container">
                 Made with ❤ by
-                <a href="https://github.com/YieldRay">YieldRay</a>
+                <a href="https://github.com/YieldRay">
+                    <i class="fa fa-github"></i> YieldRay
+                </a>
             </div>
         </footer>
 
+        <div id="$overlay" class="overlay"></div>
+
         <script>
+            const $dialog = document.getElementById("$dialog");
+            const $overlay = document.getElementById("$overlay");
+            const closeDialog = () => {
+                $dialog.close();
+                $overlay.classList.add("hidden");
+                localStorage.dialog = "1";
+            };
+            $overlay.onclick = closeDialog;
             if ($dialog.close) {
                 if (localStorage.dialog) {
-                    $dialog.close();
+                    $overlay.classList.add("hidden");
+                    $dialog.classList.add("hidden");
+                    $dialog.close(); // this is different from display:none
                 }
             } else {
+                $overlay.remove();
                 $dialog.remove();
             }
         </script>

@@ -1,5 +1,6 @@
 @import "colors";
 
+/* 大萤幕 */
 .jumbotron {
     display: flex;
     flex-direction: column;
@@ -24,7 +25,7 @@
         color: $grey;
     }
 }
-
+/* 卡片 */
 @mixin card-mixin($blur: 1px, $spread: 0) {
     background-color: $white;
     box-shadow: 1px 1px $blur $spread $shadow-2,
@@ -43,6 +44,7 @@
     }
 }
 
+/* 容器 */
 @media screen and (max-width: 64em) {
     .container {
         padding: 0 0.25rem;
@@ -53,7 +55,7 @@
     margin: auto;
     max-width: 68rem;
 }
-
+/* 勋章 */
 .badge {
     display: inline-flex;
     align-items: center;
@@ -66,7 +68,7 @@
     word-break: keep-all;
     // overflow: hidden;
 }
-
+/* 列表组 */
 .list-group {
     list-style-type: none;
     padding-left: 0;
@@ -74,6 +76,8 @@
     @include card-mixin();
 }
 .list-group-item {
+    display: block;
+    color: inherit;
     padding: 0.4em 0.5em;
     border-bottom: solid 1px $shadow-tt;
     word-break: break-all;
@@ -83,6 +87,7 @@
         border-bottom: none;
     }
     &:hover {
+        text-decoration: none;
         background-color: $shadow-1;
     }
 }
@@ -94,10 +99,10 @@
     font-size: small;
     text-align: center;
 }
-
+/* 顶部导航 */
 .nav-bar {
     $height: 3rem;
-    z-index: 2;
+    z-index: 1;
     position: fixed;
     width: 100%;
     display: flex;
@@ -176,7 +181,7 @@
                 a {
                     display: block;
                     color: $grey-tt;
-                    font-size: 80%;
+                    font-size: smaller;
                 }
             }
         }
@@ -194,4 +199,127 @@
             max-height: 40vh; // keep in mind that this height should fit content!!!
         }
     }
+}
+/* 按钮组 */
+.button-group {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.3rem;
+    box-shadow: 0 0 2px $shadow-2;
+    > button {
+        box-shadow: none;
+    }
+    > button:first-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    > button:last-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    > button:not(:last-child, :first-child) {
+        border-radius: 0;
+    }
+}
+/* 下拉菜单 */
+.dropdown {
+    position: relative;
+    line-height: 1rem;
+    label {
+        cursor: pointer;
+    }
+    > input[data-dropdown] {
+        display: none;
+    }
+    > input[data-dropdown] ~ [data-dropdown] {
+        display: none;
+    }
+    > input[data-dropdown]:checked ~ [data-dropdown] {
+        display: block;
+        position: absolute;
+        z-index: 1;
+        top: 0.85rem;
+        left: 0;
+    }
+}
+
+/* 遮罩 */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: $shadow-3;
+    backdrop-filter: blur(0.1em);
+}
+/* 气泡对话 */
+.chat-content {
+    background: $grey-t;
+    word-break: break-all;
+    word-wrap: break-word;
+    text-align: left;
+    position: relative;
+    display: inline-block;
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem 0.55rem;
+    line-height: 1rem;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+.chat-right {
+    max-width: 100%;
+    > .chat-content {
+        float: right;
+        transform: translateX(-0.25rem);
+        &::after {
+            content: "";
+            right: -0.85rem;
+            top: 0.5rem;
+            border-left: 0.85rem solid $grey-t;
+            position: absolute;
+            border-bottom: 0.5rem solid transparent;
+        }
+    }
+    > .chat-avatar {
+        float: right;
+    }
+    > .chat-name {
+        padding-right: 2.75rem;
+        text-align: right;
+    }
+}
+
+.chat-left {
+    max-width: 100%;
+    .chat-content {
+        &::before {
+            content: "";
+            left: -0.85rem;
+            top: 0.5rem;
+            border-right: 0.85rem solid $grey-t;
+            position: absolute;
+            border-bottom: 0.5rem solid transparent;
+        }
+    }
+    > .chat-name {
+        padding-left: 2.5rem;
+        text-align: left;
+    }
+}
+
+.chat-name {
+    display: block;
+    transform: translateY(0.5em);
+    font-size: 0.7rem;
+    line-height: 0.7rem;
+    color: $grey-tt;
+}
+
+.chat-avatar {
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
 }
