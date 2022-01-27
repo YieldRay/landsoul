@@ -19,7 +19,10 @@
 .clear {
     clear: both;
 }
-/* So avoid use float */
+/* So avoid using float */
+.flex {
+    display: flex;
+}
 
 .space-between {
     display: flex;

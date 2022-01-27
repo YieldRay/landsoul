@@ -14,15 +14,16 @@
             body {
                 height: 100%;
             }
-
             body {
                 display: grid;
                 grid-template-rows: auto 1fr auto;
             }
-
+            main.container {
+                display: grid;
+                gap: 0.5rem;
+            }
             @media screen and (min-width: 60rem) {
                 main.container {
-                    display: grid;
                     grid-template-columns: repeat(2, 1fr);
                 }
             }
@@ -56,21 +57,21 @@
         <div class="jumbotron">
             <p class="jumbotron-title">Landsoul Preview</p>
             <div class="jumbotron-content" style="font-family: 'Noto Serif SC', monospace">
-                <p>A light-weight and easy css library</p>
+                <p>A CSS library that used to build basic things</p>
                 <p>Currently IE11 is not well supported</p>
                 <p>use this font by adding font-family: 'Noto Serif SC'</p>
             </div>
         </div>
 
         <main class="container">
-            <div class="card">
+            <article class="card-media">
                 <img src="https://sdfsdf.dev/600x400.jpg" class="rounded" alt="sdfsdf.dev" />
-                <input />
+                <input type="text" />
                 <button>Button</button>
                 <textarea></textarea>
-            </div>
+            </article>
 
-            <div class="card">
+            <article class="card">
                 <code>$ npm install</code>
                 <ul class="list-group">
                     <li class="list-group-item space-between">
@@ -78,14 +79,12 @@
                         <span class="badge">99+</span>
                     </li>
                     <li class="list-group-item space-between">
-                        <span>Ohhhhhhhhhhh, soooooooooooooooooooooooooo long!!!</span>
+                        <span>Ohhhhhhhhhhh, soooooooooooooooooooooooooooooooooooooo long!!!</span>
                         <span class="badge">99+</span>
                     </li>
-                    <li class="list-group-item">
-                        <span class="badge">99+</span>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">999999999999999999999999999999999999999+</span>
+                    <li class="list-group-item space-between">
+                        <span>the number is too big!</span>
+                        <span class="badge">99999999999999999999999999999999999999999999+</span>
                     </li>
                 </ul>
                 <select>
@@ -103,14 +102,14 @@
                 <br />
                 <div class="dropdown">
                     <button>
-                        <label title="打开下拉菜单" for="dropdown ID">
+                        <label title="打开下拉菜单" for="dropdownID">
                             <i class="fa fa-user fa-fw"></i> 用户
                             <i class="fa fa-caret-down"></i>
                         </label>
                     </button>
-                    <input type="checkbox" id="dropdownID" data-dropdown />
-                    <div data-dropdown>
-                        <ul class="list-group" data-dropdown>
+                    <input type="checkbox" id="dropdownID" />
+                    <div class="dropdown-content">
+                        <ul class="list-group">
                             <li class="list-group-item"><i class="fa fa-pencil fa-fw"></i> 编辑</li>
                             <li class="list-group-item"><i class="fa fa-trash-o fa-fw"></i> 删除</li>
                             <li class="list-group-item"><i class="fa fa-ban fa-fw"></i> 屏蔽</li>
@@ -135,9 +134,9 @@
                         <div class="chat-content">!</div>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="card">
+            <article class="card">
                 <details open>
                     <summary>Table</summary>
                     <table>
@@ -171,17 +170,15 @@
                         </tbody>
                     </table>
                 </details>
-            </div>
+            </article>
 
-            <div class="card">
+            <article class="card">
                 <h1>h1</h1>
                 <hr />
                 Esse pariatur ex cillum minim mollit. Fugiat mollit laboris voluptate ut minim consequat pariatur aliquip officia. Mollit excepteur duis non
                 labore ipsum reprehenderit tempor ad.
-            </div>
+            </article>
             <div class="card" style="height: 8rem">
-                <progress value="60" max="100"></progress>
-                <meter value="0.6">60% (IE is not support, so no css for this element)</meter>
                 <i class="fa fa-quote-left fa-3x fa-pull-left fa-border" aria-hidden="true"></i>
                 ...独坐在路边街角
                 冷风吹醒，默默地伴着我的孤影，只想将结他紧抱，诉出辛酸，就在这刻想起往事，心中一股冲劲勇闯，抛开那现实没有顾虑，仿佛身边拥有一切，看似与别人筑起隔膜。
@@ -194,28 +191,35 @@
                     <a class="list-group-item" href="#"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp; 系统设置</a>
                 </div>
             </div>
-            <div class="card">
+            <article class="card-media">
                 <div class="carousel" style="width: 100%">
                     <input type="radio" name="carousel-radio-1" id="carousel-radio-1-1" checked />
                     <input type="radio" name="carousel-radio-1" id="carousel-radio-1-2" />
                     <input type="radio" name="carousel-radio-1" id="carousel-radio-1-3" />
                     <input type="radio" name="carousel-radio-1" id="carousel-radio-1-4" />
-                    <div class="carousel-controllers">
-                        <label class="carousel-controller" for="carousel-radio-1-1"></label>
-                        <label class="carousel-controller" for="carousel-radio-1-2"></label>
-                        <label class="carousel-controller" for="carousel-radio-1-3"></label>
-                        <label class="carousel-controller" for="carousel-radio-1-4"></label>
+                    <div class="carousel-controller">
+                        <label for="carousel-radio-1-1"></label>
+                        <label for="carousel-radio-1-2"></label>
+                        <label for="carousel-radio-1-3"></label>
+                        <label for="carousel-radio-1-4"></label>
                     </div>
                     <img src="https://picsum.photos/500?1" class="carousel-item" />
                     <img src="https://picsum.photos/500?2" class="carousel-item" />
                     <img src="https://picsum.photos/500?3" class="carousel-item" />
                     <img src="https://picsum.photos/500?4" class="carousel-item" />
                 </div>
-            </div>
+                <p>Add some Javascript to make it more interreactive</p>
+            </article>
+            <article class="card">
+                <input type="file" />
+                <progress value="60" max="100"></progress>
+                <meter value="0.6">60%</meter> IE is not support, so no css for this element
+            </article>
         </main>
         <dialog id="$dialog" open>
             <p>Welcome to Landsoul Preview</p>
             <p>you can only view this modal directly via chrome&gt;37 as only chromium supports HTMLDialogElement currently, this is just for test</p>
+            <p>You can use the Dialog tag for common use, but do not use its API</p>
             <button onclick="closeDialog()" class="float-right">close</button>
         </dialog>
         <footer class="footer">

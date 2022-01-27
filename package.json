@@ -1,10 +1,10 @@
 {
     "name": "landsoul",
     "version": "0.1.0",
-    "description": "CSS library landsoul",
+    "description": "CSS base library landsoul",
     "main": "./dist/landsoul.css",
     "scripts": {
-        "dev": "sass --watch src:dist --no-source-map",
+        "dev": "sass --watch src:dist",
         "build": "sass src:dist --no-source-map && postcss ./dist/*.css -d ./dist"
     },
     "repository": {

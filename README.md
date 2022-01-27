@@ -1,6 +1,6 @@
 # landsoul
 
-CSS library landsoul
+CSS base library landsoul
 
 ## dev
 

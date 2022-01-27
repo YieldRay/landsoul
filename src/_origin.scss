@@ -5,9 +5,8 @@
 }
 
 html {
-    font-family: "-apple-system", "BlinkMacSystemFont", "Helvetica Neue",
-        "PingFang SC", "Microsoft YaHei", "Source Han Sans SC",
-        "Noto Sans CJK SC", "WenQuanYi Micro Hei", "sans-serif";
+    font-family: "-apple-system", "BlinkMacSystemFont", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC",
+        "WenQuanYi Micro Hei", "sans-serif";
     font-size: 16px;
     color: $global-black;
     background-color: $global-white;
@@ -19,21 +18,42 @@ a {
         text-decoration: underline;
     }
 }
+
+input[type="radio"],
+input[type="checkbox"] {
+    box-shadow: none;
+    width: 1rem;
+}
+
+input[type="file"] {
+    all: unset;
+}
+
 select,
 input,
 button,
+::-webkit-file-upload-button,
 textarea {
     border: none;
     border-radius: 0.3rem;
-    box-shadow: 0 0 2px $shadow-2;
     &:focus {
         outline: none;
     }
 }
+
+::-webkit-color-swatch-wrapper {
+    height: 1.2rem;
+}
+
+select {
+    border: solid 0.1rem $grey;
+}
+
 button,
-input[type="submit"] {
+::-webkit-file-upload-button {
     line-height: 2rem;
 }
+
 input,
 textarea {
     padding: 0.5rem;
@@ -43,6 +63,17 @@ textarea {
     &:focus {
         border-bottom: solid $grey-x 0.2rem;
     }
+}
+
+textarea,
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="email"],
+input[type="tel"],
+input[type="url"] {
+    box-shadow: 0 0 2px $shadow-2;
 }
 select {
     height: 1.6rem;
@@ -60,7 +91,8 @@ option {
     font-size: 0.9rem;
 }
 
-button {
+button,
+::-webkit-file-upload-button {
     cursor: pointer;
     font-weight: bolder;
     padding: 0 0.75rem;
@@ -73,16 +105,9 @@ button {
     }
 }
 
-input[type="checkbox"] {
-    width: 1.25rem;
-}
-input[type="file"] {
-    border: none;
-}
-
 code {
-    padding: 0 0.3em;
-    border-radius: 0.25em;
+    padding: 0.1em 0.3em;
+    border-radius: 0.3em;
     background-color: $code-text;
     color: $code-bg;
 }
