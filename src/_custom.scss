@@ -239,6 +239,7 @@
     }
     > input[type="checkbox"] ~ .dropdown-content {
         display: none;
+        user-select: none;
     }
     > input[type="checkbox"]:checked ~ .dropdown-content {
         display: block;

@@ -208,12 +208,31 @@
                     <img src="https://picsum.photos/500?3" class="carousel-item" />
                     <img src="https://picsum.photos/500?4" class="carousel-item" />
                 </div>
-                <p>Add some Javascript to make it more interreactive</p>
+                <p class="text-center">Add some Javascript to make it more interreactive</p>
             </article>
             <article class="card">
                 <input type="file" />
                 <progress value="60" max="100"></progress>
                 <meter value="0.6">60%</meter> IE is not support, so no css for this element
+                <div class="card">
+                    <h4>A simple grid system</h4>
+                    <p>&lt;div class="flex one xs-two sm-three md-four lg-five"&gt;</p>
+                    <div class="flex one xs-two sm-three md-four lg-five">
+                        <div class="test">1</div>
+                        <div class="test">2</div>
+                        <div class="test">3</div>
+                        <div class="test">4</div>
+                        <div class="test">5</div>
+                    </div>
+                    <p>&lt;/div&gt;</p>
+                    <style>
+                        .test {
+                            background-color: lightblue;
+                            height: 2rem;
+                            border: solid 1px #000;
+                        }
+                    </style>
+                </div>
             </article>
         </main>
         <dialog id="$dialog" open>
@@ -234,7 +253,7 @@
         <script>
             const $dialog = document.getElementById("$dialog");
             const $overlay = document.getElementById("$overlay");
-            const closeDialog = () => {
+            const closeDialog = function () {
                 $dialog.close();
                 $overlay.classList.add("hidden");
                 localStorage.dialog = "1";
@@ -247,8 +266,9 @@
                     $dialog.close(); // this is different from display:none
                 }
             } else {
+                $dialog.classList.add("hidden");
                 $overlay.remove();
-                $dialog.remove();
+                $dialog.remove(); // IE11 does not support this
             }
         </script>
     </body>

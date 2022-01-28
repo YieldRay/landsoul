@@ -32,7 +32,6 @@ input[type="file"] {
 select,
 input,
 button,
-::-webkit-file-upload-button,
 textarea {
     border: none;
     border-radius: 0.3rem;
@@ -49,15 +48,13 @@ select {
     border: solid 0.1rem $grey;
 }
 
-button,
-::-webkit-file-upload-button {
+button {
     line-height: 2rem;
 }
 
 input,
 textarea {
     padding: 0.5rem;
-    height: 2.25rem - 0.2rem;
     border-bottom: solid $origin 0.2rem;
     transition: border 0.2s;
     &:focus {
@@ -91,8 +88,7 @@ option {
     font-size: 0.9rem;
 }
 
-button,
-::-webkit-file-upload-button {
+button {
     cursor: pointer;
     font-weight: bolder;
     padding: 0 0.75rem;

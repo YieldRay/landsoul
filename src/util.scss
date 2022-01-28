@@ -20,14 +20,6 @@
     clear: both;
 }
 /* So avoid using float */
-.flex {
-    display: flex;
-}
-
-.space-between {
-    display: flex;
-    justify-content: space-between;
-}
 
 .max-100 {
     max-width: 100%;
@@ -56,4 +48,57 @@
 
 .hidden {
     display: none;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    transition: all 0.3s ease;
+}
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+$grid-sizes: (
+    xs: 35.5em,
+    sm: 48em,
+    md: 64em,
+    lg: 80em,
+);
+$grid-counts: (
+    one: 100%,
+    two: 50%,
+    three: 33.33333%,
+    four: 25%,
+    five: 20%,
+    six: 16.66666%,
+    seven: 14.28571%,
+    eight: 12.5%,
+    nine: 11.11111%,
+    ten: 10%,
+    eleven: 9.09091%,
+    twelve: 8.33333%,
+);
+
+@each $count, $value in $grid-counts {
+    .#{$count} > * {
+        display: inline-block;
+        width: $value;
+    }
+}
+
+@each $size, $width in $grid-sizes {
+    @media screen and (min-width: $width) {
+        @each $count, $value in $grid-counts {
+            .#{$size}-#{$count} > * {
+                // >= width
+                // box-sizing: border-box;
+                // display: block;
+                flex-grow: 0;
+                width: $value;
+            }
+        }
+    }
 }
