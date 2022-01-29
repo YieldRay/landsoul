@@ -28,7 +28,7 @@
 /* 卡片 */
 @mixin card-mixin($blur: 1px, $spread: 0) {
     background-color: $white;
-    box-shadow: 1px 1px $blur $spread $shadow-2, -1px -1px $blur $spread $shadow-1;
+    box-shadow: 1px 1px $blur $spread $card-1, -1px -1px $blur $spread $card-2;
     border-radius: 5px;
     overflow: auto;
 }
