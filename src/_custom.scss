@@ -114,20 +114,20 @@
     font-weight: bold;
     color: $black-t;
     background-color: $shadow-t;
-    backdrop-filter: saturate(180%) blur(0.3em);
+    backdrop-filter: saturate(180%) blur(0.3em); // not supported by firefox
     box-shadow: 0 1px 1px $shadow-1;
     line-height: $height;
     padding-left: 3rem;
     padding-right: 3rem;
-    .nav-title {
+    > .nav-title {
         font-size: 1.5rem;
     }
     // 隐藏按钮（单选框）
-    .nav-toggle,
-    label[for="nav-toggle"] {
+    > .nav-toggle,
+    > label[for="nav-toggle"] {
         display: none;
     }
-    .nav-list {
+    > .nav-list {
         margin: 0;
         > li {
             display: inline-block;
@@ -146,21 +146,36 @@
     }
 }
 
-@media screen and (max-width: 64rem) {
+@media screen and (max-width: 48rem) {
     $height: 2.75rem;
     .nav-bar {
         padding-left: 0.25rem;
         padding-right: 0.25rem;
         height: $height;
         line-height: $height;
-        .nav-toggle {
-            line-height: $height;
-        }
-        .nav-title {
+        > .nav-title {
             font-weight: normal;
             padding-left: 0.5rem;
         }
-        .nav-list {
+        > .nav-toggle {
+            line-height: $height;
+            > .nav-icon {
+                display: inline-block;
+            }
+        }
+        > label[for="nav-toggle"] {
+            margin-left: 50%; // make it compatible with IE11
+            display: block;
+            width: 2rem;
+            height: 2rem;
+            cursor: pointer;
+        }
+        > input#nav-toggle:checked ~ .nav-list {
+            // click to show
+            max-height: 40vh; // keep in mind that this height should fit content!!!
+        }
+
+        > .nav-list {
             // transition here
             max-height: 0;
             box-shadow: 0 1px 2px $shadow-2;
@@ -176,29 +191,16 @@
             text-align: center;
             background-color: $shadow-t;
             border-radius: 0 0 0.6rem 0.6rem;
-            li {
+            > li {
                 background-color: $shadow-tt;
                 display: block;
                 line-height: 1.25rem;
-                a {
+                > a {
                     display: block;
                     color: $grey-tt;
                     font-size: smaller;
                 }
             }
-        }
-        label[for="nav-toggle"] {
-            display: block;
-            width: 2rem;
-            height: 2rem;
-            cursor: pointer;
-        }
-        .nav-icon {
-            display: block;
-        }
-        input#nav-toggle:checked ~ .nav-list {
-            // click to show
-            max-height: 40vh; // keep in mind that this height should fit content!!!
         }
     }
 }
@@ -354,7 +356,7 @@
         transform: translate(-50%, -5%);
         display: flex;
         flex-flow: row nowrap;
-        gap: 0.35rem;
+        // gap: 0.35rem;
         > label {
             cursor: pointer;
             width: 0.5rem;
@@ -362,6 +364,7 @@
             border: solid 1px $grey-tt;
             border-radius: 50%;
             background-color: $global-white;
+            margin: 0 0.2rem;
         }
     }
 }

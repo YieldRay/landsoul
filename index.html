@@ -7,7 +7,7 @@
         <title>Landsoul Preview</title>
         <link href="./dist/landsoul.css" rel="stylesheet" />
         <link href="./dist/util.css" rel="stylesheet" />
-        <link href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet" crossorigin />
         <style>
             /* For this page */
             html,
@@ -19,6 +19,7 @@
                 grid-template-rows: auto 1fr auto;
             }
             main.container {
+                /* Not supportd by IE11 */
                 display: grid;
                 gap: 0.5rem;
             }
@@ -58,15 +59,15 @@
             <p class="jumbotron-title">Landsoul Preview</p>
             <div class="jumbotron-content" style="font-family: 'Noto Serif SC', monospace">
                 <p>A CSS library that used to build basic things</p>
-                <p>Currently IE11 is not well supported</p>
+                <p>Most components are supported by IE11</p>
                 <p>use this font by adding font-family: 'Noto Serif SC'</p>
             </div>
         </div>
 
         <main class="container">
             <article class="card-media">
-                <img src="https://sdfsdf.dev/600x400.jpg" class="rounded" alt="sdfsdf.dev" />
-                <input type="text" />
+                <img src="https://sdfsdf.dev/600x400.jpg" class="rounded width-100" alt="sdfsdf.dev" />
+                <input type="text" placeholder="an input element" />
                 <button>Button</button>
                 <textarea></textarea>
             </article>
@@ -101,6 +102,7 @@
 
                 <br />
                 <div class="dropdown">
+                    <!-- Not supported by IE11 -->
                     <button>
                         <label title="打开下拉菜单" for="dropdownID">
                             <i class="fa fa-user fa-fw"></i> 用户
