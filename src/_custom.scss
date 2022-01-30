@@ -229,7 +229,6 @@
 /* 下拉菜单 */
 .dropdown {
     position: relative;
-    line-height: 1rem;
     > button {
         cursor: auto;
     }
@@ -241,12 +240,12 @@
     }
     > input[type="checkbox"] ~ .dropdown-content {
         display: none;
+        z-index: 1;
         user-select: none;
     }
     > input[type="checkbox"]:checked ~ .dropdown-content {
         display: block;
         position: absolute;
-        z-index: 1;
         top: 1.85rem;
         left: 0;
     }
