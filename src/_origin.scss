@@ -20,8 +20,9 @@ a {
     }
 }
 
-input[type="file"] {
-    all: unset;
+fieldset {
+    @include card-mixin();
+    border: none;
 }
 
 select,
@@ -35,16 +36,41 @@ textarea {
     }
 }
 
-::-webkit-color-swatch-wrapper {
-    height: 1.2rem;
+[disabled] {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+select,
+input[type="file"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="month"] {
+    font-size: 1rem;
+    // line-height: 1.5rem;
+    padding: 0.15rem 0.1rem;
+    border: solid 0.1rem $grey;
+}
+input[type="file"] {
+    font-size: 0.75rem;
+}
+
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+    line-height: 2rem;
+    display: inline-block;
 }
 
 select {
-    border: solid 0.1rem $grey;
+    height: 2rem;
+    padding: 0 0.5rem;
 }
 
-button {
-    line-height: 2rem;
+option {
+    text-indent: 0.8rem;
+    font-size: 1rem;
 }
 
 textarea,
@@ -63,20 +89,11 @@ input[type="url"] {
         border-bottom: solid $grey-x 0.2rem;
     }
 }
-select {
-    height: 1.6rem;
-    padding: 0 0.5rem;
-}
+
 textarea {
     display: block;
     max-width: 100%;
-    min-height: 3rem;
-}
-option {
-    color: $global-black;
-    background-color: $global-white;
-    text-indent: 0.8rem;
-    font-size: 0.9rem;
+    min-height: 2.5rem;
 }
 
 button {
@@ -214,16 +231,46 @@ input[type="range"] {
     }
 }
 
-code {
+figure {
+    padding: 0;
+    margin: 0;
+}
+figcaption {
+    font-size: 0.75rem;
+    text-align: center;
+    margin: 0.5rem 0;
+}
+
+blockquote {
+    border-left: solid $grey 0.25rem;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    font-style: italic;
+}
+
+code,
+kbd,
+mark,
+pre {
     padding: 0.1em 0.3em;
     border-radius: 0.3em;
+    overflow: auto;
+    font-family: Consolas;
     background-color: $code-text;
+}
+mark {
+    background-color: yellow;
+}
+code {
     color: $code-bg;
 }
-pre,
-code {
-    font-family: Consolas;
+kbd {
+    border-bottom: solid $shadow-2 0.1em;
+    &:hover {
+        border-bottom: solid $shadow-3 0.1em;
+    }
 }
+
 hr {
     margin: 0 0 0.5rem 0;
     background: inherit;
@@ -232,6 +279,8 @@ hr {
 }
 
 details {
+    @include card-mixin();
+    padding: 0.5rem;
     transition: transform 0.5s;
     transform: translateY(-2px);
 }
@@ -240,11 +289,7 @@ details[open] {
 }
 
 table {
-    overflow: hidden;
     border-collapse: collapse;
-    border-radius: 0.25em;
-    background-color: $shadow-1;
-    @include card-mixin;
 }
 
 thead {
@@ -268,20 +313,61 @@ tbody tr {
     }
 }
 
-th,
-td {
+td,
+th {
+    border: solid $shadow-tt 1px;
     padding: 0.25em 0.5em;
 }
 
+h1 {
+    font-size: 2.5rem;
+}
+h2 {
+    font-size: 2.25rem;
+}
+h3 {
+    font-size: 2rem;
+}
+h4 {
+    font-size: 1.75rem;
+}
+h5 {
+    font-size: 1.5rem;
+}
+h6 {
+    font-size: 1.25rem;
+}
+a[href^="#"] {
+    &:hover {
+        text-decoration: none;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        &::before {
+            content: "#";
+            margin-right: 0.3rem;
+            color: $link;
+        }
+    }
+}
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    color: inherit;
+    color: $global-black;
     margin: 0;
     padding: 0;
+    > small {
+        color: $grey;
+        margin-left: 0.25rem;
+        font-weight: lighter;
+    }
 }
 
 progress {

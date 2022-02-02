@@ -23,6 +23,9 @@
                 display: grid;
                 gap: 0.5rem;
             }
+            form input {
+                display: block;
+            }
             @media screen and (min-width: 60rem) {
                 main.container {
                     grid-template-columns: repeat(2, 1fr);
@@ -66,14 +69,22 @@
 
         <main class="container">
             <article class="card-media">
-                <img src="https://sdfsdf.dev/600x400.jpg" class="rounded width-100" alt="sdfsdf.dev" />
-                <input type="text" placeholder="an input element" />
-                <button>Button</button>
-                <textarea></textarea>
+                <figure>
+                    <img src="https://sdfsdf.dev/600x400.jpg" class="rounded width-100" alt="sdfsdf.dev" />
+                    <figcaption>sdfsdf</figcaption>
+                </figure>
+                <button disabled>Button</button>
             </article>
 
             <article class="card">
+                <mark>mark</mark>
                 <code>$ npm install</code>
+                <kbd>Ctrl</kbd>+<kbd>C</kbd>
+                <blockquote>
+                    <p>Friends don’t spy; true friendship is about privacy, too.</p>
+                    <p><cite>– Stephen King</cite></p>
+                </blockquote>
+                <pre>#include</pre>
                 <ul class="list-group">
                     <li class="list-group-item space-between">
                         <span>Messages</span>
@@ -119,25 +130,19 @@
                         </ul>
                     </div>
                 </div>
+            </article>
+
+            <article class="card">
+                <div class="chat-left">
+                    <div class="chat-name">我的名字很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长</div>
+                    <img src="https://cdn.shibe.online/shibes/e7fc77071a1eeae5853b9f8b9e0eb57b060f6fab.jpg" alt="chat" class="chat-avatar circle" />
+                    <div class="chat-content chat-content-left">?</div>
+                </div>
                 <br />
-                <input type="checkbox" />
-                <input type="radio" name="radio" checked />
-                <input type="radio" name="radio" />
-                <input type="range" name="" id="" /> IE11 is not supported
-                <div class="card">
-                    <div class="chat-left">
-                        <div class="chat-name">
-                            我的名字很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长
-                        </div>
-                        <img src="https://cdn.shibe.online/shibes/e7fc77071a1eeae5853b9f8b9e0eb57b060f6fab.jpg" alt="chat" class="chat-avatar circle" />
-                        <div class="chat-content chat-content-left">?</div>
-                    </div>
-                    <br />
-                    <div class="chat-right">
-                        <div class="chat-name">dog</div>
-                        <img src="https://cdn.shibe.online/shibes/28c559bd4162d9d26481ee81bbb21574c424fd30.jpg" alt="chat" class="chat-avatar circle" />
-                        <div class="chat-content">!</div>
-                    </div>
+                <div class="chat-right">
+                    <div class="chat-name">dog</div>
+                    <img src="https://cdn.shibe.online/shibes/28c559bd4162d9d26481ee81bbb21574c424fd30.jpg" alt="chat" class="chat-avatar circle" />
+                    <div class="chat-content">!</div>
                 </div>
             </article>
 
@@ -178,7 +183,12 @@
             </article>
 
             <article class="card">
-                <h1>h1</h1>
+                <h1>h1<small>small</small></h1>
+                <a href="#h2"><h2>h2</h2></a>
+                <h3>h3</h3>
+                <h4>h4</h4>
+                <h5>h5</h5>
+                <h6>h6</h6>
                 <hr />
                 Esse pariatur ex cillum minim mollit. Fugiat mollit laboris voluptate ut minim consequat pariatur aliquip officia. Mollit excepteur duis non
                 labore ipsum reprehenderit tempor ad.
@@ -216,9 +226,7 @@
                 <p class="text-center">Add some Javascript to make it more interreactive</p>
             </article>
             <article class="card">
-                <input type="file" />
-                <progress value="60" max="100"></progress>
-                <meter value="0.6">60%</meter> IE is not support, so no css for this element
+                <progress value="60" max="100"></progress> <meter value="0.6">60%</meter> IE is not support, so no css for this element
                 <div class="card">
                     <h4>A simple grid system</h4>
                     <p>&lt;div class="flex one xs-two sm-three md-four lg-five"&gt;</p>
@@ -238,6 +246,45 @@
                         }
                     </style>
                 </div>
+            </article>
+            <article class="card">
+                <form onsubmit="this.preventDefault()">
+                    <h2>Mars vacation program</h2>
+                    <fieldset>
+                        <legend>Be first</legend>
+                        <label for="full-name">Full Name</label>
+                        <input id="full-name" type="text" value="Elon Reeve Musk" />
+                        <p>
+                            Sex<br />
+                            <label> <input type="radio" name="sex" checked />Male </label>
+                            <label> <input type="radio" name="sex" />Female </label>
+                        </p>
+                        <label for="date">Date of birth</label>
+                        <input id="date" type="date" value="1971-06-28" />
+                        <label for="email">E-mail</label>
+                        <input id="email" type="email" value="elon.musk@spacex.com" />
+                        <label for="phone">Phone number</label>
+                        <input id="phone" type="tel" placeholder="Numbers only, please" />
+                        <label for="country">Country</label>
+                        <select id="country">
+                            <option value="china">China</option>
+                            <option value="russia">Russia</option>
+                            <option value="usa" selected>USA</option>
+                        </select>
+                        <label for="about">Tell us about yourself</label>
+                        <textarea id="about"></textarea>
+                        <label for="photo">Photo</label>
+                        <input id="photo" type="file" />
+                        <label for="eyes-color">Eyes color <small>(just kidding)</small> </label>
+                        <input id="eyes-color" type="color" value="#000000" />
+                        <label for="password">Password</label>
+                        <input id="password" type="password" placeholder="Use strong password!" />
+                        <label> <input type="checkbox" checked />I pass my soul to SpaceX. </label><br />
+                        <input type="submit" value="Submit" />
+                        <button id="reset" type="reset" disabled>Reset</button>
+                        <input type="range" name="" id="" />
+                    </fieldset>
+                </form>
             </article>
         </main>
         <dialog id="$dialog" open>
