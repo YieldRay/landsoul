@@ -36,6 +36,10 @@ textarea {
     }
 }
 
+select {
+    cursor: pointer;
+}
+
 [disabled] {
     cursor: not-allowed;
     opacity: 0.8;
@@ -47,20 +51,12 @@ input[type="date"],
 input[type="datetime-local"],
 input[type="month"] {
     font-size: 1rem;
-    // line-height: 1.5rem;
+    line-height: 1.25rem;
     padding: 0.15rem 0.1rem;
     border: solid 0.1rem $grey;
 }
 input[type="file"] {
     font-size: 0.75rem;
-}
-
-button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"] {
-    line-height: 2rem;
-    display: inline-block;
 }
 
 select {
@@ -96,8 +92,13 @@ textarea {
     min-height: 2.5rem;
 }
 
-button {
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
     cursor: pointer;
+    line-height: 2rem;
+    display: inline-block;
     font-weight: bolder;
     padding: 0 0.75rem;
     transition: 0.3s;
@@ -338,6 +339,8 @@ h6 {
     font-size: 1.25rem;
 }
 a[href^="#"] {
+    color: inherit;
+    cursor: pointer;
     &:hover {
         text-decoration: none;
     }
@@ -360,7 +363,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: $global-black;
+    color: inherit;
     margin: 0;
     padding: 0;
     > small {

@@ -61,6 +61,7 @@
 }
 /* 勋章 */
 .badge {
+    overflow: hidden;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -83,7 +84,7 @@
 .list-group-item {
     display: block;
     color: inherit;
-    padding: 0.4em 0.5em;
+    padding: 0.35em;
     border-bottom: solid 1px $shadow-tt;
     word-break: break-all;
     text-overflow: ellipsis;

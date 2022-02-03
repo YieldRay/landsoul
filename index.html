@@ -23,7 +23,8 @@
                 display: grid;
                 gap: 0.5rem;
             }
-            form input {
+            form input,
+            form select {
                 display: block;
             }
             @media screen and (min-width: 60rem) {
@@ -99,12 +100,7 @@
                         <span class="badge">99999999999999999999999999999999999999999999+</span>
                     </li>
                 </ul>
-                <select>
-                    You browser does not support select
-                    <option>opt1</option>
-                    <option>opt2</option>
-                    <option>opt3</option>
-                </select>
+
                 <div class="button-group">
                     <button>Button</button>
                     <button>Button</button>
@@ -184,7 +180,7 @@
 
             <article class="card">
                 <h1>h1<small>small</small></h1>
-                <a href="#h2"><h2>h2</h2></a>
+                <a id="h2" href="#h2"><h2>h2</h2></a>
                 <h3>h3</h3>
                 <h4>h4</h4>
                 <h5>h5</h5>
@@ -248,7 +244,7 @@
                 </div>
             </article>
             <article class="card">
-                <form onsubmit="this.preventDefault()">
+                <form>
                     <h2>Mars vacation program</h2>
                     <fieldset>
                         <legend>Be first</legend>
@@ -303,25 +299,47 @@
         <div id="$overlay" class="overlay"></div>
 
         <script>
-            const $dialog = document.getElementById("$dialog");
-            const $overlay = document.getElementById("$overlay");
-            const closeDialog = function () {
+            var $dialog = document.getElementById("$dialog");
+            var $overlay = document.getElementById("$overlay");
+            var closeDialog = function () {
                 $dialog.close();
+                // $dialog.remove();
+                $dialog.classList.add("hidden");
                 $overlay.classList.add("hidden");
                 localStorage.dialog = "1";
             };
             $overlay.onclick = closeDialog;
             if ($dialog.close) {
                 if (localStorage.dialog) {
+                    $dialog.close();
                     $overlay.classList.add("hidden");
                     $dialog.classList.add("hidden");
-                    $dialog.close(); // this is different from display:none
                 }
             } else {
-                $dialog.classList.add("hidden");
-                $overlay.remove();
-                $dialog.remove(); // IE11 does not support this
+                try {
+                    $dialog.remove(); // IE11 does not support this
+                } catch (e) {
+                    closeDialog(); // for IE11
+                }
             }
+            
+            (function (window) {
+                // Only for test, in production, use throttle
+                window.lastScrollY = 0;
+                var style = document.createElement("style");
+                style.innerHTML = `@keyframes navFadeIn{from{opacity:0;transform:translateY(-100%)}to{transform:translateY(0);opacity:1}}@keyframes navFadeOut{to{opacity:0;transform:translateY(-100%)}}.nav-fade-out{animation:navFadeOut 0.4s forwards}.nav-fade-in{animation:navFadeIn 0.3s forwards}`;
+                document.head.appendChild(style);
+                window.addEventListener("scroll", function () {
+                    if (window.scrollY > window.lastScrollY) {
+                        document.querySelector(".nav-bar").classList.remove("nav-fade-in");
+                        document.querySelector(".nav-bar").classList.add("nav-fade-out");
+                    } else {
+                        document.querySelector(".nav-bar").classList.remove("nav-fade-out");
+                        document.querySelector(".nav-bar").classList.add("nav-fade-in");
+                    }
+                    window.lastScrollY = window.scrollY;
+                });
+            })(window);
         </script>
     </body>
 </html>
