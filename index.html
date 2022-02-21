@@ -14,19 +14,23 @@
             body {
                 height: 100%;
             }
+
             body {
                 display: grid;
                 grid-template-rows: auto 1fr auto;
             }
+
             main.container {
                 /* Not supportd by IE11 */
                 display: grid;
                 gap: 0.5rem;
             }
+
             form input,
             form select {
                 display: block;
             }
+
             @media screen and (min-width: 60rem) {
                 main.container {
                     grid-template-columns: repeat(2, 1fr);
@@ -140,6 +144,12 @@
                     <img src="https://cdn.shibe.online/shibes/28c559bd4162d9d26481ee81bbb21574c424fd30.jpg" alt="chat" class="chat-avatar circle" />
                     <div class="chat-content">!</div>
                 </div>
+                <!-- <div style="clear: both"></div> -->
+                <div class="chat-right">
+                    <div class="chat-name">dog</div>
+                    <img src="https://cdn.shibe.online/shibes/28c559bd4162d9d26481ee81bbb21574c424fd30.jpg" alt="chat" class="chat-avatar circle" />
+                    <div class="chat-content">🎈</div>
+                </div>
             </article>
 
             <article class="card">
@@ -180,7 +190,9 @@
 
             <article class="card">
                 <h1>h1<small>small</small></h1>
-                <a id="h2" href="#h2"><h2>h2</h2></a>
+                <a id="h2" href="#h2">
+                    <h2>h2</h2>
+                </a>
                 <h3>h3</h3>
                 <h4>h4</h4>
                 <h5>h5</h5>
@@ -322,22 +334,32 @@
                     closeDialog(); // for IE11
                 }
             }
-            
+
             (function (window) {
                 // Only for test, in production, use throttle
-                window.lastScrollY = 0;
-                var style = document.createElement("style");
-                style.innerHTML = `@keyframes navFadeIn{from{opacity:0;transform:translateY(-100%)}to{transform:translateY(0);opacity:1}}@keyframes navFadeOut{to{opacity:0;transform:translateY(-100%)}}.nav-fade-out{animation:navFadeOut 0.4s forwards}.nav-fade-in{animation:navFadeIn 0.3s forwards}`;
-                document.head.appendChild(style);
-                window.addEventListener("scroll", function () {
-                    if (window.scrollY > window.lastScrollY) {
+                var lastScrollY = 0;
+                var ticking = false;
+                var action = function () {
+                    if (window.scrollY > lastScrollY) {
                         document.querySelector(".nav-bar").classList.remove("nav-fade-in");
                         document.querySelector(".nav-bar").classList.add("nav-fade-out");
                     } else {
                         document.querySelector(".nav-bar").classList.remove("nav-fade-out");
                         document.querySelector(".nav-bar").classList.add("nav-fade-in");
                     }
-                    window.lastScrollY = window.scrollY;
+                    lastScrollY = window.scrollY;
+                };
+                var style = document.createElement("style");
+                style.innerHTML = `@keyframes navFadeIn{from{opacity:0;transform:translateY(-100%)}to{transform:translateY(0);opacity:1}}@keyframes navFadeOut{to{opacity:0;transform:translateY(-100%)}}.nav-fade-out{animation:navFadeOut 0.4s forwards}.nav-fade-in{animation:navFadeIn 0.3s forwards}`;
+                document.head.appendChild(style);
+                window.addEventListener("scroll", function (e) {
+                    if (!ticking) {
+                        window.requestAnimationFrame(function () {
+                            action();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
                 });
             })(window);
         </script>

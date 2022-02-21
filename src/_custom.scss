@@ -301,6 +301,11 @@
         padding-right: 2.75rem;
         text-align: right;
     }
+    &::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
 }
 
 .chat-left {
