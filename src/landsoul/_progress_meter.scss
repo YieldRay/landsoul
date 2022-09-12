@@ -1,0 +1,24 @@
+progress {
+    --height: 0.5em;
+    height: var(--height);
+    line-height: var(--height);
+    background-color: var(--landsoul-shadow); /*IE*/
+    color: var(--landsoul-accent); /*IE*/
+    overflow: hidden;
+    border: none;
+    border-radius: var(--height);
+    &::-moz-progress-bar {
+        background-color: var(--landsoul-accent);
+    }
+    &::-webkit-progress-bar {
+        background-color: var(--landsoul-shadow);
+    }
+    &::-webkit-progress-value {
+        background-color: var(--landsoul-accent);
+    }
+}
+
+::-webkit-meter-bar {
+    background-color: var(--landsoul-shadow);
+    border: none;
+}

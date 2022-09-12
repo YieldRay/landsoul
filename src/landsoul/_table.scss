@@ -1,0 +1,21 @@
+table {
+    border-collapse: collapse;
+    margin: 0.05em;
+    box-shadow: 0.1em 0.1em 0.05em var(--landsoul-shadow), -0.1em -0.1em 0.05em var(--landsoul-shadow);
+}
+
+thead {
+    color: var(--landsoul-text);
+    background-color: var(--landsoul-shadow);
+}
+tbody tr {
+    background-color: var(--landsoul-bg);
+    &:nth-child(2n) {
+        background-color: var(--landsoul-shadow);
+    }
+}
+
+td,
+th {
+    padding: 0.25em 0.5em;
+}

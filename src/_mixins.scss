@@ -1,0 +1,4 @@
+@mixin theme-color($bg: var(--landsoul-bg)) {
+    color: var(--landsoul-text);
+    background-color: $bg;
+}

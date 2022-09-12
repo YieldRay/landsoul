@@ -1,0 +1,32 @@
+@mixin light {
+    --landsoul-bg: #fff;
+    --landsoul-text: #3d424f;
+    --landsoul-shadow: #f4f4f5;
+    --landsoul-accent: #2563eb;
+    --landsoul-color: #e3e4e8;
+}
+
+@mixin dark {
+    --landsoul-bg: #202021;
+    --landsoul-text: #e7e7e7;
+    --landsoul-shadow: #353e5a;
+    --landsoul-color: #2b414f;
+}
+
+body {
+    @include light;
+    // other variables
+    --landsoul-time: 0.3s;
+    --landsoul-radius: 0.25em;
+    --landsoul-gradient: linear-gradient(rgb(204, 252, 247), rgb(196, 234, 233), rgb(187, 216, 219), rgb(179, 198, 205), rgb(170, 180, 191));
+}
+
+body[data-theme="dark"] {
+    @include dark;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    body {
+        @include dark;
+    }
+}

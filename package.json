@@ -1,0 +1,29 @@
+{
+    "name": "landsoul",
+    "version": "0.2.0",
+    "description": "CSS library landsoul",
+    "main": "./dist/landsoul.css",
+    "scripts": {
+        "dev": "sass --watch src:dist",
+        "build": "rm -rf ./dist && sass src:dist --no-source-map && postcss ./dist/*.css -d ./dist"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/YieldRay/landsoul.git"
+    },
+    "keywords": [],
+    "author": "YieldRay",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/YieldRay/landsoul/issues"
+    },
+    "homepage": "https://github.com/YieldRay/landsoul#readme",
+    "devDependencies": {
+        "autoprefixer": "^10.4.9",
+        "cssnano": "^5.1.13",
+        "postcss": "^8.4.16",
+        "postcss-cli": "^10.0.0",
+        "postcss-preset-env": "^7.8.1",
+        "sass": "^1.54.9"
+    }
+}

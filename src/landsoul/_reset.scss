@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+}
+
+a {
+    // for IE
+    background-color: transparent;
+}
+
+progress {
+    width: 8rem;
+    // for chrome
+    vertical-align: baseline;
+}
+
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+@media screen and (max-width: 64rem) {
+    ::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+}
+
+[disabled] {
+    cursor: not-allowed;
+}

@@ -1,0 +1,54 @@
+input[type="range"] {
+    // track
+    -webkit-appearance: none; // only for chrome
+    vertical-align: baseline;
+    height: 0.3rem;
+    cursor: pointer;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    &::-moz-range-progress {
+        height: 0.1rem;
+        background-color: var(--landsoul-accent);
+    }
+    &::-moz-range-track {
+        width: 100%;
+        height: 0.15rem;
+        background-color: var(--landsoul-shadow);
+    }
+    &::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 0.15rem;
+        background-color: var(--landsoul-shadow);
+        border-radius: 1rem;
+    }
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none; // only for chrome
+        cursor: grab;
+        height: 1rem;
+        width: 1rem;
+        background-color: var(--landsoul-bg);
+        border-radius: 50%;
+        border: solid 0.1rem var(--landsoul-shadow);
+        transition: transform 0.2s;
+        transform: translateY(-0.4rem) scale(0.8, 0.8);
+        &:active {
+            transform: translateY(-0.4rem) scale(1, 1);
+        }
+    }
+    &::-moz-range-thumb {
+        -moz-appearance: none; // only for firefox
+        cursor: grab;
+        height: 1rem;
+        width: 1rem;
+        background-color: var(--landsoul-bg);
+        border-radius: 50%;
+        border: solid 0.1rem var(--landsoul-shadow);
+        transition: transform 0.2s;
+        transform: scale(0.8, 0.8);
+        &:active {
+            transform: scale(1, 1);
+        }
+    }
+}
