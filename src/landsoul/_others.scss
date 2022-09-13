@@ -1,12 +1,4 @@
-figure {
-    padding: 0;
-    margin: 0;
-}
-figcaption {
-    text-align: center;
-    font-size: 0.75rem;
-    margin: 0.5rem 0;
-}
+@import "../mixins";
 
 hr {
     border: none;
@@ -23,14 +15,21 @@ blockquote {
 code,
 kbd,
 pre {
+    @include bg-radius;
+    font-family: Consolas, monospace;
+}
+
+samp {
     font-family: Consolas, monospace;
 }
 
 code,
 kbd {
-    background-color: var(--landsoul-shadow);
-    border-radius: var(--landsoul-radius);
     padding: 0.05em 0.2em;
+}
+
+pre {
+    padding: 0.5em 0.75em;
 }
 
 kbd {
@@ -38,8 +37,8 @@ kbd {
     border-bottom: solid 0.2em rgba(0, 0, 0, 0.05);
 }
 
-pre {
-    background-color: var(--landsoul-shadow);
+iframe,
+fieldset {
+    border: solid 0.15em var(--landsoul-color);
     border-radius: var(--landsoul-radius);
-    padding: 0.5em 0.75em;
 }

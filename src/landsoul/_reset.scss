@@ -12,17 +12,3 @@ progress {
     // for chrome
     vertical-align: baseline;
 }
-
-::-webkit-scrollbar {
-    width: 1rem;
-}
-
-@media screen and (max-width: 64rem) {
-    ::-webkit-scrollbar {
-        width: 0.5rem;
-    }
-}
-
-[disabled] {
-    cursor: not-allowed;
-}

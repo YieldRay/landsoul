@@ -1,0 +1,12 @@
+figure {
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+    img {
+        max-width: 100%;
+    }
+    figcaption {
+        font-size: 0.75em;
+        margin: 0.5em;
+    }
+}

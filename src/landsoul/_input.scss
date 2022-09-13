@@ -22,27 +22,18 @@ input[type="reset"] {
     @include hover-effect;
     cursor: pointer;
     background-color: var(--landsoul-color);
-    transition: filter var(--landsoul-time);
 }
 
 button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"] {
+input {
     border: none;
     border-radius: var(--landsoul-radius);
     padding: 0.3em 0.45em;
 }
 
+input:not([type="checkbox"], [type="radio"], [type="range"]),
 select,
-textarea,
-input[type="text"],
-input[type="number"],
-input[type="password"],
-input[type="search"],
-input[type="email"],
-input[type="tel"],
-input[type="url"] {
+textarea {
     @include hover-effect;
     padding: 0.2em 0.3em;
     border-radius: var(--landsoul-radius);
@@ -56,4 +47,10 @@ input[type="url"] {
 textarea {
     min-height: 2rem;
     min-width: 2rem;
+}
+
+[disabled],
+input[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

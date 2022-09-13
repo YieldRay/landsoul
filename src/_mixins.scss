@@ -2,3 +2,8 @@
     color: var(--landsoul-text);
     background-color: $bg;
 }
+
+@mixin bg-radius($bg: var(--landsoul-shadow), $radius: var(--landsoul-radius)) {
+    background-color: $bg;
+    border-radius: $radius;
+}
