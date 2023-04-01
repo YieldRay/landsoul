@@ -6,6 +6,17 @@ IE11 is not supported
 normalize.css is optional  
 Preview: <https://yieldray.github.io/landsoul/>
 
+# usage
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/landsoul@latest/dist/landsoul.css" />
+
+
+<!-- add this to enable dark mode manually -->
+<body data-theme="dark">
+</body>
+```
+
 ## dev
 
 ```bash
