@@ -1,9 +1,9 @@
 # landsoul
 
-CSS library landsoul  
+Drop in css library landsoul  
 Support dark mode, use `prefers-color-scheme: dark` or `body[data-theme="dark"]`  
 IE11 is not supported  
-This stylesheet will style your web page without adding any class attr  
+normalize.css is optional  
 Preview: <https://yieldray.github.io/landsoul/>
 
 ## dev
@@ -11,7 +11,7 @@ Preview: <https://yieldray.github.io/landsoul/>
 ```bash
 $ npm install
 $ npm run dev
-# then open index.html
+# xdg-open index.html
 ```
 
 ## build
