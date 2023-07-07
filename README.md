@@ -1,9 +1,9 @@
 # landsoul
 
-Drop in css library landsoul  
-Support dark mode, use `prefers-color-scheme: dark` or `body[data-theme="dark"]`  
-IE11 is not supported  
-normalize.css is optional  
+Drop in css library landsoul (IE11 is not supported)
+
+To enable dark mode, use `prefers-color-scheme: dark` or `body[data-theme="dark"]`
+
 Preview: <https://yieldray.github.io/landsoul/>
 
 # usage
@@ -11,10 +11,8 @@ Preview: <https://yieldray.github.io/landsoul/>
 ```html
 <link rel="stylesheet" href="https://unpkg.com/landsoul@latest/dist/landsoul.css" />
 
-
 <!-- add this to enable dark mode manually -->
-<body data-theme="dark">
-</body>
+<body data-theme="dark"></body>
 ```
 
 ## dev

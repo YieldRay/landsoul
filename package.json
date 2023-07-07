@@ -1,6 +1,6 @@
 {
     "name": "landsoul",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "drop in css library landsoul",
     "main": "./dist/landsoul.css",
     "scripts": {
@@ -20,10 +20,10 @@
     "homepage": "https://github.com/YieldRay/landsoul#readme",
     "devDependencies": {
         "autoprefixer": "^10.4.14",
-        "cssnano": "^6.0.0",
-        "postcss": "^8.4.21",
+        "cssnano": "^6.0.1",
+        "postcss": "^8.4.25",
         "postcss-cli": "^10.1.0",
-        "postcss-preset-env": "^7.8.3",
-        "sass": "^1.60.0"
+        "postcss-preset-env": "^9.0.0",
+        "sass": "^1.63.6"
     }
 }
