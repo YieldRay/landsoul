@@ -30,6 +30,9 @@ kbd {
 
 pre {
     padding: 0.5em 0.75em;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow: auto;
 }
 
 kbd {

@@ -38,7 +38,7 @@ textarea {
     padding: 0.2em 0.3em;
     border-radius: var(--landsoul-radius);
     border: var(--landsoul-shadow) solid 0.01em;
-    &:focus {
+    &:focus-within {
         outline: none;
         border: var(--landsoul-text) solid 0.01em;
     }
@@ -53,4 +53,8 @@ textarea {
 input[disabled] {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+label:not(:has([disabled])) {
+    cursor: pointer;
 }
