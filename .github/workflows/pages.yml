@@ -29,20 +29,22 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
             - name: Npm install
               run: npm install
             - name: Npm build
               run: npm run build
-            - name: Clean unused
-              run: node ./.github/gh-pages.js
+            - name: Prepare for upload
+              run: |
+                  mkdir gh-pages
+                  cp -r dist gh-pages
+                  cp index.html gh-pages
             - name: Setup Pages
-              uses: actions/configure-pages@v2
+              uses: actions/configure-pages@v3
             - name: Upload artifact
-              uses: actions/upload-pages-artifact@v1
+              uses: actions/upload-pages-artifact@v2
               with:
-                  # Upload entire repository
-                  path: "."
+                  path: "./gh-pages"
             - name: Deploy to GitHub Pages
               id: deployment
-              uses: actions/deploy-pages@v1
+              uses: actions/deploy-pages@v2
