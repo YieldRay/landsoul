@@ -28,19 +28,19 @@ button,
 input {
     border: none;
     border-radius: var(--landsoul-radius);
-    padding: 0.3em 0.45em;
+    padding: 0.3rem 0.45rem;
 }
 
 input:not([type="checkbox"], [type="radio"], [type="range"]),
 select,
 textarea {
     @include hover-effect;
-    padding: 0.2em 0.3em;
+    padding: 0.2rem 0.3rem;
     border-radius: var(--landsoul-radius);
-    border: var(--landsoul-shadow) solid 0.01em;
+    border: var(--landsoul-shadow) solid 0.01rem;
     &:focus-within {
         outline: none;
-        border: var(--landsoul-text) solid 0.01em;
+        border: var(--landsoul-text) solid 0.01rem;
     }
 }
 
