@@ -1,4 +1,4 @@
-@mixin thunb-common {
+@mixin thumb-common {
     cursor: grab;
     height: 1rem;
     width: 1rem;
@@ -28,7 +28,7 @@ input[type="range"] {
         border-radius: 1rem;
     }
     &::-webkit-slider-thumb {
-        @include thunb-common;
+        @include thumb-common;
         -webkit-appearance: none; // only for chrome
         transform: translateY(-0.4rem) scale(0.8, 0.8);
         &:active {
@@ -43,7 +43,7 @@ input[type="range"] {
         @include track-common;
     }
     &::-moz-range-thumb {
-        @include thunb-common;
+        @include thumb-common;
         -moz-appearance: none; // only for firefox
         transform: scale(0.8, 0.8);
         &:active {

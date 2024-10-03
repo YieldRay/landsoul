@@ -2,7 +2,7 @@
 
 hr {
     border: none;
-    border-top: solid 0.15em var(--landsoul-color);
+    border-top: solid 0.15rem var(--landsoul-color);
 }
 
 blockquote {
@@ -25,23 +25,23 @@ samp {
 
 code,
 kbd {
-    padding: 0.05em 0.2em;
+    padding: 0.05rem 0.2rem;
 }
 
 pre {
-    padding: 0.5em 0.75em;
+    padding: 0.5rem 0.75rem;
     box-sizing: border-box;
     max-width: 100%;
     overflow: auto;
 }
 
 kbd {
-    border: solid 0.1em rgba(0, 0, 0, 0.05);
-    border-bottom: solid 0.2em rgba(0, 0, 0, 0.05);
+    border: solid 0.1rem rgba(0, 0, 0, 0.05);
+    border-bottom: solid 0.2rem rgba(0, 0, 0, 0.05);
 }
 
 iframe,
 fieldset {
-    border: solid 0.15em var(--landsoul-color);
+    border: solid 0.15rem var(--landsoul-color);
     border-radius: var(--landsoul-radius);
 }

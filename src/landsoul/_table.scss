@@ -6,13 +6,13 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     caption {
-        padding: 0.5em;
+        padding: 0.5rem;
     }
     thead,
     tfoot {
         th {
-            padding-top: 0.75em;
-            padding-bottom: 0.75em;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
             position: sticky;
             vertical-align: bottom;
             background-color: var(--landsoul-shadow);
@@ -35,7 +35,7 @@ table {
     }
     td,
     th {
-        padding: 0.25em 0.5em;
+        padding: 0.25rem 0.5rem;
     }
 }
 
