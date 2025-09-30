@@ -1,32 +1,37 @@
 @mixin light {
     --landsoul-bg: #fff;
-    --landsoul-text: #3d424f;
-    --landsoul-shadow: #f4f4f5;
-    --landsoul-accent: #2563eb;
-    --landsoul-color: #e3e4e8;
+    --landsoul-text: #262626;
+    --landsoul-text-on-shadow: #5a5a5a;
+    --landsoul-shadow: #ebebeb;
+    --landsoul-shadow-active: #bfbfbf;
+    --landsoul-accent: #2e72f0;
+    --landsoul-border: #e3e4e8;
 }
 
 @mixin dark {
     --landsoul-bg: #202021;
     --landsoul-text: #e7e7e7;
+    --landsoul-text-on-shadow: #c0c0c0;
     --landsoul-shadow: #353e5a;
-    --landsoul-color: #2b414f;
+    --landsoul-shadow-active: #4a5670;
+    --landsoul-accent: #4a90ff;
+    --landsoul-border: #2b414f;
 }
 
 body {
     @include light;
-    // other variables
-    --landsoul-time: 0.3s;
-    --landsoul-radius: 0.25rem;
-    --landsoul-gradient: linear-gradient(rgb(204, 252, 247), rgb(196, 234, 233), rgb(187, 216, 219), rgb(179, 198, 205), rgb(170, 180, 191));
-}
 
-body[data-theme="dark"] {
-    @include dark;
-}
-
-@media screen and (prefers-color-scheme: dark) {
-    body {
+    &[data-theme="dark"] {
         @include dark;
     }
+
+    @media screen and (prefers-color-scheme: dark) {
+        @include dark;
+    }
+
+    // other variables
+    --landsoul-time: 0.25s;
+    --landsoul-radius: 0.4rem;
+    --landsoul-radius-active: 0.6rem;
+    --landsoul-gradient: linear-gradient(rgb(204, 252, 247), rgb(196, 234, 233), rgb(187, 216, 219), rgb(179, 198, 205), rgb(170, 180, 191));
 }

@@ -26,7 +26,7 @@ function createDevServer() {
                 "Cache-Control": "no-cache",
                 Connection: "keep-alive",
             });
-            const watcher = fs.watch("./dist", { recursive: true }, (eventType, filename) => {
+            const watcher = watchFiles(["./index.html", "./dist"], (eventType, filename) => {
                 if (!filename) return;
                 res.write(
                     `data: ${JSON.stringify({
@@ -107,6 +107,20 @@ function iife<A extends unknown[]>(fn: (...args: A) => void, ...args: A) {
     } else {
         return `(${fn.toString()})();`;
     }
+}
+
+function watchFiles(patterns: string[], listener: fs.WatchListener<string>) {
+    const files = fs.globSync(patterns);
+    const watchers = files.map((file) =>
+        fs.watch(file, { recursive: true }, (event, filename) => {
+            listener(event, filename);
+        })
+    );
+    return {
+        close: () => {
+            watchers.forEach((watcher) => watcher.close());
+        },
+    };
 }
 
 function $(cmd: string) {

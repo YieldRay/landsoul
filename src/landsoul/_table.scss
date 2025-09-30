@@ -5,6 +5,7 @@ table {
     overflow: auto;
     border-collapse: collapse;
     border-spacing: 0;
+    border-radius: var(--landsoul-radius-active);
     caption {
         padding: 0.5rem;
     }
@@ -44,7 +45,7 @@ table {
 table,
 th,
 td {
-    border: 2px solid var(--landsoul-color);
+    border: 2px solid var(--landsoul-border);
 }
 th,
 td {

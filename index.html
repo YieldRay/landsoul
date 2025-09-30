@@ -5,8 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Landsoul Preview</title>
-        <link rel="stylesheet" href="//unpkg.com/normalize.css" />
-        <link rel="stylesheet" href="./dist/landsoul.css" />
+        <style>
+            @import url(//unpkg.com/normalize.css) layer(normalize);
+            @import url(./dist/landsoul.css) layer(landsoul);
+        </style>
     </head>
 
     <body>
@@ -233,6 +235,49 @@ p q r s t u v w x y z { | } ~ </pre
                         The <var>variable element</var>, such as <var>x</var> = <var>y</var>.<br />
                         The time element: <time datetime="2013-04-06T12:32+00:00">2 weeks ago</time><br />
                     </div>
+                    <footer>
+                        <p><a href="#top">[Top]</a></p>
+                    </footer>
+                </article>
+            </section>
+
+            <section id="interactive">
+                <h1>Interactive Elements</h1>
+                <article id="interactive__details">
+                    <h2>Details & Summary</h2>
+                    <div>
+                        <details>
+                            <summary>Click to expand</summary>
+                            <p>This is the content inside the details element. Click the summary to toggle visibility.</p>
+                        </details>
+                        <details>
+                            <summary>Click to expand</summary>
+                            <p>This is the content inside the details element. Click the summary to toggle visibility.</p>
+                        </details>
+                        <details>
+                            <summary>Click to expand</summary>
+                            <p>This is the content inside the details element. Click the summary to toggle visibility.</p>
+                        </details>
+                    </div>
+                    <footer>
+                        <p><a href="#top">[Top]</a></p>
+                    </footer>
+                </article>
+                <article id="interactive__dialog">
+                    <h2>Dialog & Popover</h2>
+                    <div>
+                        <button popovertarget="my-dialog">Open Dialog</button>
+                        <dialog id="my-dialog" popover>
+                            <h3>Dialog with Popover</h3>
+                            <p>This is a dialog element using the popover attribute. Click outside or press Escape to close.</p>
+                            <form method="dialog">
+                                <button autofocus>OK</button>
+                                <button popovertarget="my-dialog" popovertargetaction="hide">Close</button>
+                            </form>
+                        </dialog>
+                    </div>
+
+                    <dialog open>This is an open dialog element. It can be closed with JavaScript.</dialog>
                     <footer>
                         <p><a href="#top">[Top]</a></p>
                     </footer>

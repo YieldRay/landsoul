@@ -2,7 +2,7 @@
 
 hr {
     border: none;
-    border-top: solid 0.15rem var(--landsoul-color);
+    border-top: solid 0.15rem var(--landsoul-border);
 }
 
 blockquote {
@@ -42,6 +42,6 @@ kbd {
 
 iframe,
 fieldset {
-    border: solid 0.15rem var(--landsoul-color);
-    border-radius: var(--landsoul-radius);
+    border: solid 0.15rem var(--landsoul-border);
+    border-radius: var(--landsoul-radius-active);
 }

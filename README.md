@@ -15,6 +15,15 @@ To enable dark mode, use `prefers-color-scheme: dark` or `body[data-theme="dark"
 <body data-theme="dark"></body>
 ```
 
+Use with CSS [@layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer), this allows landsoul styles to be easily overridden.
+
+```css
+/* remember that the @import at-rule must precede all other types of rules, except @charset and @layer rules. */
+@layer landsoul, my-layer;
+@import url(//unpkg.com/landsoul) layer(landsoul);
+/* your style here... */
+```
+
 This stylesheet DO NOT include css reset, and keep minimum influence to the built-in html elements,  
 so you may add some extra css to make things work.
 

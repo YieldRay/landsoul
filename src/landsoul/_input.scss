@@ -4,7 +4,8 @@ button,
 select,
 input,
 textarea {
-    @include theme-color(var(--landsoul-shadow));
+    color: var(--landsoul-text-on-shadow);
+    background-color: var(--landsoul-shadow);
 }
 
 @mixin hover-effect {
@@ -21,32 +22,26 @@ input[type="submit"],
 input[type="reset"] {
     @include hover-effect;
     cursor: pointer;
-    background-color: var(--landsoul-color);
+    color: var(--landsoul-text);
 }
 
-button,
-input {
-    border: none;
-    border-radius: var(--landsoul-radius);
-    padding: 0.3rem 0.45rem;
-}
-
-input:not([type="checkbox"], [type="radio"], [type="range"]),
 select,
+button,
+input:not([type="checkbox"], [type="radio"], [type="range"]),
 textarea {
     @include hover-effect;
-    padding: 0.2rem 0.3rem;
+    border: none;
+    padding: 0.25rem 0.5rem;
     border-radius: var(--landsoul-radius);
-    border: var(--landsoul-shadow) solid 0.01rem;
     &:focus-within {
-        outline: none;
-        border: var(--landsoul-text) solid 0.01rem;
+        outline: var(--landsoul-text) solid 0.01rem;
     }
 }
 
 textarea {
     min-height: 2rem;
     min-width: 2rem;
+    border: none;
 }
 
 [disabled],

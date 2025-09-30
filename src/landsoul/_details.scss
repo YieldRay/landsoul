@@ -1,16 +1,51 @@
 details {
-    padding: 0.5rem 0.5rem 0;
-}
-
-summary {
-    font-weight: bold;
-    margin: -0.5rem -0.5rem 0;
     padding: 0.5rem;
-}
+    padding-bottom: 0;
+    interpolate-size: allow-keywords;
 
-details[open] {
-    padding: 0.5rem;
     summary {
-        margin-bottom: 0.5rem;
+        margin: -0.5rem -0.5rem 0;
+        padding: 0.75rem;
+        background-color: var(--landsoul-shadow);
+        cursor: pointer;
+        border-radius: var(--landsoul-radius-active);
+        position: relative;
+
+        &::marker {
+            content: "";
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            translate: -50% -50%;
+            width: 5px;
+            height: 5px;
+            border-right: 1.5px solid currentColor;
+            border-top: 1.5px solid currentColor;
+            transition: rotate 0.1s;
+            rotate: 45deg;
+        }
+    }
+
+    &::details-content {
+        height: 0;
+        overflow: hidden;
+        transition: height 0.2s, content-visibility 0.2s;
+        transition-behavior: allow-discrete;
+    }
+
+    &:open {
+        summary {
+            &::after {
+                rotate: 135deg;
+            }
+        }
+
+        &::details-content {
+            height: auto;
+        }
     }
 }
