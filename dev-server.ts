@@ -1,0 +1,122 @@
+import http from "node:http";
+import fs from "node:fs";
+import path from "node:path/posix";
+import { pipeline } from "node:stream/promises";
+import { spawn } from "node:child_process";
+
+$("sass --watch src:dist");
+
+const server = createDevServer();
+const PORT = 3000;
+server.listen(PORT, () => {
+    console.log(`Dev server running at http://localhost:${PORT}`);
+});
+
+function createDevServer() {
+    return http.createServer((req, res) => {
+        if (!req.url) {
+            res.writeHead(400);
+            res.end("Bad Request");
+            return;
+        }
+
+        if (req.url === "/sse") {
+            res.writeHead(200, {
+                "Content-Type": "text/event-stream",
+                "Cache-Control": "no-cache",
+                Connection: "keep-alive",
+            });
+            const watcher = fs.watch("./dist", { recursive: true }, (eventType, filename) => {
+                if (!filename) return;
+                res.write(
+                    `data: ${JSON.stringify({
+                        eventType,
+                        filename,
+                    })}\n\n`
+                );
+            });
+
+            req.on("error", () => {
+                watcher.close();
+            });
+
+            req.on("close", () => {
+                watcher.close();
+            });
+
+            return;
+        }
+
+        if (req.url === "/") {
+            res.writeHead(200, { "Content-Type": "text/html" });
+            let html = fs.readFileSync(path.join(process.cwd(), "index.html"), "utf-8");
+            html = html.replace(
+                "</head>",
+                `\n<script>${iife(() => {
+                    const es = new EventSource("/sse");
+                    es.addEventListener("message", ({ data }) => {
+                        console.log(JSON.parse(data));
+                        window.location.reload();
+                    });
+                })}</script>` + `\n</head>`
+            );
+            return res.end(html);
+        }
+
+        const filepath = path.join(process.cwd(), req.url.replace(/^\//, ""));
+        if (!fs.existsSync(filepath)) {
+            res.writeHead(404);
+            return res.end("Not Found");
+        }
+
+        const stat = fs.statSync(filepath);
+        if (stat.isDirectory()) {
+            res.writeHead(200, { "Content-Type": "text/html" });
+            return pipeline(fs.createReadStream(path.join(filepath, "index.html")), res).catch(() => {
+                res.end();
+            });
+        }
+
+        const ext = path.extname(filepath).slice(1);
+        const mimeType = mimeTypes[ext] || "application/octet-stream";
+        res.writeHead(200, { "Content-Type": mimeType });
+        return pipeline(fs.createReadStream(filepath), res).catch(() => {
+            res.end();
+        });
+    });
+}
+
+const mimeTypes: Record<string, string> = {
+    html: "text/html",
+    js: "application/javascript",
+    css: "text/css",
+    json: "application/json",
+    png: "image/png",
+    jpg: "image/jpeg",
+    jpeg: "image/jpeg",
+    gif: "image/gif",
+    svg: "image/svg+xml",
+    ico: "image/x-icon",
+    txt: "text/plain",
+};
+
+function iife<A extends unknown[]>(fn: (...args: A) => void, ...args: A) {
+    if (args.length > 0) {
+        const input = args.map((arg) => JSON.stringify(arg)).join(", ");
+        return `(${fn.toString()})(${input});`;
+    } else {
+        return `(${fn.toString()})();`;
+    }
+}
+
+function $(cmd: string) {
+    spawn(cmd, {
+        shell: true,
+        stdio: "inherit",
+        env: {
+            ...process.env,
+            FORCE_COLOR: "1",
+            PATH: process.env.PATH + path.delimiter + path.join(process.cwd(), "node_modules/.bin"),
+        },
+    });
+}

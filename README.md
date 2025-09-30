@@ -35,6 +35,8 @@ img {
 
 ## dev
 
+Use Node.js LTS version.
+
 ```bash
 $ npm install
 $ npm run dev
