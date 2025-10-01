@@ -25,6 +25,9 @@
         "url": "https://github.com/YieldRay/landsoul/issues"
     },
     "homepage": "https://github.com/YieldRay/landsoul#readme",
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org"
+    },
     "devDependencies": {
         "autoprefixer": "^10.4.21",
         "cssnano": "^7.1.1",
