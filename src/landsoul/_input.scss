@@ -6,6 +6,7 @@ input,
 textarea {
     color: var(--landsoul-text-on-shadow);
     background-color: var(--landsoul-shadow);
+    -webkit-tap-highlight-color: transparent;
 }
 
 @mixin hover-effect {

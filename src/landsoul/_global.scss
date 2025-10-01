@@ -11,6 +11,7 @@ body {
 
 a {
     color: var(--landsoul-accent);
+    -webkit-tap-highlight-color: transparent;
     text-decoration: none;
     &:hover {
         text-decoration: underline;
