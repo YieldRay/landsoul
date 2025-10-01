@@ -5,8 +5,10 @@ details {
     -webkit-tap-highlight-color: transparent;
 
     summary {
+        $right: 8px;
         margin: -0.5rem -0.5rem 0;
         padding: 0.75rem;
+        padding-right: calc(0.75rem + $right);
         background-color: var(--landsoul-shadow);
         cursor: pointer;
         border-radius: var(--landsoul-radius-active);
@@ -19,7 +21,7 @@ details {
         &::after {
             content: "";
             position: absolute;
-            right: 8px;
+            right: $right;
             top: 50%;
             translate: -50% -50%;
             width: 5px;

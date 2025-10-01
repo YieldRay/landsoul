@@ -1,27 +1,20 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: CI
 
 on:
-    # Runs on pushes targeting the default branch
     push:
         branches: ["master"]
-
-    # Allows you to run this workflow manually from the Actions tab
     workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
     contents: read
     pages: write
     id-token: write
 
-# Allow one concurrent deployment
 concurrency:
     group: "pages"
     cancel-in-progress: true
 
 jobs:
-    # Single deploy job since we're just deploying
     deploy:
         environment:
             name: github-pages
@@ -30,21 +23,49 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v5
-            - name: Npm install
+
+            - name: Install Node.js
+              uses: actions/setup-node@v5
+              with:
+                  node-version: lts/*
+                  package-manager-cache: false
+
+            - name: NPM install
               run: npm install
-            - name: Npm build
+
+            - name: NPM build
               run: npm run build
+
+            - name: NPM Publish
+              id: publish
+              uses: JS-DevTools/npm-publish@v3
+              with:
+                  token: ${{secrets.NPM_TOKEN}}
+                  access: public
+                  provenance: true
+
+            - name: Release on GitHub
+              if: ${{ steps.publish.outputs.type }}
+              uses: softprops/action-gh-release@v1
+              with:
+                  tag_name: v${{ steps.publish.outputs.version }}
+                  draft: false
+                  generate_release_notes: true
+
             - name: Prepare for upload
               run: |
                   mkdir gh-pages
                   cp -r dist gh-pages
                   cp index.html gh-pages
+
             - name: Setup Pages
               uses: actions/configure-pages@v5
+
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v4
               with:
                   path: "./gh-pages"
+
             - name: Deploy to GitHub Pages
               id: deployment
               uses: actions/deploy-pages@v4
