@@ -1,5 +1,8 @@
 # landsoul
 
+[![](https://badgen.net/packagephobia/install/landsoul)](https://packagephobia.com/result?p=landsoul)
+[![](https://img.shields.io/npm/v/landsoul)](https://www.npmjs.com/package/landsoul)
+
 A classless CSS library (IE11 is not supported)
 
 Preview: <https://yieldray.github.io/landsoul/>
