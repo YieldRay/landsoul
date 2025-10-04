@@ -29,6 +29,7 @@
         "registry": "https://registry.npmjs.org"
     },
     "devDependencies": {
+        "@types/node": "^24.6.2",
         "autoprefixer": "^10.4.21",
         "cssnano": "^7.1.1",
         "postcss": "^8.5.6",
