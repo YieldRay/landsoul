@@ -1,6 +1,6 @@
 {
     "name": "landsoul",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "type": "module",
     "description": "drop in css library landsoul",
     "main": "./dist/landsoul.css",
@@ -29,7 +29,7 @@
         "registry": "https://registry.npmjs.org"
     },
     "devDependencies": {
-        "@types/node": "^24.6.2",
+        "@types/node": "^24.9.1",
         "autoprefixer": "^10.4.21",
         "cssnano": "^7.1.1",
         "postcss": "^8.5.6",
