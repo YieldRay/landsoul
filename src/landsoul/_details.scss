@@ -1,13 +1,11 @@
 details {
-    padding: 0.5rem;
     padding-bottom: 0;
     interpolate-size: allow-keywords;
     -webkit-tap-highlight-color: transparent;
 
     summary {
         $right: 8px;
-        margin: -0.5rem -0.5rem 0;
-        padding: 0.75rem;
+        padding: 0.5rem;
         padding-right: calc(0.75rem + $right);
         background-color: var(--landsoul-shadow);
         cursor: pointer;

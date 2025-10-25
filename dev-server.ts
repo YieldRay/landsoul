@@ -26,7 +26,7 @@ function createDevServer() {
                 "Cache-Control": "no-cache",
                 Connection: "keep-alive",
             });
-            const watcher = watchFiles(["./index.html", "./dist"], (eventType, filename) => {
+            const watcher = watchFiles(["./*.html", "./dist"], (eventType, filename) => {
                 if (!filename) return;
                 res.write(
                     `data: ${JSON.stringify({
@@ -47,10 +47,8 @@ function createDevServer() {
             return;
         }
 
-        if (req.url === "/") {
-            res.writeHead(200, { "Content-Type": "text/html" });
-            let html = fs.readFileSync(path.join(process.cwd(), "index.html"), "utf-8");
-            html = html.replace(
+        const rewriteSSE = (html: string) =>
+            html.replace(
                 "</head>",
                 `\n<script>${iife(() => {
                     const es = new EventSource("/sse");
@@ -60,10 +58,15 @@ function createDevServer() {
                     });
                 })}</script>` + `\n</head>`
             );
-            return res.end(html);
+
+        if (req.url === "/") {
+            res.writeHead(200, { "Content-Type": "text/html" });
+            const html = fs.readFileSync(path.join(process.cwd(), "index.html"), "utf-8");
+            return res.end(rewriteSSE(html));
         }
 
         const filepath = path.join(process.cwd(), new URL(req.url, `http://${req.headers.host}`).pathname.slice(1));
+
         if (!fs.existsSync(filepath)) {
             res.writeHead(404);
             return res.end("Not Found");
@@ -72,6 +75,7 @@ function createDevServer() {
         const stat = fs.statSync(filepath);
         if (stat.isDirectory()) {
             res.writeHead(200, { "Content-Type": "text/html" });
+            return res.end(rewriteSSE(fs.readFileSync(path.join(filepath, "index.html"), "utf-8")));
             return pipeline(fs.createReadStream(path.join(filepath, "index.html")), res).catch(() => {
                 res.end();
             });
@@ -80,6 +84,9 @@ function createDevServer() {
         const ext = path.extname(filepath).slice(1);
         const mimeType = mimeTypes[ext] || "application/octet-stream";
         res.writeHead(200, { "Content-Type": mimeType });
+        if (ext === "html") {
+            return res.end(rewriteSSE(fs.readFileSync(filepath, "utf-8")));
+        }
         return pipeline(fs.createReadStream(filepath), res).catch(() => {
             res.end();
         });

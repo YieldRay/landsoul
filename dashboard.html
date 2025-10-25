@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard</title>
+        <style>
+            @import url(//unpkg.com/normalize.css) layer(normalize);
+            @import url(https://unpkg.com/open-props);
+            @import url(./dist/landsoul.css) layer(landsoul);
+
+            :root,
+            body,
+            #root {
+                height: 100%;
+            }
+
+            #root {
+                display: grid;
+                grid-template:
+                    "header" min-content
+                    "main" 1fr
+                    / auto;
+            }
+
+            menu {
+                border: 1px solid var(--landsoul-shadow);
+                color: var(--landsoul-text);
+                background-color: var(--landsoul-bg);
+                border-radius: 2rem;
+                padding: 1rem;
+                overflow: auto;
+                width: min(260px, calc(100vw - 2px));
+            }
+
+            menu[popover] {
+                margin: 0;
+                box-sizing: border-box;
+                height: 100vh;
+                transition: translate 0.2s, overlay 0.2s allow-discrete, display 0.2s allow-discrete;
+                translate: -100% 0; /* after hide */
+                &:popover-open {
+                    translate: 0 0; /* shown */
+                    @starting-style {
+                        &:popover-open {
+                            translate: -100% 0; /* before show */
+                        }
+                    }
+                }
+                &::backdrop {
+                    background-color: rgb(0 0 0 / 0.2);
+                    transition: display 0.2s allow-discrete, overlay 0.2s allow-discrete, background-color 0.2s;
+                    @starting-style {
+                        &:popover-open::backdrop {
+                            background-color: rgb(0 0 0 / 0);
+                        }
+                    }
+                }
+            }
+
+            .header {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 0.5rem;
+                border-bottom: solid 1px var(--landsoul-shadow);
+
+                .title {
+                    font-weight: 500;
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+
+            main {
+                display: flex;
+                flex-direction: column;
+
+                @media (width>=480px) {
+                    flex-direction: row;
+                }
+
+                .left {
+                    box-sizing: border-box;
+                    width: 100%;
+                    padding: 1rem;
+                    @media (width>=480px) {
+                        width: 320px;
+                        border-right: solid 1px var(--landsoul-shadow);
+                    }
+                    @media (width<480px) {
+                        border-bottom: solid 1px var(--landsoul-shadow);
+                    }
+                }
+
+                .right {
+                    flex: 1;
+                    padding: 1rem;
+                }
+            }
+
+            .menu-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                li {
+                    padding: 0.5rem 0 0.5rem 0.5rem;
+                    cursor: pointer;
+                    border-radius: var(--landsoul-radius);
+
+                    &:hover {
+                        background-color: var(--landsoul-shadow);
+                    }
+
+                    &.active {
+                        color: var(--landsoul-bg);
+                        background-color: var(--landsoul-accent);
+                    }
+                }
+            }
+
+            .card {
+                border: 1px solid var(--landsoul-shadow);
+                border-radius: var(--landsoul-radius);
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+
+            .space-between {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .inline-full {
+                box-sizing: border-box;
+                inline-size: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root">
+            <menu id="menu" popover="auto">
+                <h6 popovertarget="menu" popovertargetaction="hide">Landsoul</h6>
+
+                <ul style="padding: 1rem">
+                    <li>
+                        <a href="https://github.com/YieldRay/landsoul" target="_blank" rel="noopener noreferrer">Github</a>
+                    </li>
+                    <li>
+                        <a href="https://www.npmjs.com/package/landsoul" target="_blank" rel="noopener noreferrer">NPM</a>
+                    </li>
+                </ul>
+
+                <label
+                    ><input name="color-scheme" type="radio" value="light dark" checked onChange="document.body.removeAttribute('data-theme')" />System</label
+                >
+                <label
+                    ><input name="color-scheme" type="radio" value="light" onChange="document.body.setAttribute('data-theme', 'light')" /> Forced Light</label
+                >
+                <label><input name="color-scheme" type="radio" value="dark" onChange="document.body.setAttribute('data-theme', 'dark')" /> Forced Dark</label>
+                <style>
+                    :root {
+                        color-scheme: light dark;
+                    }
+                    :root {
+                        &:has(input[name="color-scheme"][value="light dark"]:checked) {
+                            color-scheme: light dark;
+                        }
+                        &:has(input[name="color-scheme"][value="light"]:checked) {
+                            color-scheme: light;
+                        }
+                        &:has(input[name="color-scheme"][value="dark"]:checked) {
+                            color-scheme: dark;
+                        }
+                    }
+                </style>
+            </menu>
+
+            <header class="header space-between">
+                <div class="space-between" style="gap: 1rem">
+                    <button popovertarget="menu" popovertargetaction="show">
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M1.5 3C1.22386 3 1 3.22386 1 3.5C1 3.77614 1.22386 4 1.5 4H13.5C13.7761 4 14 3.77614 14 3.5C14 3.22386 13.7761 3 13.5 3H1.5ZM1 7.5C1 7.22386 1.22386 7 1.5 7H13.5C13.7761 7 14 7.22386 14 7.5C14 7.77614 13.7761 8 13.5 8H1.5C1.22386 8 1 7.77614 1 7.5ZM1 11.5C1 11.2239 1.22386 11 1.5 11H13.5C13.7761 11 14 11.2239 14 11.5C14 11.7761 13.7761 12 13.5 12H1.5C1.22386 12 1 11.7761 1 11.5Z"
+                                fill="currentColor"
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                            ></path>
+                        </svg>
+                    </button>
+
+                    <h6 class="title">Landsoul Example</h6>
+                </div>
+
+                <aside style="display: inline">
+                    <example-dropdown>
+                        <template shadowrootmode="open">
+                            <style>
+                                @import url(./dist/landsoul.css) layer(landsoul);
+                                .container {
+                                    anchor-scope: --button;
+                                    display: inline;
+                                }
+
+                                .button {
+                                    anchor-name: --button;
+                                }
+
+                                .dropdown {
+                                    position: absolute;
+                                    position-anchor: --button;
+                                    position-area: start span-start;
+                                    position-try-fallbacks: flip-block;
+                                    transition: opacity 0.15s, display 0.15s allow-discrete;
+                                    &[popover] {
+                                        margin: 0;
+                                        padding: 0;
+                                        border: 0;
+                                        overflow: unset;
+
+                                        opacity: 0.333; /* after hide */
+                                        &:popover-open {
+                                            opacity: 1; /* shown */
+                                            @starting-style {
+                                                &:popover-open {
+                                                    opacity: 0.333; /* before show */
+                                                }
+                                            }
+                                        }
+                                        border: 1px solid var(--landsoul-shadow);
+                                        border-radius: var(--landsoul-radius);
+                                        background-color: var(--landsoul-bg);
+                                        padding: 0.25rem;
+                                    }
+                                }
+
+                                .menu-list {
+                                    list-style: none;
+                                    padding: 0;
+                                    margin: 0;
+
+                                    & > :not(hr) {
+                                        padding: 0.5rem 1.5rem;
+                                    }
+                                    li {
+                                        cursor: pointer;
+                                        border-radius: var(--landsoul-radius);
+
+                                        &:hover {
+                                            background-color: var(--landsoul-shadow);
+                                        }
+
+                                        &.active {
+                                            color: var(--landsoul-bg);
+                                            background-color: var(--landsoul-accent);
+                                        }
+                                    }
+                                    hr {
+                                        margin: 0;
+                                        border-width: 1px;
+                                    }
+                                }
+                            </style>
+
+                            <div class="container">
+                                <button popovertarget="id" class="button">
+                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M7.07095 0.650238C6.67391 0.650238 6.32977 0.925096 6.24198 1.31231L6.0039 2.36247C5.6249 2.47269 5.26335 2.62363 4.92436 2.81013L4.01335 2.23585C3.67748 2.02413 3.23978 2.07312 2.95903 2.35386L2.35294 2.95996C2.0722 3.2407 2.0232 3.6784 2.23493 4.01427L2.80942 4.92561C2.62307 5.2645 2.47227 5.62594 2.36216 6.00481L1.31209 6.24287C0.924883 6.33065 0.650024 6.6748 0.650024 7.07183V7.92897C0.650024 8.32601 0.924883 8.67015 1.31209 8.75794L2.36228 8.99603C2.47246 9.375 2.62335 9.73652 2.80979 10.0755L2.2354 10.9867C2.02367 11.3225 2.07267 11.7602 2.35341 12.041L2.95951 12.6471C3.24025 12.9278 3.67795 12.9768 4.01382 12.7651L4.92506 12.1907C5.26384 12.377 5.62516 12.5278 6.0039 12.6379L6.24198 13.6881C6.32977 14.0753 6.67391 14.3502 7.07095 14.3502H7.92809C8.32512 14.3502 8.66927 14.0753 8.75705 13.6881L8.99505 12.6383C9.37411 12.5282 9.73573 12.3773 10.0748 12.1909L10.986 12.7653C11.3218 12.977 11.7595 12.928 12.0403 12.6473L12.6464 12.0412C12.9271 11.7604 12.9761 11.3227 12.7644 10.9869L12.1902 10.076C12.3768 9.73688 12.5278 9.37515 12.638 8.99596L13.6879 8.75794C14.0751 8.67015 14.35 8.32601 14.35 7.92897V7.07183C14.35 6.6748 14.0751 6.33065 13.6879 6.24287L12.6381 6.00488C12.528 5.62578 12.3771 5.26414 12.1906 4.92507L12.7648 4.01407C12.9766 3.6782 12.9276 3.2405 12.6468 2.95975L12.0407 2.35366C11.76 2.07292 11.3223 2.02392 10.9864 2.23565L10.0755 2.80989C9.73622 2.62328 9.37437 2.47229 8.99505 2.36209L8.75705 1.31231C8.66927 0.925096 8.32512 0.650238 7.92809 0.650238H7.07095ZM4.92053 3.81251C5.44724 3.44339 6.05665 3.18424 6.71543 3.06839L7.07095 1.50024H7.92809L8.28355 3.06816C8.94267 3.18387 9.5524 3.44302 10.0794 3.81224L11.4397 2.9547L12.0458 3.56079L11.1882 4.92117C11.5573 5.44798 11.8164 6.0575 11.9321 6.71638L13.5 7.07183V7.92897L11.932 8.28444C11.8162 8.94342 11.557 9.55301 11.1878 10.0798L12.0453 11.4402L11.4392 12.0462L10.0787 11.1886C9.55192 11.5576 8.94241 11.8166 8.28355 11.9323L7.92809 13.5002H7.07095L6.71543 11.932C6.0569 11.8162 5.44772 11.5572 4.92116 11.1883L3.56055 12.046L2.95445 11.4399L3.81213 10.0794C3.4431 9.55266 3.18403 8.94326 3.06825 8.2845L1.50002 7.92897V7.07183L3.06818 6.71632C3.18388 6.05765 3.44283 5.44833 3.81171 4.92165L2.95398 3.561L3.56008 2.95491L4.92053 3.81251ZM9.02496 7.50008C9.02496 8.34226 8.34223 9.02499 7.50005 9.02499C6.65786 9.02499 5.97513 8.34226 5.97513 7.50008C5.97513 6.65789 6.65786 5.97516 7.50005 5.97516C8.34223 5.97516 9.02496 6.65789 9.02496 7.50008ZM9.92496 7.50008C9.92496 8.83932 8.83929 9.92499 7.50005 9.92499C6.1608 9.92499 5.07513 8.83932 5.07513 7.50008C5.07513 6.16084 6.1608 5.07516 7.50005 5.07516C8.83929 5.07516 9.92496 6.16084 9.92496 7.50008Z"
+                                            fill="currentColor"
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                        ></path>
+                                    </svg>
+                                </button>
+                                <div id="id" popover class="dropdown">
+                                    <ul class="menu-list">
+                                        <details style="padding: 0">
+                                            <summary>
+                                                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M7.5 0C7.77614 0 8 0.223858 8 0.5V1.80687C10.6922 2.0935 12.8167 4.28012 13.0068 7H14.5C14.7761 7 15 7.22386 15 7.5C15 7.77614 14.7761 8 14.5 8H12.9888C12.7094 10.6244 10.6244 12.7094 8 12.9888V14.5C8 14.7761 7.77614 15 7.5 15C7.22386 15 7 14.7761 7 14.5V13.0068C4.28012 12.8167 2.0935 10.6922 1.80687 8H0.5C0.223858 8 0 7.77614 0 7.5C0 7.22386 0.223858 7 0.5 7H1.78886C1.98376 4.21166 4.21166 1.98376 7 1.78886V0.5C7 0.223858 7.22386 0 7.5 0ZM8 12.0322V9.5C8 9.22386 7.77614 9 7.5 9C7.22386 9 7 9.22386 7 9.5V12.054C4.80517 11.8689 3.04222 10.1668 2.76344 8H5.5C5.77614 8 6 7.77614 6 7.5C6 7.22386 5.77614 7 5.5 7H2.7417C2.93252 4.73662 4.73662 2.93252 7 2.7417V5.5C7 5.77614 7.22386 6 7.5 6C7.77614 6 8 5.77614 8 5.5V2.76344C10.1668 3.04222 11.8689 4.80517 12.054 7H9.5C9.22386 7 9 7.22386 9 7.5C9 7.77614 9.22386 8 9.5 8H12.0322C11.7621 10.0991 10.0991 11.7621 8 12.0322Z"
+                                                        fill="currentColor"
+                                                        fill-rule="evenodd"
+                                                        clip-rule="evenodd"
+                                                    ></path>
+                                                </svg>
+                                                Hello, {user}! &nbsp;
+                                            </summary>
+                                            <p>You get it!</p>
+                                        </details>
+                                        <hr />
+                                        <li>User Settings</li>
+                                        <li>Profile</li>
+                                        <hr />
+                                        <li>Logout</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </template>
+                    </example-dropdown>
+                </aside>
+            </header>
+
+            <main>
+                <section class="left space-between" style="flex-direction: column">
+                    <div>
+                        <div class="space-between">
+                            <span>My Projects</span>
+                            <example-popover>
+                                <template shadowrootmode="open">
+                                    <style>
+                                        @import url(./dist/landsoul.css) layer(landsoul);
+                                        .container {
+                                            anchor-scope: --button;
+                                            display: inline;
+                                        }
+
+                                        .button {
+                                            anchor-name: --button;
+                                        }
+
+                                        .container:has(:where(.button, .popover):hover) .popover {
+                                            display: inline-block;
+                                            opacity: 1; /* shown */
+                                            @starting-style {
+                                                opacity: 0.333; /* before show */
+                                            }
+                                        }
+
+                                        .popover {
+                                            opacity: 0.333; /* after hide */
+                                            display: none;
+                                            position: absolute;
+                                            position-anchor: --button;
+                                            position-area: block-end center;
+                                            position-try-fallbacks: flip-block;
+                                            transition: opacity 0.15s, display 0.15s allow-discrete;
+                                        }
+
+                                        .inner {
+                                            translate: 0 3px;
+                                            width: max-content;
+                                        }
+
+                                        .inner::before {
+                                            content: "";
+                                            position: absolute;
+                                            width: 0;
+                                            height: 0;
+                                            border-left: 4px solid transparent;
+                                            border-right: 4px solid transparent;
+                                            border-bottom: 4px solid ButtonBorder;
+                                            position-area: top;
+                                            translate: 0 -6px;
+                                        }
+                                    </style>
+
+                                    <div class="container">
+                                        <button class="button">+</button>
+                                        <div class="popover">
+                                            <button class="inner">Create New Project</button>
+                                        </div>
+                                    </div>
+                                </template>
+                            </example-popover>
+                        </div>
+                        <br />
+                        <input class="inline-full" type="search" placeholder="Search..." />
+                        <br />
+                        <br />
+
+                        <small>Home</small>
+                        <ul class="menu-list">
+                            <li class="active">Dashboard</li>
+                            <li>Lifecycle</li>
+                            <li>Analytics</li>
+                            <li>Projects</li>
+                            <li>Team</li>
+                            <li>Settings</li>
+                        </ul>
+
+                        <br />
+                        <br />
+
+                        <small>Documents</small>
+                        <ul class="menu-list">
+                            <li>Guides</li>
+                            <li>API Reference</li>
+                            <li>Tutorials</li>
+                            <li>Examples</li>
+                            <li>FAQ</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        Account:
+                        <select name="pets">
+                            <option value="cat">Cat</option>
+                            <option value="dog">Dog</option>
+                            <option value="hamster">Hamster</option>
+                            <option value="parrot">Parrot</option>
+                            <option value="spider">Spider</option>
+                            <option value="goldfish">Goldfish</option>
+                        </select>
+                    </div>
+                </section>
+
+                <section class="right">
+                    <h5>Welcome to Landsoul Dashboard</h5>
+                    <p>This is an example dashboard layout using Landsoul styles.</p>
+
+                    <div class="card">
+                        <h6>Card Title</h6>
+                        <p>Card content goes here.</p>
+
+                        <button>Edit</button>
+                        <button popovertarget="delete-dialog" popoveraction="show" style="background-color: var(--red-4)">Delete</button>
+                        <dialog popover id="delete-dialog">
+                            <p>Are you sure you want to delete this item?</p>
+                            <form method="dialog">
+                                <button value="confirm" style="background-color: var(--blue-4)" popovertarget="delete-dialog" popoveraction="hide">
+                                    Confirm
+                                </button>
+                                <button value="cancel" popovertarget="delete-dialog" popoveraction="hide">Cancel</button>
+                            </form>
+                        </dialog>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </body>
+</html>
