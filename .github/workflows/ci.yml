@@ -1,71 +1,71 @@
 name: CI
 
 on:
-  push:
-    branches: ["master"]
-  workflow_dispatch:
+    push:
+        branches: ["master"]
+    workflow_dispatch:
 
 permissions:
-  contents: write
-  id-token: write
-  pages: write
+    contents: write
+    id-token: write
+    pages: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: true
+    group: "pages"
+    cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v5
+    deploy:
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v5
 
-      - name: Install Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: lts/*
-          package-manager-cache: false
+            - name: Install Node.js
+              uses: actions/setup-node@v5
+              with:
+                  node-version: lts/*
+                  package-manager-cache: false
 
-      - name: NPM install
-        run: npm install
+            - name: NPM install
+              run: npm install
 
-      - name: NPM build
-        run: npm run build
+            - name: NPM build
+              run: npm run build
 
-      - name: NPM Publish
-        id: publish
-        uses: JS-DevTools/npm-publish@v4
-        with:
-          token: ${{secrets.NPM_TOKEN}}
-          access: public
-          provenance: true
+            - name: NPM Publish
+              id: publish
+              uses: JS-DevTools/npm-publish@v4
+              with:
+                  token: ${{secrets.NPM_TOKEN}}
+                  access: public
+                  provenance: true
 
-      - name: Release on GitHub
-        if: ${{ steps.publish.outputs.type }}
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v${{ steps.publish.outputs.version }}
-          draft: false
-          generate_release_notes: true
+            - name: Release on GitHub
+              if: ${{ steps.publish.outputs.type }}
+              uses: softprops/action-gh-release@v1
+              with:
+                  tag_name: v${{ steps.publish.outputs.version }}
+                  draft: false
+                  generate_release_notes: true
 
-      - name: Prepare for upload
-        run: |
-          mkdir gh-pages
-          cp -r dist gh-pages
-          cp index.html gh-pages
+            - name: Prepare for upload
+              run: |
+                  mkdir gh-pages
+                  cp -r dist gh-pages
+                  cp *.html gh-pages
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+            - name: Setup Pages
+              uses: actions/configure-pages@v5
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: "./gh-pages"
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v4
+              with:
+                  path: "./gh-pages"
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
