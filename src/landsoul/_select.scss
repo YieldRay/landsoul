@@ -1,0 +1,81 @@
+select {
+    color: var(--landsoul-text);
+    interpolate-size: allow-keywords;
+    transition: width var(--landsoul-time) ease, height var(--landsoul-time) ease;
+
+    &,
+    &::picker(select) {
+        appearance: base-select;
+    }
+
+    &::picker(select) {
+        border: solid 1px var(--landsoul-border);
+        box-shadow: 0 0 0 1px var(--landsoul-border), 0 2px 2px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2);
+        padding: 0.25rem;
+        background-color: var(--landsoul-shadow);
+        border-radius: var(--landsoul-radius-active);
+        transition: display 0.5s allow-discrete, overlay 0.5s allow-discrete, opacity var(--landsoul-time) ease, transform 0.5s ease-in-out;
+    }
+
+    /* off stage */
+    &:not(:open)::picker(select) {
+        opacity: 0;
+        transform: scale(0.95);
+        transition-duration: 0.1s;
+    }
+    /* on stage */
+    &:open::picker(select) {
+        opacity: 1;
+    }
+
+    &::picker-icon {
+        opacity: 0.75;
+        transition: opacity var(--landsoul-time) ease, transform var(--landsoul-time) ease;
+    }
+    &:is(:hover, :focus-visible)::picker-icon {
+        opacity: 1;
+    }
+    &:open::picker-icon {
+        opacity: 1;
+        transform: rotateX(0.5turn);
+    }
+
+    optgroup {
+        font-weight: 500;
+        color: rgb(from var(--landsoul-text) r g b / 0.5);
+        cursor: default;
+    }
+
+    option {
+        font-weight: normal;
+        color: var(--landsoul-text);
+        cursor: pointer;
+        padding: 0 1rem 0 0.75rem;
+        border-radius: var(--landsoul-radius);
+        transition: background-color var(--landsoul-time) ease, outline-offset var(--landsoul-time) ease;
+        &:focus-visible {
+            outline: 2px solid rgb(from var(--landsoul-accent) r g b / 0.5);
+            outline-offset: -2px;
+        }
+        &:checked {
+            color: var(--landsoul-bg);
+            background-color: var(--landsoul-accent);
+            &::checkmark {
+                color: var(--landsoul-bg);
+            }
+        }
+
+        &:first-child {
+            margin-top: 0.25rem;
+        }
+    }
+
+    &[multiple] {
+        option {
+            padding: 0.25rem 1.25rem;
+            &:not(:first-child) {
+                margin-top: 2px;
+            }
+        }
+    }
+}

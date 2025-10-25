@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Landsoul Preview</title>
         <style>
-            @import url(//unpkg.com/normalize.css) layer(normalize);
+            /* @import url(//unpkg.com/normalize.css) layer(normalize); */
             @import url(./dist/landsoul.css) layer(landsoul);
 
             * {
@@ -438,10 +438,27 @@ p q r s t u v w x y z { | } ~ </pre
                             <select id="select">
                                 <optgroup label="Option Group">
                                     <option>Option One</option>
-                                    <option>Option Two</option>
+                                    <option disabled>Option Two</option>
                                     <option>Option Three</option>
                                 </optgroup>
                             </select>
+                        </p>
+                        <p>
+                            <label
+                                >Please choose one or more pets:
+                                <select name="pets" multiple size="4">
+                                    <optgroup label="4-legged pets">
+                                        <option value="dog">Dog</option>
+                                        <option value="cat">Cat</option>
+                                        <option value="hamster" disabled>Hamster</option>
+                                    </optgroup>
+                                    <optgroup label="Flying pets">
+                                        <option value="parrot">Parrot</option>
+                                        <option value="macaw">Macaw</option>
+                                        <option value="albatross">Albatross</option>
+                                    </optgroup>
+                                </select>
+                            </label>
                         </p>
                     </fieldset>
                     <p><a href="#top">[Top]</a></p>

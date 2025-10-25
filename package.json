@@ -1,6 +1,6 @@
 {
     "name": "landsoul",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "type": "module",
     "description": "drop in css library landsoul",
     "main": "./dist/landsoul.css",

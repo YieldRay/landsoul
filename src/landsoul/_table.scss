@@ -10,24 +10,13 @@ table {
         padding: 0.5rem;
     }
     // sticky header and footer
-    thead,
-    tfoot {
-        th {
-            padding-top: 0.75rem;
-            padding-bottom: 0.75rem;
-            position: sticky;
-            vertical-align: bottom;
-            background-color: var(--landsoul-shadow);
-        }
-    }
-    // sticky first column if there are row headers
-    &:has(tbody > tr > th:first-child) {
-        th:first-child {
-            position: sticky;
-            inset-inline-start: 0;
-            background-color: var(--landsoul-shadow);
-            z-index: 1;
-        }
+    thead th,
+    tfoot th {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        position: sticky;
+        background-color: var(--landsoul-shadow);
+        z-index: 0;
     }
 
     thead th {
@@ -36,13 +25,28 @@ table {
     tfoot th {
         bottom: 0;
     }
+
+    // sticky first column if there are row headers
+    &:has(tbody > tr > th:first-child) {
+        th:first-child {
+            position: sticky;
+            inset-inline-start: 0;
+            background-color: var(--landsoul-shadow);
+            z-index: 1;
+        }
+        // corner cell (first column in header/footer) should be above both
+        thead th:first-child,
+        tfoot th:first-child {
+            z-index: 2;
+        }
+    }
     tbody {
         white-space: nowrap;
         tr {
             background-color: var(--landsoul-bg);
-            &:nth-child(2n) {
-                background-color: var(--landsoul-shadow);
-            }
+            // &:nth-child(2n) {
+            //     background-color: var(--landsoul-shadow);
+            // }
         }
     }
     td,

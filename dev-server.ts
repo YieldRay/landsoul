@@ -63,7 +63,7 @@ function createDevServer() {
             return res.end(html);
         }
 
-        const filepath = path.join(process.cwd(), req.url.replace(/^\//, ""));
+        const filepath = path.join(process.cwd(), new URL(req.url, `http://${req.headers.host}`).pathname.slice(1));
         if (!fs.existsSync(filepath)) {
             res.writeHead(404);
             return res.end("Not Found");
