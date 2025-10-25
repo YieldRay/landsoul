@@ -33,8 +33,9 @@ details {
 
     &::details-content {
         height: 0;
+        opacity: 0;
         overflow: hidden;
-        transition: height 0.2s, content-visibility 0.2s;
+        transition: height 0.2s, content-visibility 0.2s, opacity 0.2s;
         transition-behavior: allow-discrete;
     }
 
@@ -47,6 +48,7 @@ details {
 
         &::details-content {
             height: auto;
+            opacity: 1;
         }
     }
 }
