@@ -9,12 +9,17 @@ body {
     @include var-light-dark(--landsoul-accent, #2e72f0, #4a90ff);
     @include var-light-dark(--landsoul-border, #e3e4e8, #2b414f);
 
+    // utils, do not use directly
+    @include var-light-dark(--landsoul-0-1, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
+    @include var-light-dark(--landsoul-0-2, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2));
+
     // other variables
     --landsoul-duration: 0.25s;
     --landsoul-radius: 0.4rem;
     --landsoul-radius-active: 0.6rem;
     --landsoul-gradient: linear-gradient(rgb(204, 252, 247), rgb(196, 234, 233), rgb(187, 216, 219), rgb(179, 198, 205), rgb(170, 180, 191));
+
     --landsoul-box-shadow: 0 0 0 1px var(--landsoul-border),
-        0 0px 2px rgba(0, 0, 0, 0.1),
-        0 0px 16px rgba(0, 0, 0, 0.2);
+        0 0px 2px var(--landsoul-0-1),
+        0 0px 16px var(--landsoul-0-2);
 }
