@@ -63,7 +63,8 @@ h6 {
     margin: 0;
     padding: 0;
     > small {
-        @include bg-radius;
+        background-color: var(--landsoul-surface);
+        border-radius: var(--landsoul-radius);
         margin-left: 0.25rem;
         padding: 0 0.25rem;
         font-weight: lighter;

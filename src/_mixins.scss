@@ -13,8 +13,3 @@
     //     #{$property}: $dark;
     // }
 }
-
-@mixin bg-radius($bg: var(--landsoul-surface), $radius: var(--landsoul-radius)) {
-    background-color: $bg;
-    border-radius: $radius;
-}

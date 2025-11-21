@@ -15,8 +15,9 @@ blockquote {
 code,
 kbd,
 pre {
-    @include bg-radius;
     font-family: Consolas, monospace;
+    background-color: var(--landsoul-surface);
+    border-radius: var(--landsoul-radius);
 }
 
 samp {
