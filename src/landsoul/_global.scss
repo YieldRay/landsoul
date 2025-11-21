@@ -4,9 +4,12 @@ body {
     font-family: "Graphik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial,
         sans-serif;
     font-size: 14px;
-    transition: color var(--landsoul-duration), background-color var(--landsoul-duration), border-color var(--landsoul-duration), outline-color var(--landsoul-duration);
     color: var(--landsoul-text);
     background-color: var(--landsoul-bg);
+}
+
+* {
+    transition: color var(--landsoul-duration), background-color var(--landsoul-duration), border-color var(--landsoul-duration), outline-color var(--landsoul-duration);
 }
 
 a {

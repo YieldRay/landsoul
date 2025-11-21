@@ -9,10 +9,6 @@
             @import url(https://unpkg.com/open-props);
             @import url(./dist/landsoul.css) layer(landsoul);
 
-            * {
-                transition: color var(--landsoul-duration), background-color var(--landsoul-duration), border-color var(--landsoul-duration), outline-color var(--landsoul-duration);
-            }
-
             :root,
             body {
                 height: 100%;
@@ -465,7 +461,7 @@
                 <div id="js" style="display: masonry; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px"></div>
 
                 <script type="module">
-                    const data = await fetch("shttps://proxy.scalar.com/?scalar_url=https://www.pixiv.net/ranking.php?format=json", {})
+                    const data = await fetch("https://proxy.scalar.com/?scalar_url=https://www.pixiv.net/ranking.php?format=json", {})
                         .then((res) => res.json())
                         .then((json) => JSON.stringify(json))
                         .then((txt) => txt.replaceAll("https://i.pximg.net/", "https://i.pixiv.re/"))

@@ -3,19 +3,29 @@
 [![](https://badgen.net/packagephobia/install/landsoul)](https://packagephobia.com/result?p=landsoul)
 [![](https://img.shields.io/npm/v/landsoul)](https://www.npmjs.com/package/landsoul)
 
-A classless CSS library (IE11 is not supported)
+A classless CSS library (IE11 is not supported).
+
+> i.e. Style applied to HTML tags directly.
 
 Preview: <https://yieldray.github.io/landsoul/>
 
 # Usage
 
-To enable dark mode, use `prefers-color-scheme: dark` or `body[data-theme="dark"]`
+To enable dark mode, use `body[data-theme="dark"]`
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/landsoul" />
 
 <!-- add this to enable dark mode manually -->
 <body data-theme="dark"></body>
+```
+
+Or if you target to Chrome>=123, you can use `color-scheme`
+
+```css
+:root {
+    color-scheme: dark;
+}
 ```
 
 Use with CSS [@layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer), this allows landsoul styles to be easily overridden.
@@ -52,7 +62,6 @@ Use Node.js LTS version.
 ```bash
 $ npm install
 $ npm run dev
-# xdg-open index.html
 ```
 
 ## build

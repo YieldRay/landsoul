@@ -50,13 +50,13 @@ function createDevServer() {
         const rewriteSSE = (html: string) =>
             html.replace(
                 "</head>",
-                `\n<script>${iife(() => {
+                `\n${iifeScript(() => {
                     const es = new EventSource("/sse");
                     es.addEventListener("message", ({ data }) => {
                         console.log(JSON.parse(data));
                         window.location.reload();
                     });
-                })}</script>` + `\n</head>`
+                })}\n</head>`
             );
 
         if (req.url === "/") {
@@ -111,6 +111,10 @@ function iife<A extends unknown[]>(fn: (...args: A) => void, ...args: A) {
     } else {
         return `(${fn.toString()})();`;
     }
+}
+
+function iifeScript<A extends unknown[]>(fn: (...args: A) => void, ...args: A) {
+    return `<script>${iife(fn, ...args)}</script>`
 }
 
 function watchFiles(patterns: string[], listener: fs.WatchListener<string>) {
