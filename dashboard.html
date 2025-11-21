@@ -9,6 +9,10 @@
             @import url(https://unpkg.com/open-props);
             @import url(./dist/landsoul.css) layer(landsoul);
 
+            * {
+                transition: color var(--landsoul-duration), background-color var(--landsoul-duration), border-color var(--landsoul-duration), outline-color var(--landsoul-duration);
+            }
+
             :root,
             body {
                 height: 100%;
@@ -34,7 +38,7 @@
             }
 
             menu {
-                border: 1px solid var(--landsoul-shadow);
+                border: 1px solid var(--landsoul-surface);
                 color: var(--landsoul-text);
                 background-color: var(--landsoul-bg);
                 border-radius: 2rem;
@@ -74,7 +78,7 @@
                 align-items: center;
                 gap: 1rem;
                 padding: 0.5rem;
-                border-bottom: solid 1px var(--landsoul-shadow);
+                border-bottom: solid 1px var(--landsoul-surface);
 
                 @media (width < 720px) {
                     position: sticky;
@@ -98,12 +102,12 @@
                 flex-direction: column;
 
                 @media (width < 720px) {
-                    border-bottom: solid 1px var(--landsoul-shadow);
+                    border-bottom: solid 1px var(--landsoul-surface);
                 }
 
                 @media (width >= 720px) {
                     overflow-y: auto;
-                    border-right: solid 1px var(--landsoul-shadow);
+                    border-right: solid 1px var(--landsoul-surface);
                 }
             }
 
@@ -129,7 +133,7 @@
                     border-radius: var(--landsoul-radius);
 
                     &:hover {
-                        background-color: var(--landsoul-shadow);
+                        background-color: var(--landsoul-surface);
                     }
 
                     &.active {
@@ -140,7 +144,7 @@
             }
 
             .card {
-                border: 1px solid var(--landsoul-shadow);
+                border: 1px solid var(--landsoul-surface);
                 border-radius: var(--landsoul-radius);
                 padding: 1rem;
                 margin-top: 1rem;
@@ -171,13 +175,9 @@
                     </li>
                 </ul>
 
-                <label
-                    ><input name="color-scheme" type="radio" value="light dark" checked onChange="document.body.removeAttribute('data-theme')" />System</label
-                >
-                <label
-                    ><input name="color-scheme" type="radio" value="light" onChange="document.body.setAttribute('data-theme', 'light')" /> Forced Light</label
-                >
-                <label><input name="color-scheme" type="radio" value="dark" onChange="document.body.setAttribute('data-theme', 'dark')" /> Forced Dark</label>
+                <label><input name="color-scheme" type="radio" value="light dark" checked />System</label>
+                <label><input name="color-scheme" type="radio" value="light" /> Forced Light</label>
+                <label><input name="color-scheme" type="radio" value="dark" /> Forced Dark</label>
                 <style>
                     :root {
                         color-scheme: light dark;
@@ -247,7 +247,7 @@
                                                 }
                                             }
                                         }
-                                        border: 1px solid var(--landsoul-shadow);
+                                        border: 1px solid var(--landsoul-surface);
                                         border-radius: var(--landsoul-radius);
                                         background-color: var(--landsoul-bg);
                                         padding: 0.25rem;
@@ -267,7 +267,7 @@
                                         border-radius: var(--landsoul-radius);
 
                                         &:hover {
-                                            background-color: var(--landsoul-shadow);
+                                            background-color: var(--landsoul-surface);
                                         }
 
                                         &.active {
@@ -465,7 +465,7 @@
                 <div id="js" style="display: masonry; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px"></div>
 
                 <script type="module">
-                    const data = await fetch("https://proxy.scalar.com/?scalar_url=https://www.pixiv.net/ranking.php?format=json", {})
+                    const data = await fetch("shttps://proxy.scalar.com/?scalar_url=https://www.pixiv.net/ranking.php?format=json", {})
                         .then((res) => res.json())
                         .then((json) => JSON.stringify(json))
                         .then((txt) => txt.replaceAll("https://i.pximg.net/", "https://i.pixiv.re/"))

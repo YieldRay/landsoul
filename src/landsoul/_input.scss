@@ -1,19 +1,21 @@
-@use "../mixins" as *;
+@mixin hover-effect {
+    &:not([disabled]) {
+        transition: filter var(--landsoul-duration);
+
+        &:hover {
+            filter: contrast(0.94);
+        }
+    }
+}
 
 button,
 select,
 input,
 textarea {
-    color: var(--landsoul-text-on-shadow);
-    background-color: var(--landsoul-shadow);
+    color: var(--landsoul-text-on-surface);
+    background-color: var(--landsoul-surface);
     -webkit-tap-highlight-color: transparent;
-}
-
-@mixin hover-effect {
-    transition: filter var(--landsoul-time);
-    &:hover {
-        filter: contrast(0.94);
-    }
+    @include hover-effect;
 }
 
 select,
@@ -21,7 +23,6 @@ button,
 input[type="button"],
 input[type="submit"],
 input[type="reset"] {
-    @include hover-effect;
     cursor: pointer;
     color: var(--landsoul-text);
 }
@@ -30,12 +31,14 @@ select,
 button,
 input:not([type="checkbox"], [type="radio"], [type="range"]),
 textarea {
-    @include hover-effect;
+
     border: none;
     padding: 0.25rem 0.5rem;
     border-radius: var(--landsoul-radius);
+
     &:focus-within {
-        outline: var(--landsoul-text) solid 0.01rem;
+        outline: var(--landsoul-text) solid 0.5px;
+        outline-offset: -0.5px;
     }
 }
 

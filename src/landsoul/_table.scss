@@ -15,7 +15,7 @@ table {
         padding-top: 0.75rem;
         padding-bottom: 0.75rem;
         position: sticky;
-        background-color: var(--landsoul-shadow);
+        background-color: var(--landsoul-surface);
         z-index: 0;
     }
 
@@ -31,7 +31,7 @@ table {
         th:first-child {
             position: sticky;
             inset-inline-start: 0;
-            background-color: var(--landsoul-shadow);
+            background-color: var(--landsoul-surface);
             z-index: 1;
         }
         // corner cell (first column in header/footer) should be above both
@@ -45,7 +45,7 @@ table {
         tr {
             background-color: var(--landsoul-bg);
             // &:nth-child(2n) {
-            //     background-color: var(--landsoul-shadow);
+            //     background-color: var(--landsoul-surface);
             // }
         }
     }

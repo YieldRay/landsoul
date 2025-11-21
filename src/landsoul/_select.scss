@@ -1,7 +1,7 @@
 select {
     color: var(--landsoul-text);
     interpolate-size: allow-keywords;
-    transition: width var(--landsoul-time) ease, height var(--landsoul-time) ease;
+    transition: width var(--landsoul-duration) ease, height var(--landsoul-duration) ease;
 
     &,
     &::picker(select) {
@@ -12,9 +12,9 @@ select {
         border: solid 1px var(--landsoul-border);
         box-shadow: var(--landsoul-box-shadow);
         padding: 0.25rem;
-        background-color: var(--landsoul-shadow);
+        background-color: var(--landsoul-surface);
         border-radius: var(--landsoul-radius-active);
-        transition: display 0.5s allow-discrete, overlay 0.5s allow-discrete, opacity var(--landsoul-time) ease, transform 0.5s ease-in-out;
+        transition: display 0.5s allow-discrete, overlay 0.5s allow-discrete, opacity var(--landsoul-duration) ease, transform 0.5s ease-in-out;
     }
 
     /* off stage */
@@ -30,14 +30,14 @@ select {
 
     &::picker-icon {
         opacity: 0.75;
-        transition: opacity var(--landsoul-time) ease, transform var(--landsoul-time) ease;
+        transition: opacity var(--landsoul-duration) ease, transform var(--landsoul-duration) ease;
     }
     &:is(:hover, :focus-visible)::picker-icon {
         opacity: 1;
     }
     &:open::picker-icon {
         opacity: 1;
-        transform: rotateX(0.5turn);
+        transform: 180deg;
     }
 
     optgroup {
@@ -52,7 +52,7 @@ select {
         cursor: pointer;
         padding: 0 1rem 0 0.75rem;
         border-radius: var(--landsoul-radius);
-        transition: background-color var(--landsoul-time) ease, outline-offset var(--landsoul-time) ease;
+        transition: background-color var(--landsoul-duration) ease, outline-offset var(--landsoul-duration) ease;
         &:focus-visible {
             outline: 2px solid rgb(from var(--landsoul-accent) r g b / 0.5);
             outline-offset: -2px;

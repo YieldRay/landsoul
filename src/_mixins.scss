@@ -1,4 +1,20 @@
-@mixin bg-radius($bg: var(--landsoul-shadow), $radius: var(--landsoul-radius)) {
+@mixin var-light-dark($property, $light, $dark) {
+    #{$property}: $light;
+
+    @supports (color: light-dark(white, black)) {
+        #{$property}: light-dark($light, $dark);
+    }
+
+    &[data-theme="dark"] {
+        #{$property}: $dark;
+    }
+
+    // @media screen and (prefers-color-scheme: dark) {
+    //     #{$property}: $dark;
+    // }
+}
+
+@mixin bg-radius($bg: var(--landsoul-surface), $radius: var(--landsoul-radius)) {
     background-color: $bg;
     border-radius: $radius;
 }

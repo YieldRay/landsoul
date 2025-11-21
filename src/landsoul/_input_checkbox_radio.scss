@@ -8,7 +8,7 @@ input[type="radio"] {
     display: inline-block;
     box-sizing: border-box;
     appearance: none;
-    transition: all var(--landsoul-time);
+    transition: all var(--landsoul-duration);
     position: relative;
     height: var(--size);
     vertical-align: text-bottom;
@@ -21,7 +21,7 @@ input[type="radio"] {
 
 input[type="checkbox"] {
     width: calc(var(--size) * 1.75);
-    background: var(--landsoul-shadow);
+    background: var(--landsoul-surface);
     border-radius: 1rem;
     &::after {
         content: "";
@@ -49,12 +49,12 @@ input[type="checkbox"] {
 
 input[type="radio"] {
     width: var(--size);
-    border: solid calc(var(--size) * 0.1) var(--landsoul-shadow);
+    border: solid calc(var(--size) * 0.1) var(--landsoul-surface);
     border-radius: 50%;
     &::after {
         content: "";
         opacity: 0;
-        transition: opacity var(--landsoul-time);
+        transition: opacity calc(var(--landsoul-duration) * 0.5);
         position: absolute;
         display: inline-block;
         border-radius: 50%;

@@ -76,9 +76,6 @@ function createDevServer() {
         if (stat.isDirectory()) {
             res.writeHead(200, { "Content-Type": "text/html" });
             return res.end(rewriteSSE(fs.readFileSync(path.join(filepath, "index.html"), "utf-8")));
-            return pipeline(fs.createReadStream(path.join(filepath, "index.html")), res).catch(() => {
-                res.end();
-            });
         }
 
         const ext = path.extname(filepath).slice(1);
