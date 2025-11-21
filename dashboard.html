@@ -6,7 +6,6 @@
         <title>Dashboard</title>
         <style>
             @import url(//unpkg.com/normalize.css) layer(normalize);
-            @import url(https://unpkg.com/open-props);
             @import url(./dist/landsoul.css) layer(landsoul);
 
             :root,
@@ -37,7 +36,7 @@
                 border: 1px solid var(--landsoul-surface);
                 color: var(--landsoul-text);
                 background-color: var(--landsoul-bg);
-                border-radius: 2rem;
+                border-radius: var(--landsoul-radius);
                 padding: 1rem;
                 overflow: auto;
                 width: min(260px, calc(100vw - 2px));
@@ -448,11 +447,11 @@
                     <p>Card content goes here.</p>
 
                     <button>Edit</button>
-                    <button popovertarget="delete-dialog" popoveraction="show" style="background-color: var(--red-4)">Delete</button>
+                    <button popovertarget="delete-dialog" popoveraction="show" style="color: var(--landsoul-inverse-text); background-color: var(--landsoul-danger)" >Delete</button>
                     <dialog popover id="delete-dialog">
                         <p>Are you sure you want to delete this item?</p>
                         <form method="dialog">
-                            <button value="confirm" style="background-color: var(--blue-4)" popovertarget="delete-dialog" popoveraction="hide">Confirm</button>
+                            <button value="confirm" style="color: var(--landsoul-inverse-text); background-color: var(--landsoul-accent)" popovertarget="delete-dialog" popoveraction="hide">Confirm</button>
                             <button value="cancel" popovertarget="delete-dialog" popoveraction="hide">Cancel</button>
                         </form>
                     </dialog>
