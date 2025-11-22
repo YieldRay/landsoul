@@ -13,3 +13,23 @@
     //     #{$property}: $dark;
     // }
 }
+
+@mixin hover-effect {
+    &:not([disabled]) {
+        transition: filter var(--landsoul-duration);
+
+        &:hover {
+            filter: contrast(0.94);
+        }
+    }
+}
+
+@mixin outline-focus($thickness: 0.0625rem, $color: var(--landsoul-text)) {
+    outline-offset: 0;
+    transition: outline-offset var(--landsoul-duration) ease;
+
+    &:focus-within {
+        outline: $color solid $thickness;
+        outline-offset: -$thickness;
+    }
+}

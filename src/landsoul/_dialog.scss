@@ -1,7 +1,7 @@
 @use "../mixins" as *;
 
 dialog {
-    border: 1px solid var(--landsoul-surface);
+    border: 0.0625rem solid var(--landsoul-surface);
     color: var(--landsoul-text);
     background-color: var(--landsoul-bg);
     border-radius: 2rem;

@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Dashboard</title>
+        <script src="//unpkg.com/chart.js"></script>
         <style>
             @import url(//unpkg.com/normalize.css) layer(normalize);
             @import url(./dist/landsoul.css) layer(landsoul);
@@ -443,18 +444,28 @@
                 </div>
 
                 <div class="card"  >
-                    <h6>Card Title</h6>
-                    <p>Card content goes here.</p>
+                    <div class="space-between inline-full">
+                        <h6>Total Visitors</h6>
+                        <div>
+                            <button>Edit</button>
+                            <button popovertarget="delete-dialog" popoveraction="show"
+                            style="color: var(--landsoul-inverse-text); background-color: var(--landsoul-danger)">Delete</button>
+                            <dialog popover id="delete-dialog">
+                                <p>Are you sure you want to delete this item?</p>
+                                <form method="dialog">
+                                    <button value="confirm"
+                                    style="color: var(--landsoul-inverse-text); background-color: var(--landsoul-accent)"
+                                    popovertarget="delete-dialog" popoveraction="hide">Confirm</button>
+                                    <button value="cancel" popovertarget="delete-dialog" popoveraction="hide">Cancel</button>
+                                </form>
+                            </dialog>
+                        </div>
+                    </div>
+                    <div style="height: 400px">
+                        <canvas style="width: 100%" id="myChart"></canvas>
+                    </div>
 
-                    <button>Edit</button>
-                    <button popovertarget="delete-dialog" popoveraction="show" style="color: var(--landsoul-inverse-text); background-color: var(--landsoul-danger)" >Delete</button>
-                    <dialog popover id="delete-dialog">
-                        <p>Are you sure you want to delete this item?</p>
-                        <form method="dialog">
-                            <button value="confirm" style="color: var(--landsoul-inverse-text); background-color: var(--landsoul-accent)" popovertarget="delete-dialog" popoveraction="hide">Confirm</button>
-                            <button value="cancel" popovertarget="delete-dialog" popoveraction="hide">Cancel</button>
-                        </form>
-                    </dialog>
+
                 </div>
 
                 <div id="js" style="display: masonry; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px"></div>
@@ -499,4 +510,106 @@
             </section>
         </div>
     </body>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+
+        // Generate data similar to the provided image
+        const labels = [];
+        const mobileData = [];
+        const desktopData = [];
+        const count = 86; // Approx number of days from Apr 6 to Jun 30
+
+        for (let i = 0; i < count; i++) {
+            const date = new Date(2023, 3, 6 + i); // Start from Apr 6
+            labels.push(date.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric'
+            }));
+
+            const t = i * 0.6;
+            let shape = Math.abs(Math.sin(t));
+            shape = Math.pow(shape, 1.2);
+            const amplitude = 120 + Math.sin(i * 0.1) * 40 + Math.cos(i * 0.23) * 30;
+            const noise = Math.random() * 15;
+            const value = shape * amplitude + 50;
+
+            mobileData.push(Math.floor(value + noise + 50));
+            desktopData.push(Math.floor(value * 0.7 + noise + 30));
+        }
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Mobile',
+                    data: mobileData,
+                    fill: true,
+                    borderColor: '#333',
+                    backgroundColor: 'rgba(50, 50, 50, 0.5)',
+                    tension: 0.4,
+                    pointRadius: 0,
+                    pointHoverRadius: 4,
+                    borderWidth: 1
+                }, {
+                    label: 'Desktop',
+                    data: desktopData,
+                    fill: true,
+                    borderColor: '#666',
+                    backgroundColor: 'rgba(100, 100, 100, 0.5)',
+                    tension: 0.4,
+                    pointRadius: 0,
+                    pointHoverRadius: 4,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                        titleColor: '#000',
+                        bodyColor: '#333',
+                        borderColor: '#ddd',
+                        borderWidth: 1,
+                        padding: 10,
+                        boxPadding: 4,
+                        usePointStyle: true,
+                        titleFont: {
+                            size: 14,
+                            weight: 'normal'
+                        },
+                        bodyFont: {
+                            size: 13
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            maxTicksLimit: 10,
+                            maxRotation: 0,
+                            color: '#666'
+                        }
+                    },
+                    y: {
+                        display: false,
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </html>

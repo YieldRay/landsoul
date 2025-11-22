@@ -9,7 +9,7 @@ select {
     }
 
     &::picker(select) {
-        border: solid 1px var(--landsoul-border);
+        border: solid 0.0625rem var(--landsoul-border);
         box-shadow: var(--landsoul-box-shadow);
         padding: 0.25rem;
         background-color: var(--landsoul-surface);
@@ -54,8 +54,8 @@ select {
         border-radius: var(--landsoul-radius);
         transition: background-color var(--landsoul-duration) ease, outline-offset var(--landsoul-duration) ease;
         &:focus-visible {
-            outline: 2px solid rgb(from var(--landsoul-accent) r g b / 0.5);
-            outline-offset: -2px;
+            outline: 0.125rem solid rgb(from var(--landsoul-accent) r g b / 0.5);
+            outline-offset: -0.125rem;
         }
         &:checked {
             color: var(--landsoul-bg);
@@ -74,7 +74,7 @@ select {
         option {
             padding: 0.25rem 1.25rem;
             &:not(:first-child) {
-                margin-top: 1px;
+                margin-top: 0.0625rem;
             }
         }
     }

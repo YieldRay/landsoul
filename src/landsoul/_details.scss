@@ -1,16 +1,19 @@
+@use '../mixins' as *;
+
 details {
     padding-bottom: 0;
     interpolate-size: allow-keywords;
     -webkit-tap-highlight-color: transparent;
 
     summary {
-        $right: 8px;
+        $right: 0.5rem;
         padding: 0.5rem;
         padding-right: calc(0.75rem + $right);
         background-color: var(--landsoul-surface);
         cursor: pointer;
         border-radius: var(--landsoul-radius-active);
         position: relative;
+        outline-offset: -0.125rem;
 
         &::marker {
             content: "";
@@ -22,10 +25,10 @@ details {
             right: $right;
             top: 50%;
             translate: -50% -50%;
-            width: 5px;
-            height: 5px;
-            border-right: 1.5px solid currentColor;
-            border-top: 1.5px solid currentColor;
+            width: 0.3125rem;
+            height: 0.3125rem;
+            border-right: 0.125rem solid currentColor;
+            border-top: 0.125rem solid currentColor;
             transition: rotate 0.1s;
             rotate: 45deg;
         }

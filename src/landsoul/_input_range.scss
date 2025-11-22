@@ -1,3 +1,5 @@
+@use "../mixins" as *;
+
 @mixin thumb-common {
     cursor: grab;
     height: 1rem;
@@ -22,30 +24,37 @@ input[type="range"] {
     height: 0.3rem;
     cursor: pointer;
     border-radius: 1rem;
+    @include outline-focus;
 
     &::-webkit-slider-runnable-track {
         @include track-common;
         border-radius: 1rem;
     }
+
     &::-webkit-slider-thumb {
         @include thumb-common;
         -webkit-appearance: none; // only for Chrome
         transform: translateY(-0.4rem) scale(0.8, 0.8);
+
         &:active {
             transform: translateY(-0.4rem) scale(1, 1);
         }
     }
+
     &::-moz-range-progress {
         height: 0.1rem;
         background-color: var(--landsoul-accent);
     }
+
     &::-moz-range-track {
         @include track-common;
     }
+
     &::-moz-range-thumb {
         @include thumb-common;
         -moz-appearance: none; // only for Firefox
         transform: scale(0.8, 0.8);
+
         &:active {
             transform: scale(1, 1);
         }
