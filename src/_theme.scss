@@ -1,6 +1,6 @@
 @use "./mixins" as *;
 
-body {
+:root, :host {
     @include var-light-dark(--landsoul-bg, #fff, #202021);
     @include var-light-dark(--landsoul-text, #262626, #e7e7e7);
     @include var-light-dark(--landsoul-inverse-text, #fff, #262626);

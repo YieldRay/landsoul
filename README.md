@@ -11,13 +11,13 @@ Preview: <https://yieldray.github.io/landsoul/>
 
 # Usage
 
-To enable dark mode, use `body[data-theme="dark"]`
+To enable dark mode, use `:root[data-theme="dark"]`
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/landsoul" />
 
-<!-- add this to enable dark mode manually -->
-<body data-theme="dark"></body>
+<!-- Add this to enable dark mode manually -->
+<html data-theme="dark"></html>
 ```
 
 Or if you target to Chrome>=123, you can use `color-scheme`
@@ -31,10 +31,10 @@ Or if you target to Chrome>=123, you can use `color-scheme`
 Use with CSS [@layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer), this allows landsoul styles to be easily overridden.
 
 ```css
-/* remember that the @import at-rule must precede all other types of rules, except @charset and @layer rules. */
+/* Remember that the @import at-rule must precede all other types of rules, except @charset and @layer rules. */
 @layer landsoul, my-layer;
 @import url(//unpkg.com/landsoul) layer(landsoul);
-/* your style here... */
+/* Your style here... */
 ```
 
 This stylesheet DO NOT include css reset, and keep minimum influence to the built-in html elements,  
