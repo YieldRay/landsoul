@@ -18,32 +18,55 @@
                 min-height: 100vh;
                 display: grid;
                 grid-template:
-                    "header" min-content
-                    "left" auto
-                    "right" 1fr
+                    "header header" min-content
+                    "main main" 1fr
+                    "footer footer" auto
                     / 1fr;
 
                 @media (width >= 720px) {
                     height: 100vh;
                     overflow: hidden;
                     grid-template:
-                        "header header" min-content
-                        "left right" 1fr
-                        / 320px 1fr;
+                        "header header header" min-content
+                        "nav main main" 1fr
+                        "footer footer footer" auto
+                        / auto 1fr 1fr;
+
+                    /* hide the menu button in wide screen */
+                    [popovertarget="menu"] {
+                        display: none;
+                    }
+
+                    nav#menu {
+                        all: unset; /* disable the popover behavior, make nav a regular element */
+                        grid-area: nav;
+                        box-sizing: border-box;
+                        width: 320px;
+                        padding: 1rem;
+                        display: flex;
+                        flex-direction: column;
+                        overflow-y: auto;
+                        border-right: solid 1px var(--landsoul-surface);
+                        color: var(--landsoul-text);
+                        background-color: var(--landsoul-bg);
+                    }
                 }
             }
 
-            menu {
+            nav#menu {
+                grid-area: nav;
                 border: 1px solid var(--landsoul-surface);
                 color: var(--landsoul-text);
                 background-color: var(--landsoul-bg);
                 border-radius: var(--landsoul-radius);
                 padding: 1rem;
                 overflow: auto;
-                width: min(260px, calc(100vw - 2px));
+                width: min(320px, calc(100vw - 2px));
+                display: flex;
+                flex-direction: column;
             }
 
-            menu[popover] {
+            nav#menu[popover] {
                 margin: 0;
                 box-sizing: border-box;
                 height: 100vh;
@@ -90,25 +113,8 @@
                 }
             }
 
-            .left {
-                grid-area: left;
-                box-sizing: border-box;
-                padding: 1rem;
-                display: flex;
-                flex-direction: column;
-
-                @media (width < 720px) {
-                    border-bottom: solid 1px var(--landsoul-surface);
-                }
-
-                @media (width >= 720px) {
-                    overflow-y: auto;
-                    border-right: solid 1px var(--landsoul-surface);
-                }
-            }
-
-            .right {
-                grid-area: right;
+            .main {
+                grid-area: main;
                 padding: 1rem;
 
                 @media (width >= 720px) {
@@ -118,10 +124,22 @@
                 scrollbar-gutter: stable;
             }
 
+            .footer {
+                grid-area: footer;
+                padding: 1rem;
+                border-top: solid 1px var(--landsoul-surface);
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+                align-items: center;
+                justify-content: space-between;
+            }
+
             .menu-list {
                 list-style: none;
                 padding: 0;
                 margin: 0;
+                -webkit-tap-highlight-color: transparent;
 
                 li {
                     padding: 0.5rem 0 0.5rem 0.5rem;
@@ -159,38 +177,109 @@
     </head>
     <body>
         <div id="root">
-            <menu id="menu" popover="auto">
+            <!-- Navigation: popover on compact, sidebar on wide -->
+            <nav id="menu" popover="auto">
                 <h6 popovertarget="menu" popovertargetaction="hide">Landsoul</h6>
 
-                <ul style="padding: 1rem">
-                    <li>
-                        <a href="https://github.com/YieldRay/landsoul" target="_blank" rel="noopener noreferrer">Github</a>
-                    </li>
-                    <li>
-                        <a href="https://www.npmjs.com/package/landsoul" target="_blank" rel="noopener noreferrer">NPM</a>
-                    </li>
+                <div class="space-between">
+                    <span>My Projects</span>
+                    <example-popover>
+                        <template shadowrootmode="open">
+                            <style>
+                                @import url(./dist/landsoul.css) layer(landsoul);
+                                .container {
+                                    anchor-scope: --button;
+                                    display: inline;
+                                }
+
+                                .button {
+                                    anchor-name: --button;
+                                }
+
+                                .container:has(:where(.button, .popover):hover) .popover {
+                                    display: inline-block;
+                                    opacity: 1; /* shown */
+                                    @starting-style {
+                                        opacity: 0.333; /* before show */
+                                    }
+                                }
+
+                                .popover {
+                                    opacity: 0.333; /* after hide */
+                                    display: none;
+                                    position: absolute;
+                                    position-anchor: --button;
+                                    position-area: block-end center;
+                                    position-try-fallbacks: flip-block;
+                                    transition: opacity 0.15s, display 0.15s allow-discrete;
+                                }
+
+                                .inner {
+                                    translate: 0 3px;
+                                    width: max-content;
+                                }
+
+                                .inner::before {
+                                    content: "";
+                                    position: absolute;
+                                    width: 0;
+                                    height: 0;
+                                    border-left: 4px solid transparent;
+                                    border-right: 4px solid transparent;
+                                    border-bottom: 4px solid ButtonBorder;
+                                    position-area: top;
+                                    translate: 0 -6px;
+                                }
+                            </style>
+
+                            <div class="container">
+                                <button class="button">+</button>
+                                <div class="popover">
+                                    <button class="inner">Create New Project</button>
+                                </div>
+                            </div>
+                        </template>
+                    </example-popover>
+                </div>
+                <br />
+                <input class="inline-full" type="search" placeholder="Search..." />
+                <br />
+                <br />
+
+                <small>Home</small>
+                <ul class="menu-list">
+                    <li class="active">Dashboard</li>
+                    <li>Lifecycle</li>
+                    <li>Analytics</li>
+                    <li>Projects</li>
+                    <li>Team</li>
+                    <li>Settings</li>
                 </ul>
 
-                <label><input name="color-scheme" type="radio" value="light dark" checked />System</label>
-                <label><input name="color-scheme" type="radio" value="light" /> Forced Light</label>
-                <label><input name="color-scheme" type="radio" value="dark" /> Forced Dark</label>
-                <style>
-                    :root {
-                        color-scheme: light dark;
-                    }
-                    :root {
-                        &:has(input[name="color-scheme"][value="light dark"]:checked) {
-                            color-scheme: light dark;
-                        }
-                        &:has(input[name="color-scheme"][value="light"]:checked) {
-                            color-scheme: light;
-                        }
-                        &:has(input[name="color-scheme"][value="dark"]:checked) {
-                            color-scheme: dark;
-                        }
-                    }
-                </style>
-            </menu>
+                <br />
+                <br />
+
+                <small>Documents</small>
+                <ul class="menu-list">
+                    <li>Guides</li>
+                    <li>API Reference</li>
+                    <li>Tutorials</li>
+                    <li>Examples</li>
+                    <li>FAQ</li>
+                </ul>
+
+                <div style="margin-top: auto;">
+                    Account:
+                    <select name="pets">
+                        <option value="cat">Cat</option>
+                        <option value="dog">Dog</option>
+                        <option value="hamster">Hamster</option>
+                        <option value="parrot">Parrot</option>
+                        <option value="spider">Spider</option>
+                        <option value="goldfish">Goldfish</option>
+                    </select>
+                </div>
+            </nav>
 
             <header class="header space-between">
                 <div class="space-between" style="gap: 1rem">
@@ -318,132 +407,13 @@
                 </aside>
             </header>
 
-            <details id="details-menu" class="left space-between" style="flex-direction: column">
-                <summary>Menu</summary>
-                <script>
-                    (() => {
-                        const details = document.getElementById("details-menu");
-                        const summary = details.querySelector("summary");
-                        function onChange(e) {
-                            if (e.matches) {
-                                details.open = true;
-                                summary.style.display = "none";
-                            } else {
-                                details.open = false;
-                                summary.style.display = "block";
-                            }
-                        }
-                        matchMedia("(width >= 720px)").addEventListener("change", onChange);
-                        onChange(matchMedia("(width >= 720px)"));
-                    })();
-                </script>
-                <div class="space-between">
-                    <span>My Projects</span>
-                    <example-popover>
-                        <template shadowrootmode="open">
-                            <style>
-                                @import url(./dist/landsoul.css) layer(landsoul);
-                                .container {
-                                    anchor-scope: --button;
-                                    display: inline;
-                                }
-
-                                .button {
-                                    anchor-name: --button;
-                                }
-
-                                .container:has(:where(.button, .popover):hover) .popover {
-                                    display: inline-block;
-                                    opacity: 1; /* shown */
-                                    @starting-style {
-                                        opacity: 0.333; /* before show */
-                                    }
-                                }
-
-                                .popover {
-                                    opacity: 0.333; /* after hide */
-                                    display: none;
-                                    position: absolute;
-                                    position-anchor: --button;
-                                    position-area: block-end center;
-                                    position-try-fallbacks: flip-block;
-                                    transition: opacity 0.15s, display 0.15s allow-discrete;
-                                }
-
-                                .inner {
-                                    translate: 0 3px;
-                                    width: max-content;
-                                }
-
-                                .inner::before {
-                                    content: "";
-                                    position: absolute;
-                                    width: 0;
-                                    height: 0;
-                                    border-left: 4px solid transparent;
-                                    border-right: 4px solid transparent;
-                                    border-bottom: 4px solid ButtonBorder;
-                                    position-area: top;
-                                    translate: 0 -6px;
-                                }
-                            </style>
-
-                            <div class="container">
-                                <button class="button">+</button>
-                                <div class="popover">
-                                    <button class="inner">Create New Project</button>
-                                </div>
-                            </div>
-                        </template>
-                    </example-popover>
-                </div>
-                <br />
-                <input class="inline-full" type="search" placeholder="Search..." />
-                <br />
-                <br />
-
-                <small>Home</small>
-                <ul class="menu-list">
-                    <li class="active">Dashboard</li>
-                    <li>Lifecycle</li>
-                    <li>Analytics</li>
-                    <li>Projects</li>
-                    <li>Team</li>
-                    <li>Settings</li>
-                </ul>
-
-                <br />
-                <br />
-
-                <small>Documents</small>
-                <ul class="menu-list">
-                    <li>Guides</li>
-                    <li>API Reference</li>
-                    <li>Tutorials</li>
-                    <li>Examples</li>
-                    <li>FAQ</li>
-                </ul>
-
-                <div>
-                    Account:
-                    <select name="pets">
-                        <option value="cat">Cat</option>
-                        <option value="dog">Dog</option>
-                        <option value="hamster">Hamster</option>
-                        <option value="parrot">Parrot</option>
-                        <option value="spider">Spider</option>
-                        <option value="goldfish">Goldfish</option>
-                    </select>
-                </div>
-            </details>
-
-            <section class="right">
+            <section class="main">
                 <div>
                     <h5>Welcome to Landsoul Dashboard</h5>
                     <p>This is an example dashboard layout using Landsoul styles.</p>
                 </div>
 
-                <div class="card"  >
+                <div class="card">
                     <div class="space-between inline-full">
                         <h6>Total Visitors</h6>
                         <div>
@@ -508,10 +478,50 @@
                     });
                 </script>
             </section>
+
+            <footer class="footer">
+                <ul style="display: flex; gap: 1rem; list-style: none; padding: 0; margin: 0;">
+                    <li>
+                        <a href="https://github.com/YieldRay/landsoul" target="_blank" rel="noopener noreferrer">Github</a>
+                    </li>
+                    <li>
+                        <a href="https://www.npmjs.com/package/landsoul" target="_blank" rel="noopener noreferrer">NPM</a>
+                    </li>
+                </ul>
+
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <label><input name="color-scheme" type="radio" value="light dark" checked />System</label>
+                    <label><input name="color-scheme" type="radio" value="light" /> Light</label>
+                    <label><input name="color-scheme" type="radio" value="dark" /> Dark</label>
+                </div>
+                <style>
+                    :root {
+                        color-scheme: light dark;
+                    }
+                    :root {
+                        &:has(input[name="color-scheme"][value="light dark"]:checked) {
+                            color-scheme: light dark;
+                        }
+                        &:has(input[name="color-scheme"][value="light"]:checked) {
+                            color-scheme: light;
+                        }
+                        &:has(input[name="color-scheme"][value="dark"]:checked) {
+                            color-scheme: dark;
+                        }
+                    }
+                </style>
+            </footer>
         </div>
     </body>
 
     <script>
+        // Close popover when switching to wide layout to prevent top-layer promotion
+        matchMedia("(width >= 720px)").onchange = (e) => {
+            if (e.matches) {
+                document.getElementById("menu").hidePopover();
+            }
+        };
+
         const ctx = document.getElementById('myChart');
 
         // Generate data similar to the provided image
