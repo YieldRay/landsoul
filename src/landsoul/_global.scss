@@ -8,10 +8,6 @@ body {
     background-color: var(--landsoul-bg);
 }
 
-* {
-    transition: color var(--landsoul-duration), background-color var(--landsoul-duration), border-color var(--landsoul-duration), outline-color var(--landsoul-duration);
-}
-
 a {
     color: var(--landsoul-accent);
     -webkit-tap-highlight-color: transparent;

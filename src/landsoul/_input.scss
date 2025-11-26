@@ -8,6 +8,10 @@ textarea {
     background-color: var(--landsoul-surface);
     -webkit-tap-highlight-color: transparent;
     @include hover-effect;
+
+    &:out-of-range {
+        background-color: color-mix(in srgb, var(--landsoul-danger) 10%, var(--landsoul-surface));
+    }
 }
 
 select,
@@ -15,8 +19,22 @@ button,
 input[type="button"],
 input[type="submit"],
 input[type="reset"] {
-    cursor: pointer;
+    &:not(:disabled) {
+        cursor: pointer;
+    }
+
     color: var(--landsoul-text);
+}
+
+// we do not use [disabled] selector here
+// however, be ware that :disabled pseudo-class has lower specificity than tag selector
+:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+label:not(:has(:disabled)) {
+    cursor: pointer;
 }
 
 select,
@@ -33,14 +51,4 @@ textarea {
     min-height: 2rem;
     min-width: 2rem;
     border: none;
-}
-
-[disabled],
-input[disabled] {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-label:not(:has([disabled])) {
-    cursor: pointer;
 }
