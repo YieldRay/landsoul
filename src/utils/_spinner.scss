@@ -1,0 +1,28 @@
+.landsoul-spinner {
+    --thickness: 0.15rem;
+    --size: 1rem;
+    --duration: 1s;
+
+    &::before {
+        content: "";
+        display: inline-block;
+        box-sizing: border-box;
+        width: var(--size);
+        height: var(--size);
+        border: var(--thickness) solid #ccc;
+        border-top-color: #333;
+        border-radius: 50%;
+        animation: landsoul-spin var(--duration) linear infinite;
+        vertical-align: text-bottom;
+    }
+
+    &:not(:empty)::before {
+        margin-right: 0.5rem;
+    }
+}
+
+@keyframes landsoul-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

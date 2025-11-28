@@ -1,0 +1,100 @@
+.landsoul-dropdown {
+    position: absolute;
+    position-anchor: --landsoul-dropdown;
+    position-area: block-end span-inline-end;
+    position-try-fallbacks: flip-block;
+
+    &[popover] {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        overflow: unset;
+        opacity: 0;
+        transform: translateY(-0.25rem);
+
+        @media (prefers-reduced-motion: no-preference) {
+            transition:
+                opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1) 75ms,
+                transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) 75ms,
+                display 0.2s allow-discrete 75ms;
+        }
+
+        &:popover-open {
+            opacity: 1;
+            transform: translateY(0);
+
+            @media (prefers-reduced-motion: no-preference) {
+                transition:
+                    opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+                    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+                    display 0.2s allow-discrete 0s;
+            }
+
+            @starting-style {
+                opacity: 0;
+                transform: translateY(-0.25rem);
+            }
+        }
+
+        box-shadow: var(--landsoul-box-shadow);
+        background-color: var(--landsoul-bg);
+        border-radius: var(--landsoul-radius);
+        padding: 0.25rem;
+    }
+
+    &-top {
+        position-area: block-start span-inline-end;
+        position-try-fallbacks: flip-block;
+
+        &[popover] {
+            transform: translateY(0.25rem);
+
+            &:popover-open {
+                transform: translateY(0);
+
+                @starting-style {
+                    transform: translateY(0.25rem);
+                }
+            }
+        }
+    }
+
+    &-bottom {
+        position-area: block-end span-inline-end;
+        position-try-fallbacks: flip-block;
+    }
+
+    &-left {
+        position-area: inline-start span-block-end;
+        position-try-fallbacks: flip-inline;
+
+        &[popover] {
+            transform: translateX(0.25rem);
+
+            &:popover-open {
+                transform: translateX(0);
+
+                @starting-style {
+                    transform: translateX(0.25rem);
+                }
+            }
+        }
+    }
+
+    &-right {
+        position-area: inline-end span-block-end;
+        position-try-fallbacks: flip-inline;
+
+        &[popover] {
+            transform: translateX(-0.25rem);
+
+            &:popover-open {
+                transform: translateX(0);
+
+                @starting-style {
+                    transform: translateX(-0.25rem);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+@use "../mixins" as *;
+
+input[type="file"] {
+    padding: 0;
+    background-color: color-mix(in srgb, var(--landsoul-surface) 50%, var(--landsoul-bg));
+
+    &::file-selector-button {
+        color: var(--landsoul-text);
+        background-color: var(--landsoul-surface);
+        border: none;
+        padding: 0.35rem 0.5rem;
+        margin-right: 0.5rem;
+        cursor: pointer;
+    }
+
+    @include outline-focus;
+    @include hover-effect;
+}

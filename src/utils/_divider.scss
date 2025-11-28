@@ -1,0 +1,22 @@
+// we need divider because <hr> can not have children
+.landsoul-divider {
+    white-space: nowrap;
+    height: 1rem;
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    flex-direction: row;
+
+    &:not(:empty) {
+        gap: 1rem;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        flex-grow: 1;
+        background-color: var(--landsoul-border);
+        height: 0.1rem;
+        border-radius: 0.05rem;
+    }
+}

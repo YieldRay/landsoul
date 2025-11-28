@@ -1,0 +1,100 @@
+.landsoul-drawer {
+    border: 1px solid var(--landsoul-surface);
+    color: var(--landsoul-text);
+    background-color: var(--landsoul-bg);
+    border-radius: var(--landsoul-radius);
+    padding: 1rem;
+    overflow: auto;
+    width: min(320px, calc(100vw - 2px));
+    display: flex;
+    flex-direction: column;
+
+    &[popover] {
+        margin: 0;
+        box-sizing: border-box;
+        height: 100vh;
+        transition: translate 0.2s, overlay 0.2s allow-discrete, display 0.2s allow-discrete;
+        translate: -100% 0;
+
+        &:popover-open {
+            translate: 0 0;
+
+            @starting-style {
+                translate: -100% 0;
+            }
+        }
+
+        &::backdrop {
+            background-color: rgb(0 0 0 / 0.2);
+            transition: display 0.2s allow-discrete, overlay 0.2s allow-discrete, background-color 0.2s;
+
+            @starting-style {
+                background-color: rgb(0 0 0 / 0);
+            }
+        }
+    }
+
+    &-left {
+        &[popover] {
+            translate: -100% 0;
+
+            &:popover-open {
+                translate: 0 0;
+
+                @starting-style {
+                    translate: -100% 0;
+                }
+            }
+        }
+    }
+
+    &-right {
+        &[popover] {
+            margin-left: auto;
+            translate: 100% 0;
+
+            &:popover-open {
+                translate: 0 0;
+
+                @starting-style {
+                    translate: 100% 0;
+                }
+            }
+        }
+    }
+
+    &-top {
+        width: 100vw;
+
+        &[popover] {
+            height: min(320px, calc(100vh - 2px));
+            translate: 0 -100%;
+
+            &:popover-open {
+                translate: 0 0;
+
+                @starting-style {
+                    translate: 0 -100%;
+                }
+            }
+        }
+    }
+
+    &-bottom {
+        width: 100vw;
+
+        &[popover] {
+            margin-top: auto;
+            height: min(320px, calc(100vh - 2px));
+            translate: 0 100%;
+
+            &:popover-open {
+                translate: 0 0;
+
+                @starting-style {
+                    translate: 0 100%;
+                }
+            }
+        }
+    }
+}

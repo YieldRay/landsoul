@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>landsoul-utils</title>
+    <style>
+        @import url(./dist/landsoul.css) layer(landsoul);
+        @import url(./dist/utils.css) layer(utils);
+
+        section {
+            border: dashed var(--landsoul-border);
+            border-radius: var(--landsoul-radius);
+            padding: 1rem;
+            margin-bottom: 1rem;
+
+            h1 {
+                margin-top: 0;
+                font-size: 1.25rem;
+                margin-bottom: 1rem;
+            }
+        }
+
+        body {
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+        <h1>.landsoul-divider</h1>
+        <div class="landsoul-divider">Divider Content</div>
+    </section>
+
+    <section>
+        <h1>.landsoul-drawer</h1>
+        <button popovertarget="drawer">Open Drawer</button>
+        <div class="landsoul-drawer" id="drawer" popover>left</div>
+
+        <button popovertarget="drawer-bottom">Open Drawer (bottom)</button>
+        <div class="landsoul-drawer landsoul-drawer-bottom" id="drawer-bottom" popover>bottom</div>
+
+        <button popovertarget="drawer-right">Open Drawer (right)</button>
+        <div class="landsoul-drawer landsoul-drawer-right" id="drawer-right" popover>right</div>
+
+        <button popovertarget="drawer-top">Open Drawer (top)</button>
+        <div class="landsoul-drawer landsoul-drawer-top" id="drawer-top" popover>top</div>
+    </section>
+
+    <section style="anchor-scope: --landsoul-dropdown">
+        <h1>.landsoul-dropdown</h1>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <span style="anchor-name: --landsoul-dropdown">
+                <button popovertarget="dropdown">Bottom (default)</button>
+                <div class="landsoul-dropdown" id="dropdown" popover>Dropdown Content</div>
+            </span>
+            <span style="anchor-name: --landsoul-dropdown">
+                <button popovertarget="dropdown-top">Top</button>
+                <div class="landsoul-dropdown landsoul-dropdown-top" id="dropdown-top" popover>Dropdown Content</div>
+            </span>
+            <span style="anchor-name: --landsoul-dropdown">
+                <button popovertarget="dropdown-left">Left</button>
+                <div class="landsoul-dropdown landsoul-dropdown-left" id="dropdown-left" popover>Dropdown Content</div>
+            </span>
+            <span style="anchor-name: --landsoul-dropdown">
+                <button popovertarget="dropdown-right">Right</button>
+                <div class="landsoul-dropdown landsoul-dropdown-right" id="dropdown-right" popover>Dropdown Content</div>
+            </span>
+        </div>
+    </section>
+
+    <section>
+        <h1>.landsoul-list</h1>
+        <ul class="landsoul-list">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li class="active">Item 3</li>
+        </ul>
+    </section>
+
+    <section>
+        <h1>.landsoul-skeleton</h1>
+        <div class="landsoul-skeleton" style="width: 200px; height: 20px;"></div>
+    </section>
+
+    <section>
+        <h1>.landsoul-spinner</h1>
+        <div class="landsoul-spinner"></div>
+        <button class="landsoul-spinner">Submitting...</button>
+    </section>
+
+
+    <section>
+        <h1>.landsoul-switch</h1>
+        <label>
+            <input type="checkbox" class="landsoul-switch" />
+            Toggle Switch
+        </label>
+    </section>
+
+    <section>
+        <h1>.landsoul-tooltip</h1>
+        <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; padding: 2rem;">
+            <button class="landsoul-tooltip landsoul-tooltip-top" data-tip="Top tooltip">Top</button>
+            <button class="landsoul-tooltip landsoul-tooltip-bottom" data-tip="Bottom tooltip">Bottom</button>
+            <button class="landsoul-tooltip landsoul-tooltip-left" data-tip="Left tooltip">Left</button>
+            <button class="landsoul-tooltip landsoul-tooltip-right" data-tip="Right tooltip">Right</button>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+input[type="radio"] {
+    --size: 1.25rem;
+    appearance: none;
+    vertical-align: text-bottom;
+    cursor: pointer;
+    display: inline-block;
+    box-sizing: border-box;
+    width: var(--size);
+    height: var(--size);
+    border: solid calc(var(--size) * 0.1) var(--landsoul-surface);
+    border-radius: 50%;
+    transition: all var(--landsoul-duration);
+    opacity: 0.8;
+    position: relative;
+
+    &::after {
+        content: "";
+        opacity: 0;
+        transition: opacity calc(var(--landsoul-duration) * 0.5);
+        position: absolute;
+        display: inline-block;
+        border-radius: 50%;
+        background: var(--landsoul-accent);
+        width: calc(var(--size) * 0.6);
+        height: calc(var(--size) * 0.6);
+        top: calc(50%);
+        left: calc(50%);
+        transform: translate(-50%, -50%);
+    }
+
+    &:checked {
+        &::after {
+            opacity: 1;
+        }
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+}
