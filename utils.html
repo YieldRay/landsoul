@@ -26,90 +26,260 @@
             max-width: 600px;
             margin: 2rem auto;
         }
+
+        :root {
+            color-scheme: light dark;
+
+            &:has(input[name="color-scheme"][value="light dark"]:checked) {
+                color-scheme: light dark;
+            }
+
+            &:has(input[name="color-scheme"][value="light"]:checked) {
+                color-scheme: light;
+            }
+
+            &:has(input[name="color-scheme"][value="dark"]:checked) {
+                color-scheme: dark;
+            }
+        }
+
+
+        [class*=shj-lang-],
+        [class*=shj-lang-] * {
+            scrollbar-width: thin;
+        }
+
+        [class*=shj-lang-] {
+            white-space: pre;
+            color: light-dark(#112, #c9d1d9);
+            max-width: min(100%, 100vw);
+            font: 18px/24px;
+        }
+
+        [class*=shj-lang-]::selection {
+            background: #bdf5
+        }
+
+        [class*=shj-lang-] ::selection {
+            background: #bdf5
+        }
+
+        [class*=shj-lang-]>div {
+            display: flex;
+            overflow: auto
+        }
+
+        [class*=shj-lang-]>div :last-child {
+            outline: none;
+            flex: 1
+        }
+
+        .shj-numbers {
+            counter-reset: line;
+            padding-left: 5px
+        }
+
+        .shj-numbers div {
+            padding-right: 5px
+        }
+
+        .shj-numbers div:before {
+            color: #999;
+            content: counter(line);
+            opacity: .5;
+            text-align: right;
+            counter-increment: line;
+            margin-right: 5px;
+            display: block
+        }
+
+        .shj-syn-cmnt {
+            font-style: italic
+        }
+
+        .shj-syn-insert {
+            color: light-dark(#7d8, #98c379)
+        }
+
+        .shj-syn-deleted,
+        .shj-syn-err,
+        .shj-syn-kwd {
+            color: light-dark(#cf222e, #ff7b72)
+        }
+
+        .shj-syn-class {
+            color: light-dark(#953800, #ffa657)
+        }
+
+        .shj-numbers,
+        .shj-syn-cmnt {
+            color: light-dark(#6e7781, #8b949e)
+        }
+
+        .shj-syn-type,
+        .shj-syn-oper,
+        .shj-syn-num,
+        .shj-syn-section,
+        .shj-syn-var,
+        .shj-syn-bool {
+            color: light-dark(#0550ae, #79c0ff)
+        }
+
+        .shj-syn-str {
+            color: light-dark(#0a3069, #a5d6ff)
+        }
+
+        .shj-syn-func {
+            color: light-dark(#8250df, #d2a8ff)
+        }
+
+        .shj-lang-http.shj-oneline .shj-syn-kwd {
+            color: #fff;
+            background: #25f;
+            border-radius: 5px;
+            padding: 5px 7px
+        }
     </style>
+    <script type="module">
+        import { highlightElement } from 'https://unpkg.com/@speed-highlight/core/dist/index.js';
+        const renderer = document.getElementById('renderer');
+
+        function writeExample(id, omitParent = false) {
+            const el = document.getElementById(id);
+            const cloned = el.cloneNode(true);
+            cleanDOMRecursive(cloned);
+            const pre = document.createElement('pre');
+            const rawCode = omitParent ? cloned.innerHTML : cloned.outerHTML;
+            pre.textContent = formatHTML(rawCode);
+            highlightElement(pre, 'html');
+            el.insertAdjacentElement('afterend', pre);
+        }
+        function cleanDOMRecursive(node) {
+            node.removeAttribute('id');
+            for (const child of node.children) {
+                cleanDOMRecursive(child);
+            }
+        }
+        function formatHTML(rawCode) {
+            const renderNode = document.createElement('div');
+            renderNode.textContent = rawCode;
+            renderNode.style.whiteSpace = 'pre-line';
+            renderer.appendChild(renderNode); //! Must append to DOM for browser to measuring correct innerText
+            const code = renderNode.innerText;
+            renderNode.remove();
+            return code.trim().replaceAll(`popover=""`, 'popover')
+        }
+        globalThis.writeExample = writeExample;
+    </script>
 </head>
 
 <body>
+    <div id="renderer" style="width: 0; height: 0; overflow: hidden;"></div>
+
+    <header>
+        <label><input name="color-scheme" type="radio" value="light dark" checked />System</label>
+        <label><input name="color-scheme" type="radio" value="light" /> Forced Light</label>
+        <label><input name="color-scheme" type="radio" value="dark" /> Forced Dark</label>
+    </header>
+    <br />
 
     <section>
         <h1>.landsoul-divider</h1>
-        <div class="landsoul-divider">Divider Content</div>
+        <div class="landsoul-divider" role="separator" id="$divider">Divider Content</div>
+        <script type="module">writeExample("$divider")</script>
     </section>
 
     <section>
         <h1>.landsoul-drawer</h1>
-        <button popovertarget="drawer">Open Drawer</button>
-        <div class="landsoul-drawer" id="drawer" popover>left</div>
 
-        <button popovertarget="drawer-bottom">Open Drawer (bottom)</button>
-        <div class="landsoul-drawer landsoul-drawer-bottom" id="drawer-bottom" popover>bottom</div>
+        <div id="$drawer">
+            <button popovertarget="drawer">Open Drawer</button>
+            <div class="landsoul-drawer" id="drawer" popover>left</div>
 
-        <button popovertarget="drawer-right">Open Drawer (right)</button>
-        <div class="landsoul-drawer landsoul-drawer-right" id="drawer-right" popover>right</div>
+            <button popovertarget="drawer-bottom">Open Drawer (bottom)</button>
+            <div class="landsoul-drawer landsoul-drawer-bottom" id="drawer-bottom" popover>bottom</div>
 
-        <button popovertarget="drawer-top">Open Drawer (top)</button>
-        <div class="landsoul-drawer landsoul-drawer-top" id="drawer-top" popover>top</div>
+            <button popovertarget="drawer-right">Open Drawer (right)</button>
+            <div class="landsoul-drawer landsoul-drawer-right" id="drawer-right" popover>right</div>
+
+            <button popovertarget="drawer-top">Open Drawer (top)</button>
+            <div class="landsoul-drawer landsoul-drawer-top" id="drawer-top" popover>top</div>
+        </div>
+        <script type="module">writeExample("$drawer", true)</script>
     </section>
 
-    <section style="anchor-scope: --landsoul-dropdown">
+    <section>
         <h1>.landsoul-dropdown</h1>
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-            <span style="anchor-name: --landsoul-dropdown">
-                <button popovertarget="dropdown">Bottom (default)</button>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;" id="$dropdown">
+            <span style="anchor-scope: --landsoul-dropdown">
+                <button popovertarget="dropdown" style="anchor-name: --landsoul-dropdown">Bottom (default)</button>
                 <div class="landsoul-dropdown" id="dropdown" popover>Dropdown Content</div>
             </span>
-            <span style="anchor-name: --landsoul-dropdown">
-                <button popovertarget="dropdown-top">Top</button>
+
+            <span style="anchor-scope: --landsoul-dropdown">
+                <button popovertarget="dropdown-top" style="anchor-name: --landsoul-dropdown">Top</button>
                 <div class="landsoul-dropdown landsoul-dropdown-top" id="dropdown-top" popover>Dropdown Content</div>
             </span>
-            <span style="anchor-name: --landsoul-dropdown">
-                <button popovertarget="dropdown-left">Left</button>
+
+            <span style="anchor-scope: --landsoul-dropdown">
+                <button popovertarget="dropdown-left" style="anchor-name: --landsoul-dropdown">Left</button>
                 <div class="landsoul-dropdown landsoul-dropdown-left" id="dropdown-left" popover>Dropdown Content</div>
             </span>
-            <span style="anchor-name: --landsoul-dropdown">
-                <button popovertarget="dropdown-right">Right</button>
-                <div class="landsoul-dropdown landsoul-dropdown-right" id="dropdown-right" popover>Dropdown Content</div>
+
+            <span style="anchor-scope: --landsoul-dropdown">
+                <button popovertarget="dropdown-right" style="anchor-name: --landsoul-dropdown">Right</button>
+                <div class="landsoul-dropdown landsoul-dropdown-right" id="dropdown-right" popover>Dropdown Content
+                </div>
             </span>
         </div>
+        <script type="module">writeExample("$dropdown", true)</script>
     </section>
 
     <section>
         <h1>.landsoul-list</h1>
-        <ul class="landsoul-list">
+        <ul class="landsoul-list" id="$list">
             <li>Item 1</li>
             <li>Item 2</li>
             <li class="active">Item 3</li>
         </ul>
+        <script type="module">writeExample("$list")</script>
     </section>
 
     <section>
         <h1>.landsoul-skeleton</h1>
-        <div class="landsoul-skeleton" style="width: 200px; height: 20px;"></div>
+        <div class="landsoul-skeleton" style="width: 200px; height: 20px;" id="$skeleton"></div>
+        <script type="module">writeExample("$skeleton")</script>
     </section>
 
     <section>
         <h1>.landsoul-spinner</h1>
-        <div class="landsoul-spinner"></div>
-        <button class="landsoul-spinner">Submitting...</button>
+        <div class="landsoul-spinner" id="$spinner1"></div>
+        <button class="landsoul-spinner" id="$spinner2">Submitting...</button>
+        <script type="module">
+            writeExample("$spinner1");
+            writeExample("$spinner2");
+        </script>
     </section>
 
 
     <section>
         <h1>.landsoul-switch</h1>
-        <label>
-            <input type="checkbox" class="landsoul-switch" />
+        <label id="$switch">
+            <input type="checkbox" class="landsoul-switch" role="switch" />
             Toggle Switch
         </label>
+        <script type="module">writeExample("$switch", true)</script>
     </section>
 
     <section>
         <h1>.landsoul-tooltip</h1>
-        <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; padding: 2rem;">
+        <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; padding: 2rem;" id="$tooltip">
             <button class="landsoul-tooltip landsoul-tooltip-top" data-tip="Top tooltip">Top</button>
             <button class="landsoul-tooltip landsoul-tooltip-bottom" data-tip="Bottom tooltip">Bottom</button>
             <button class="landsoul-tooltip landsoul-tooltip-left" data-tip="Left tooltip">Left</button>
             <button class="landsoul-tooltip landsoul-tooltip-right" data-tip="Right tooltip">Right</button>
         </div>
+        <script type="module">writeExample("$tooltip", true)</script>
     </section>
 </body>
 
