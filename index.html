@@ -4,18 +4,65 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Landsoul Preview</title>
+        <title>Landsoul</title>
         <style>
-            /* @import url(//unpkg.com/normalize.css) layer(normalize); */
             @import url(./dist/landsoul.css) layer(landsoul);
+            @import url(./shj.css);
 
             * {
                 max-width: 100%;
             }
+
+           header, main, footer {
+                max-width: 800px;
+                margin: 20px auto;
+            }
+
+            header {
+                margin-block: 10rem;
+            }
+
+            :root {
+                color-scheme: light dark;
+                &:has(input[name="color-scheme"][value="light dark"]:checked) {
+                    color-scheme: light dark;
+                }
+                &:has(input[name="color-scheme"][value="light"]:checked) {
+                    color-scheme: light;
+                }
+                &:has(input[name="color-scheme"][value="dark"]:checked) {
+                    color-scheme: dark;
+                }
+            }
         </style>
+        <script type="module">
+        import { highlightElement } from 'https://unpkg.com/@speed-highlight/core/dist/index.js';
+        document.querySelectorAll('[class*=shj-lang-]').forEach((el) => highlightElement(el, el.className.match(/shj-lang-([a-z0-9]+)/)[1]));
+        </script>
     </head>
 
     <body>
+        <header>
+            <div style="display: flex; justify-content: space-between; align-items: center">
+                <h1>Landsoul</h1>
+                <a href="https://github.com/YieldRay/landsoul">GitHub</a>
+            </div>
+            <p>Landsoul provides you modern CSS stylesheet for your document.</p>
+            <p>It is "classless", meaning you don't have to add any classes to your HTML elements.</p>
+            <p>Just include the CSS file, and your document will be styled beautifully.</p>
+            <pre class="shj-lang-html">&lt;link rel="stylesheet" href="//unpkg.com/landsoul" /&gt;</pre>
+            <pre class="shj-lang-css">@import url(//unpkg.com/landsoul) layer(landsoul);</pre>
+            <label><input name="color-scheme" type="radio" value="light dark" checked />System</label>
+            <label><input name="color-scheme" type="radio" value="light" /> Forced Light</label>
+            <label><input name="color-scheme" type="radio" value="dark" /> Forced Dark</label>
+
+            <p style="margin-top: 2rem">
+                <a href="./extra.html">Landsoul Extra</a> is an extension to Landsoul that provides additional utility styles and components.
+            </p>
+        </header>
+
+        <!-- TODO: examples links -->
+
         <main role="main">
             <section id="text">
                 <h1>Text</h1>
@@ -561,7 +608,6 @@ p q r s t u v w x y z { | } ~ </pre
                 Made with ❤ by
                 <a href="https://github.com/YieldRay"> YieldRay </a>
             </div>
-            <button onClick="document.documentElement.hasAttribute('data-theme')?document.documentElement.removeAttribute('data-theme'):document.documentElement.setAttribute('data-theme','dark')">toggle darkmode</button>
         </footer>
     </body>
 </html>

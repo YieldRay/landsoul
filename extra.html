@@ -7,7 +7,8 @@
     <title>landsoul-utils</title>
     <style>
         @import url(./dist/landsoul.css) layer(landsoul);
-        @import url(./dist/utils.css) layer(utils);
+        @import url(./dist/extra.css) layer(extra);
+        @import url(./shj.css);
 
         section {
             border: dashed var(--landsoul-border);
@@ -42,103 +43,6 @@
                 color-scheme: dark;
             }
         }
-
-
-        [class*=shj-lang-],
-        [class*=shj-lang-] * {
-            scrollbar-width: thin;
-        }
-
-        [class*=shj-lang-] {
-            white-space: pre;
-            color: light-dark(#112, #c9d1d9);
-            max-width: min(100%, 100vw);
-            font: 18px/24px;
-        }
-
-        [class*=shj-lang-]::selection {
-            background: #bdf5
-        }
-
-        [class*=shj-lang-] ::selection {
-            background: #bdf5
-        }
-
-        [class*=shj-lang-]>div {
-            display: flex;
-            overflow: auto
-        }
-
-        [class*=shj-lang-]>div :last-child {
-            outline: none;
-            flex: 1
-        }
-
-        .shj-numbers {
-            counter-reset: line;
-            padding-left: 5px
-        }
-
-        .shj-numbers div {
-            padding-right: 5px
-        }
-
-        .shj-numbers div:before {
-            color: #999;
-            content: counter(line);
-            opacity: .5;
-            text-align: right;
-            counter-increment: line;
-            margin-right: 5px;
-            display: block
-        }
-
-        .shj-syn-cmnt {
-            font-style: italic
-        }
-
-        .shj-syn-insert {
-            color: light-dark(#7d8, #98c379)
-        }
-
-        .shj-syn-deleted,
-        .shj-syn-err,
-        .shj-syn-kwd {
-            color: light-dark(#cf222e, #ff7b72)
-        }
-
-        .shj-syn-class {
-            color: light-dark(#953800, #ffa657)
-        }
-
-        .shj-numbers,
-        .shj-syn-cmnt {
-            color: light-dark(#6e7781, #8b949e)
-        }
-
-        .shj-syn-type,
-        .shj-syn-oper,
-        .shj-syn-num,
-        .shj-syn-section,
-        .shj-syn-var,
-        .shj-syn-bool {
-            color: light-dark(#0550ae, #79c0ff)
-        }
-
-        .shj-syn-str {
-            color: light-dark(#0a3069, #a5d6ff)
-        }
-
-        .shj-syn-func {
-            color: light-dark(#8250df, #d2a8ff)
-        }
-
-        .shj-lang-http.shj-oneline .shj-syn-kwd {
-            color: #fff;
-            background: #25f;
-            border-radius: 5px;
-            padding: 5px 7px
-        }
     </style>
     <script type="module">
         import { highlightElement } from 'https://unpkg.com/@speed-highlight/core/dist/index.js';
@@ -169,7 +73,9 @@
             renderNode.remove();
             return code.trim().replaceAll(`popover=""`, 'popover')
         }
+
         globalThis.writeExample = writeExample;
+        document.querySelectorAll('[class*=shj-lang-]').forEach((el) => highlightElement(el, el.className.match(/shj-lang-([a-z0-9]+)/)[1]));
     </script>
 </head>
 
@@ -177,6 +83,9 @@
     <div id="renderer" style="width: 0; height: 0; overflow: hidden;"></div>
 
     <header>
+        <h1>Landsoul Extra</h1>
+        <pre class="shj-lang-html">&lt;link rel="stylesheet" href="//unpkg.com/landsoul/dist/extra.css" /&gt;</pre>
+        <pre class="shj-lang-css">@import url(//unpkg.com/landsoul/dist/extra.css) layer(extra);</pre>
         <label><input name="color-scheme" type="radio" value="light dark" checked />System</label>
         <label><input name="color-scheme" type="radio" value="light" /> Forced Light</label>
         <label><input name="color-scheme" type="radio" value="dark" /> Forced Dark</label>
