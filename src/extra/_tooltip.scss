@@ -1,5 +1,6 @@
 .landsoul-tooltip {
     position: relative;
+    contain: layout; // avoid children affecting outside layout
 
     &>&-content,
     &[data-tip]:before {

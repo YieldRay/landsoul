@@ -21,19 +21,6 @@
             header {
                 margin-block: 10rem;
             }
-
-            :root {
-                color-scheme: light dark;
-                &:has(input[name="color-scheme"][value="light dark"]:checked) {
-                    color-scheme: light dark;
-                }
-                &:has(input[name="color-scheme"][value="light"]:checked) {
-                    color-scheme: light;
-                }
-                &:has(input[name="color-scheme"][value="dark"]:checked) {
-                    color-scheme: dark;
-                }
-            }
         </style>
         <script type="module">
         import { highlightElement } from 'https://unpkg.com/@speed-highlight/core/dist/index.js';
