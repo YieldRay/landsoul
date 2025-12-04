@@ -25,8 +25,12 @@
         }
 
         &::backdrop {
-            background-color: rgb(0 0 0 / 0.2);
+            background-color: rgb(0 0 0 / 0);
             transition: display 0.2s allow-discrete, overlay 0.2s allow-discrete, background-color 0.2s;
+        }
+
+        &:popover-open::backdrop {
+            background-color: rgb(0 0 0 / 0.2);
 
             @starting-style {
                 background-color: rgb(0 0 0 / 0);
