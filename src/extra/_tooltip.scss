@@ -2,7 +2,7 @@
     position: relative;
     contain: layout; // avoid children affecting outside layout
 
-    &>&-content,
+    & > &-content,
     &[data-tip]:before {
         position: absolute;
         font-size: 0.875rem;
@@ -33,42 +33,33 @@
     }
 
     @media (prefers-reduced-motion: no-preference) {
-
-        &>&-content,
+        & > &-content,
         &[data-tip]:before,
         &:after {
-            transition:
-                opacity 180ms cubic-bezier(0.4, 0, 0.2, 1) 75ms,
-                transform 180ms cubic-bezier(0.4, 0, 0.2, 1) 75ms;
+            transition: opacity 180ms cubic-bezier(0.4, 0, 0.2, 1) 75ms, transform 180ms cubic-bezier(0.4, 0, 0.2, 1) 75ms;
         }
     }
 
     &:is([data-tip]:not([data-tip=""]), :has(.landsoul-tooltip-content:not(:empty))) {
-
         &.landsoul-tooltip-open,
         &:hover,
         &:has(:focus-visible) {
-
-            &>.landsoul-tooltip-content,
+            & > .landsoul-tooltip-content,
             &[data-tip]:before,
             &:after {
                 opacity: 1;
 
                 @media (prefers-reduced-motion: no-preference) {
-                    transition:
-                        opacity 180ms cubic-bezier(0.4, 0, 0.2, 1) 0s,
-                        transform 180ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+                    transition: opacity 180ms cubic-bezier(0.4, 0, 0.2, 1) 0s, transform 180ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
                 }
             }
         }
     }
-
 }
 
 .landsoul-tooltip,
 .landsoul-tooltip-top {
-
-    >.landsoul-tooltip-content,
+    > .landsoul-tooltip-content,
     &[data-tip]:before {
         transform: translateX(-50%) translateY(0.25rem);
         inset: auto auto calc(100% + 0.5rem) 50%;
@@ -80,12 +71,10 @@
     }
 
     &:is([data-tip]:not([data-tip=""]), :has(.landsoul-tooltip-content:not(:empty))) {
-
         &.landsoul-tooltip-open,
         &:hover,
         &:has(:focus-visible) {
-
-            >.landsoul-tooltip-content,
+            > .landsoul-tooltip-content,
             &[data-tip]:before,
             &:after {
                 transform: translateX(-50%) translateY(0);
@@ -95,8 +84,7 @@
 }
 
 .landsoul-tooltip-bottom {
-
-    >.landsoul-tooltip-content,
+    > .landsoul-tooltip-content,
     &[data-tip]:before {
         transform: translateX(-50%) translateY(-0.25rem);
         inset: calc(100% + 0.5rem) auto auto 50%;
@@ -108,12 +96,10 @@
     }
 
     &:is([data-tip]:not([data-tip=""]), :has(.landsoul-tooltip-content:not(:empty))) {
-
         &.landsoul-tooltip-open,
         &:hover,
         &:has(:focus-visible) {
-
-            >.landsoul-tooltip-content,
+            > .landsoul-tooltip-content,
             &[data-tip]:before {
                 transform: translateX(-50%) translateY(0);
             }
@@ -126,8 +112,7 @@
 }
 
 .landsoul-tooltip-left {
-
-    >.landsoul-tooltip-content,
+    > .landsoul-tooltip-content,
     &[data-tip]:before {
         transform: translateX(0) translateY(-50%);
         inset: 50% calc(100% + 0.5rem) auto auto;
@@ -139,12 +124,10 @@
     }
 
     &:is([data-tip]:not([data-tip=""]), :has(.landsoul-tooltip-content:not(:empty))) {
-
         &.landsoul-tooltip-open,
         &:hover,
         &:has(:focus-visible) {
-
-            >.landsoul-tooltip-content,
+            > .landsoul-tooltip-content,
             &[data-tip]:before {
                 transform: translateX(-0.25rem) translateY(-50%);
             }
@@ -157,8 +140,7 @@
 }
 
 .landsoul-tooltip-right {
-
-    >.landsoul-tooltip-content,
+    > .landsoul-tooltip-content,
     &[data-tip]:before {
         transform: translateX(0) translateY(-50%);
         inset: 50% auto auto calc(100% + 0.5rem);
@@ -170,12 +152,10 @@
     }
 
     &:is([data-tip]:not([data-tip=""]), :has(.landsoul-tooltip-content:not(:empty))) {
-
         &.landsoul-tooltip-open,
         &:hover,
         &:has(:focus-visible) {
-
-            >.landsoul-tooltip-content,
+            > .landsoul-tooltip-content,
             &[data-tip]:before {
                 transform: translateX(0.25rem) translateY(-50%);
             }
