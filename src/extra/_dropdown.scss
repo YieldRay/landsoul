@@ -1,28 +1,18 @@
-.landsoul-dropdown {
-    // TODO: we may implement popover as an alternative
-    position: absolute;
-    position-anchor: --landsoul-dropdown;
-    margin: 0;
-    border: 0;
-    overflow: unset;
-    opacity: 0;
-    box-shadow: var(--landsoul-box-shadow);
-    background-color: var(--landsoul-bg);
-    border-radius: var(--landsoul-radius);
-    padding: 0.25rem;
-
-    // by default, &[class*="landsoul-dropdown-bottom"]
-    transform: translateY(-0.25rem);
-
-    // TODO: fixme
-    // &[class*="landsoul-dropdown-left"]
-    // &[class*="landsoul-dropdown-right"]
-
-    // Popover styles
-    // https://anchor-tool.com/
+[class*="landsoul-dropdown-"] {
     &[popover] {
-        position-area: bottom;
-        position-try-fallbacks: flip-block;
+        all: unset;
+        position: absolute;
+        // attr() supports type(<custom-ident>) but not type(<dashed-ident>) yet
+        // we may use `position-anchor: attr(id type(<dashed-ident>), none)` in the future
+        position-anchor: --landsoul-dropdown;
+        margin: 0;
+        border: 0;
+        overflow: unset;
+        opacity: 0;
+        box-shadow: var(--landsoul-box-shadow);
+        background-color: var(--landsoul-bg);
+        border-radius: var(--landsoul-radius);
+        padding: 0.25rem;
 
         @media (prefers-reduced-motion: no-preference) {
             transition: opacity 120ms cubic-bezier(0.4, 0, 0.2, 1) 75ms, transform 120ms cubic-bezier(0.4, 0, 0.2, 1) 75ms, display 120ms allow-discrete 75ms;
@@ -30,7 +20,6 @@
 
         &:popover-open {
             opacity: 1;
-            transform: translateY(0);
 
             @media (prefers-reduced-motion: no-preference) {
                 transition: opacity 120ms cubic-bezier(0.4, 0, 0.2, 1) 0s, transform 120ms cubic-bezier(0.4, 0, 0.2, 1) 0s, display 120ms allow-discrete 0s;
@@ -38,120 +27,140 @@
 
             @starting-style {
                 opacity: 0;
-                transform: translateY(-0.25rem);
             }
         }
     }
+}
 
-    &[class*="landsoul-dropdown-bottom"] {
-        position-area: bottom;
-        position-try-fallbacks: flip-block;
-    }
+// Popover styles
+// https://anchor-tool.com/
 
-    // #{&} is used to increase specificity
-    // so &[class*="landsoul-dropdown-bottom"] and &-bottom-left#{&}
-    // will have the same specificity level
+[class*="landsoul-dropdown-bottom"][popover] {
+    position-area: bottom;
+    position-try-fallbacks: flip-block;
+    transform: translateY(-0.25rem);
 
-    &-bottom-left#{&} {
-        position-area: bottom left;
-    }
-    &-bottom-span-left#{&} {
-        position-area: bottom span-left;
-    }
-    &-bottom-right#{&} {
-        position-area: bottom right;
-    }
-    &-bottom-span-right#{&} {
-        position-area: bottom span-right;
-    }
+    &:popover-open {
+        transform: translateY(0);
 
-    &[class*="landsoul-dropdown-top"] {
-        position-area: top;
-        position-try-fallbacks: flip-block;
-
-        &[popover] {
-            transform: translateY(0.25rem);
-
-            &:popover-open {
-                transform: translateY(0);
-
-                @starting-style {
-                    transform: translateY(0.25rem);
-                }
-            }
+        @starting-style {
+            transform: translateY(-0.25rem);
         }
     }
 
-    &-top-left#{&} {
-        position-area: top left;
-    }
-    &-top-span-left#{&} {
-        position-area: top span-left;
-    }
-    &-top-right#{&} {
-        position-area: top right;
-    }
-    &-top-span-right#{&} {
-        position-area: top span-right;
-    }
+}
 
-    &[class*="landsoul-dropdown-left"] {
-        position-area: left;
-        position-try-fallbacks: flip-inline;
+.landsoul-dropdown-bottom-left[popover] {
+    position-area: bottom left;
+}
 
-        &[popover] {
-            transform: translateX(0.25rem);
+.landsoul-dropdown-bottom-span-left[popover] {
+    position-area: bottom span-left;
+}
 
-            &:popover-open {
-                transform: translateX(0);
+.landsoul-dropdown-bottom-right[popover] {
+    position-area: bottom right;
+}
 
-                @starting-style {
-                    transform: translateX(0.25rem);
-                }
+.landsoul-dropdown-bottom-span-right[popover] {
+    position-area: bottom span-right;
+}
+
+[class*="landsoul-dropdown-top"][popover] {
+    position-area: top;
+    position-try-fallbacks: flip-block;
+
+ 
+        transform: translateY(0.25rem);
+
+        &:popover-open {
+            transform: translateY(0);
+
+            @starting-style {
+                transform: translateY(0.25rem);
             }
         }
-    }
+ 
+}
 
-    &-left-top#{&} {
-        position-area: left top;
-    }
-    &-left-span-top#{&} {
-        position-area: left span-top;
-    }
-    &-left-center#{&} {
-        position-area: left center;
-    }
-    &-left-span-bottom#{&} {
-        position-area: left span-bottom;
-    }
+.landsoul-dropdown-top-left[popover] {
+    position-area: top left;
+}
 
-    &[class*="landsoul-dropdown-right"] {
-        position-area: right;
-        position-try-fallbacks: flip-inline;
+.landsoul-dropdown-top-span-left[popover] {
+    position-area: top span-left;
+}
 
-        &[popover] {
-            transform: translateX(-0.25rem);
+.landsoul-dropdown-top-right[popover] {
+    position-area: top right;
+}
 
-            &:popover-open {
-                transform: translateX(0);
+.landsoul-dropdown-top-span-right[popover] {
+    position-area: top span-right;
+}
 
-                @starting-style {
-                    transform: translateX(-0.25rem);
-                }
+[class*="landsoul-dropdown-left"][popover] {
+    position-area: left;
+    position-try-fallbacks: flip-inline;
+
+  
+        transform: translateX(0.25rem);
+
+        &:popover-open {
+            transform: translateX(0);
+
+            @starting-style {
+                transform: translateX(0.25rem);
             }
         }
-    }
+ 
+}
 
-    &-right-top#{&} {
-        position-area: right top;
-    }
-    &-right-span-top#{&} {
-        position-area: right span-top;
-    }
-    &-right-center#{&} {
-        position-area: right center;
-    }
-    &-right-span-bottom#{&} {
-        position-area: right span-bottom;
-    }
+.landsoul-dropdown-left-top[popover] {
+    position-area: left top;
+}
+
+.landsoul-dropdown-left-span-top[popover] {
+    position-area: left span-top;
+}
+
+.landsoul-dropdown-left-center[popover] {
+    position-area: left center;
+}
+
+.landsoul-dropdown-left-span-bottom[popover] {
+    position-area: left span-bottom;
+}
+
+[class*="landsoul-dropdown-right"][popover] {
+    position-area: right;
+    position-try-fallbacks: flip-inline;
+
+ 
+        transform: translateX(-0.25rem);
+
+        &:popover-open {
+            transform: translateX(0);
+
+            @starting-style {
+                transform: translateX(-0.25rem);
+            }
+        }
+   
+}
+
+.landsoul-dropdown-right-top[popover] {
+    position-area: right top;
+}
+
+.landsoul-dropdown-right-span-top[popover] {
+    position-area: right span-top;
+}
+
+.landsoul-dropdown-right-center[popover] {
+    position-area: right center;
+}
+
+.landsoul-dropdown-right-span-bottom[popover] {
+    position-area: right span-bottom;
 }
