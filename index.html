@@ -13,7 +13,9 @@
                 max-width: 100%;
             }
 
-           header, main, footer {
+            header,
+            main,
+            footer {
                 max-width: 800px;
                 margin: 20px auto;
             }
@@ -23,8 +25,8 @@
             }
         </style>
         <script type="module">
-        import { highlightElement } from 'https://unpkg.com/@speed-highlight/core/dist/index.js';
-        document.querySelectorAll('[class*=shj-lang-]').forEach((el) => highlightElement(el, el.className.match(/shj-lang-([a-z0-9]+)/)[1]));
+            import { highlightElement } from "https://unpkg.com/@speed-highlight/core/dist/index.js";
+            document.querySelectorAll("[class*=shj-lang-]").forEach((el) => highlightElement(el, el.className.match(/shj-lang-([a-z0-9]+)/)[1]));
         </script>
     </head>
 
@@ -45,6 +47,10 @@
 
             <p style="margin-top: 2rem">
                 <a href="./extra.html">Landsoul Extra</a> is an extension to Landsoul that provides additional utility styles and components.
+            </p>
+            <p>
+                <a href="./all-html-elements.html">All HTML Elements</a> | <a href="./login.html">Login Example</a> |
+                <a href="./dashboard.html">Dashboard Example</a>
             </p>
         </header>
 

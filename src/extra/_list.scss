@@ -1,19 +1,18 @@
-.landsoul-list {
+ul.landsoul-list {
     list-style: none;
     padding: 0;
     margin: 0;
 
-    &> :not(hr) {
+    & > :not(hr) {
         padding: 0.5rem 1.5rem;
     }
-
 
     hr {
         margin: 0;
         border-width: 1px;
     }
 
-    &>* {
+    & > li {
         cursor: pointer;
         border-radius: var(--landsoul-radius);
 
