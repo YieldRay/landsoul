@@ -54,14 +54,12 @@
                 }
             }
 
-            /* nav#menu uses .landsoul-drawer from extra.css */
-
             .header {
                 grid-area: header;
                 display: flex;
                 align-items: center;
                 gap: 1rem;
-                padding: 0.5rem;
+                padding: 0.5rem 1rem;
                 border-bottom: solid 1px var(--landsoul-surface);
 
                 @media (width < 720px) {
@@ -98,9 +96,7 @@
                 align-items: center;
                 justify-content: space-between;
             }
-
-            /* .menu-list uses .landsoul-list from extra.css */
-
+            
             .card {
                 border: 1px solid var(--landsoul-surface);
                 border-radius: var(--landsoul-radius);
@@ -187,7 +183,7 @@
                     <h6 class="title">Landsoul Example</h6>
                 </div>
 
-                <aside style="display: inline">
+                <aside style="display: inline; anchor-scope: --landsoul-dropdown;">
                     <button popovertarget="settings-dropdown" style="anchor-name: --landsoul-dropdown">
                         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -251,8 +247,6 @@
                     <div style="height: 400px">
                         <canvas style="width: 100%" id="myChart"></canvas>
                     </div>
-
-
                 </div>
 
                 <div id="js" style="display: masonry; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px"></div>
@@ -311,22 +305,6 @@
                     <label><input name="color-scheme" type="radio" value="light" /> Light</label>
                     <label><input name="color-scheme" type="radio" value="dark" /> Dark</label>
                 </div>
-                <style>
-                    :root {
-                        color-scheme: light dark;
-                    }
-                    :root {
-                        &:has(input[name="color-scheme"][value="light dark"]:checked) {
-                            color-scheme: light dark;
-                        }
-                        &:has(input[name="color-scheme"][value="light"]:checked) {
-                            color-scheme: light;
-                        }
-                        &:has(input[name="color-scheme"][value="dark"]:checked) {
-                            color-scheme: dark;
-                        }
-                    }
-                </style>
             </footer>
         </div>
     </body>

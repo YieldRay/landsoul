@@ -1,6 +1,6 @@
 .landsoul-spinner {
-    --thickness: 0.15rem;
     --size: 1rem;
+    --thickness: calc(var(--size) * 0.15);
     --duration: 1s;
 
     &::before {

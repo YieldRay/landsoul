@@ -1,28 +1,15 @@
-.landsoul-drawer {
+[class*="landsoul-drawer"] {
     border: 1px solid var(--landsoul-surface);
     color: var(--landsoul-text);
     background-color: var(--landsoul-bg);
     border-radius: var(--landsoul-radius);
     padding: 1rem;
     overflow: auto;
-    width: min(320px, calc(100vw - 2px));
-    display: flex;
-    flex-direction: column;
 
     &[popover] {
         margin: 0;
         box-sizing: border-box;
-        height: 100vh;
         transition: translate 0.2s, overlay 0.2s allow-discrete, display 0.2s allow-discrete;
-        translate: -100% 0;
-
-        &:popover-open {
-            translate: 0 0;
-
-            @starting-style {
-                translate: -100% 0;
-            }
-        }
 
         &::backdrop {
             background-color: rgb(0 0 0 / 0);
@@ -38,8 +25,14 @@
         }
     }
 
+}
+
+.landsoul-drawer {
     &-left {
+        width: min(320px, calc(100vw - 2px));
+        
         &[popover] {
+            height: 100vh;
             translate: -100% 0;
 
             &:popover-open {
@@ -53,8 +46,11 @@
     }
 
     &-right {
+        width: min(320px, calc(100vw - 2px));
+
         &[popover] {
             margin-left: auto;
+            height: 100vh;
             translate: 100% 0;
 
             &:popover-open {
@@ -83,6 +79,7 @@
             }
         }
     }
+
 
     &-bottom {
         width: 100vw;
