@@ -1,6 +1,8 @@
 .landsoul-tooltip {
     position: relative;
     contain: layout; // avoid children affecting outside layout
+    // we may implement it with anchor position with `position: fixed` to avoid the layout that
+    // affecting the outside but still keep the element uncut
 
     & > &-content,
     &[data-tip]:before {

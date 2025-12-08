@@ -1,7 +1,7 @@
 [class*="landsoul-dropdown-"] {
     &[popover] {
         all: unset;
-        position: absolute;
+        position: fixed;
         // attr() supports type(<custom-ident>) but not type(<dashed-ident>) yet
         // we may use `position-anchor: attr(id type(<dashed-ident>), none)` in the future
         position-anchor: --landsoul-dropdown;
