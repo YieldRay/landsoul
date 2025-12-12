@@ -1,0 +1,95 @@
+.landsoul-carousel {
+    // TODO: use landsoul variables
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    &>* {
+        box-sizing: border-box;
+        flex: 0 0 100%;
+        scroll-snap-align: center;
+    }
+
+    anchor-scope: --landsoul-carousel;
+    anchor-name: --landsoul-carousel;
+
+    &::scroll-button(*) {
+        all: unset;
+        position: fixed;
+        position-anchor: --landsoul-carousel;
+    }
+
+    &::scroll-button(*) {
+        cursor: pointer;
+        box-sizing: border-box;
+        width: 2rem;
+        height: 2rem;
+        line-height: 0;
+        border-radius: 50%;
+        text-align: center;
+        transition: transform var(--landsoul-duration) ease, background-color var(--landsoul-duration) ease;
+        background-color: rgba(0 0 0 / 0.1);
+    }
+
+    &::scroll-button(*):hover {
+        transform: scale(1.1);
+    }
+
+    &::scroll-button(*):active {
+        transform: scale(0.95);
+    }
+
+    &::scroll-button(*):disabled {
+        transform: none;
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    &::scroll-button(left) {
+        /* Radix Icons - MIT LICENSE */
+        content: url('data:image/svg+xml;utf8,<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.84182 3.13514C9.04327 3.32401 9.05348 3.64042 8.86462 3.84188L5.43521 7.49991L8.86462 11.1579C9.05348 11.3594 9.04327 11.6758 8.84182 11.8647C8.64036 12.0535 8.32394 12.0433 8.13508 11.8419L4.38508 7.84188C4.20477 7.64955 4.20477 7.35027 4.38508 7.15794L8.13508 3.15794C8.32394 2.95648 8.64036 2.94628 8.84182 3.13514Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>');
+        left: calc(anchor(left) + 0.2rem);
+        top: anchor(center);
+    }
+
+    &::scroll-button(right) {
+        /* Radix Icons - MIT LICENSE */
+        content: url('data:image/svg+xml;utf8,<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>');
+        right: calc(anchor(right) + 0.2rem);
+        top: anchor(center);
+    }
+}
+
+/* scroll-marker-group */
+.landsoul-carousel {
+    scroll-marker-group: after;
+    scroll-behavior: smooth;
+
+    &::scroll-marker-group {
+        position: fixed;
+        position-anchor: --landsoul-carousel;
+        position-area: bottom center;
+        transform: translateY(-0.5rem);
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 1rem;
+        background: rgba(0 0 0 / 0.1);
+    }
+
+    &>*::scroll-marker {
+        content: "";
+        box-sizing: border-box;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(0 0 0 / 0.1);
+        transition: background-color var(--landsoul-duration) ease;
+    }
+
+    &>*::scroll-marker:target-current {
+        background-color: rgba(0 0 0 / 0.8);
+    }
+}
