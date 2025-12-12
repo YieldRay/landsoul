@@ -7,13 +7,16 @@ details {
 
     summary {
         $right: 0.5rem;
-        padding: 0.5rem;
+        padding: 0.5rem 1rem;
         padding-right: calc(0.75rem + $right);
-        background-color: var(--landsoul-surface);
         cursor: pointer;
         border-radius: var(--landsoul-radius-active);
         position: relative;
         outline-offset: -0.125rem;
+
+        &:hover {
+            background-color: var(--landsoul-surface);
+        }
 
         &::marker {
             content: "";

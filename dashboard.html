@@ -52,6 +52,10 @@
                         background-color: var(--landsoul-bg);
                     }
                 }
+
+                nav#menu {
+                    user-select: none;
+                }
             }
 
             .header {
@@ -139,7 +143,14 @@
                     <li>Analytics</li>
                     <li>Projects</li>
                     <li>Team</li>
-                    <li>Settings</li>
+                    <details>
+                        <summary>Settings</summary>
+                        <ul class="landsoul-list" style="padding-left: 1rem">
+                            <li>General</li>
+                            <li>Billing</li>
+                            <li>Integrations</li>
+                        </ul>
+                    </details>
                 </ul>
 
                 <br />
@@ -206,9 +217,9 @@
                                             clip-rule="evenodd"
                                         ></path>
                                     </svg>
-                                    Hello, {user}! &nbsp;
+                                    summary
                                 </summary>
-                                <p>You get it!</p>
+                                <p>::details-content</p>
                             </details>
                             <hr />
                             <li>User Settings</li>

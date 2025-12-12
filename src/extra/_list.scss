@@ -3,17 +3,14 @@
     padding: 0;
     margin: 0;
 
-    & > :not(hr) {
-        padding: 0.5rem 1.5rem;
-    }
-
     hr {
         margin: 0;
         border-width: 1px;
     }
-
+    
     & > li {
         cursor: pointer;
+        padding: 0.5rem 1rem;
         border-radius: var(--landsoul-radius);
 
         &:hover {
