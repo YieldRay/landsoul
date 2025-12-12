@@ -1,5 +1,4 @@
 .landsoul-carousel {
-    // TODO: use landsoul variables
     display: flex;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
@@ -29,15 +28,18 @@
         border-radius: 50%;
         text-align: center;
         transition: transform var(--landsoul-duration) ease, background-color var(--landsoul-duration) ease;
-        background-color: rgba(0 0 0 / 0.1);
+        color: var(--landsoul-text);
+        background-color: var(--landsoul-surface);
     }
 
     &::scroll-button(*):hover {
         transform: scale(1.1);
+        background-color: var(--landsoul-surface-active);
     }
 
     &::scroll-button(*):active {
         transform: scale(0.95);
+        background-color: var(--landsoul-surface-active);
     }
 
     &::scroll-button(*):disabled {
@@ -76,7 +78,7 @@
         gap: 0.5rem;
         padding: 0.25rem 0.5rem;
         border-radius: 1rem;
-        background: rgba(0 0 0 / 0.1);
+        background: var(--landsoul-surface);
     }
 
     &>*::scroll-marker {
@@ -85,11 +87,11 @@
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        background-color: rgba(0 0 0 / 0.1);
+        background-color: var(--landsoul-surface-active);
         transition: background-color var(--landsoul-duration) ease;
     }
 
     &>*::scroll-marker:target-current {
-        background-color: rgba(0 0 0 / 0.8);
+        background-color: var(--landsoul-accent);
     }
 }

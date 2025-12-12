@@ -1,0 +1,40 @@
+.landsoul-tabs {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    &>* {
+        flex: 0 0 100%;
+        scroll-snap-align: center;
+    }
+
+    scroll-marker-group: before;
+    scroll-behavior: smooth;
+
+    &::scroll-marker-group {
+        display: inline-flex;
+        align-items: center;
+        height: 2rem;
+        box-sizing: border-box;
+    }
+
+    &>*::scroll-marker {
+        all: unset;
+        content: attr(data-tab);
+        cursor: pointer;
+        box-sizing: border-box;
+        height: 1.6rem;
+        display: grid;
+        place-items: center;
+        padding: 0 0.75rem;
+        transition: background-color calc(var(--landsoul-duration) * 0.5) ease;
+        color: color-mix(in srgb, var(--landsoul-text) 50%, var(--landsoul-surface));
+        border-radius: 0.5rem;
+    }
+
+    &>*::scroll-marker:target-current {
+        background-color: var(--landsoul-accent);
+        color: var(--landsoul-inverse-text);
+    }
+}
