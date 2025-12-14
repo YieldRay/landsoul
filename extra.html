@@ -19,8 +19,12 @@
             h1 {
                 margin-top: 0;
                 font-size: 1.25rem;
-                margin-bottom: 1rem;
             }
+            h2 {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+            margin-bottom: 1rem;
         }
 
         body {
@@ -29,6 +33,9 @@
         }
     </style>
     <script type="module">
+        import "https://esm.sh/interestfor";
+        import "https://esm.sh/invokers-polyfill";
+
         import { highlightElement } from 'https://unpkg.com/@speed-highlight/core/dist/index.js';
         const renderer = document.getElementById('renderer');
 
@@ -43,7 +50,7 @@
             el.insertAdjacentElement('afterend', pre);
         }
         function cleanDOMRecursive(node) {
-            node.removeAttribute('id');
+            if(node.id?.startsWith('$')) node.removeAttribute('id');
             for (const child of node.children) {
                 cleanDOMRecursive(child);
             }
@@ -68,6 +75,7 @@
 
     <header>
         <h1>Landsoul Extra</h1>
+        <p>Everything works without JavaScript.</p>
         <pre class="shj-lang-html">&lt;link rel="stylesheet" href="//unpkg.com/landsoul/dist/extra.css" /&gt;</pre>
         <pre class="shj-lang-css">@import url(//unpkg.com/landsoul/dist/extra.css) layer(extra);</pre>
         <label><input name="color-scheme" type="radio" value="light dark" checked />System</label>
@@ -112,37 +120,6 @@
     </section>
 
     <section>
-        <h1>.landsoul-dropdown</h1>
-        <p><code>landsoul-dropdown-bottom-{left, span-left, right, span-right}</code></p>
-        <p><code>landsoul-dropdown-top-{left, span-left, right, span-right}</code></p>
-        <p><code>landsoul-dropdown-right-{top, span-top, bottom, span-bottom}</code></p>
-        <p><code>landsoul-dropdown-left-{top, span-top, bottom, span-bottom}</code></p>
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap;" id="$dropdown">
-            <span style="anchor-scope: --landsoul-dropdown">
-                <button popovertarget="dropdown" style="anchor-name: --landsoul-dropdown">Bottom</button>
-                <div class="landsoul-dropdown-bottom" id="dropdown" popover>Dropdown<br />Content</div>
-            </span>
-
-            <span style="anchor-scope: --landsoul-dropdown">
-                <button popovertarget="dropdown-top" style="anchor-name: --landsoul-dropdown">Top</button>
-                <div class="landsoul-dropdown-top" id="dropdown-top" popover>Dropdown<br />Content</div>
-            </span>
-
-            <span style="anchor-scope: --landsoul-dropdown">
-                <button popovertarget="dropdown-left" style="anchor-name: --landsoul-dropdown">Left</button>
-                <div class="landsoul-dropdown-left" id="dropdown-left" popover>Dropdown<br />Content</div>
-            </span>
-
-            <span style="anchor-scope: --landsoul-dropdown">
-                <button popovertarget="dropdown-right" style="anchor-name: --landsoul-dropdown">Right</button>
-                <div class="landsoul-dropdown-right" id="dropdown-right" popover>Dropdown<br />Content
-                </div>
-            </span>
-        </div>
-        <script type="module">writeExample("$dropdown", true)</script>
-    </section>
-
-    <section>
         <h1>.landsoul-list</h1>
         <ul class="landsoul-list" id="$list">
             <li>Item 1</li>
@@ -150,6 +127,57 @@
             <li class="active">Item 3</li>
         </ul>
         <script type="module">writeExample("$list")</script>
+    </section>
+
+    <section>
+        <h1>.landsoul-popover</h1>
+        <p><code>landsoul-popover-bottom-{left, span-left, right, span-right}</code></p>
+        <p><code>landsoul-popover-top-{left, span-left, right, span-right}</code></p>
+        <p><code>landsoul-popover-right-{top, span-top, bottom, span-bottom}</code></p>
+        <p><code>landsoul-popover-left-{top, span-top, bottom, span-bottom}</code></p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;" id="$popover">
+        
+            <button popovertarget="popover-bottom">Bottom</button>
+            <div class="landsoul-popover-bottom" id="popover-bottom" popover>popover<br />content</div>
+    
+            <button popovertarget="popover-top">Top</button>
+            <div class="landsoul-popover-top" id="popover-top" popover>popover<br />content</div>
+    
+            <button popovertarget="popover-left">Left</button>
+            <div class="landsoul-popover-left" id="popover-left" popover>popover<br />content</div>
+
+            <button popovertarget="popover-right">Right</button>
+            <div class="landsoul-popover-right" id="popover-right" popover>popover<br />content</div>
+        </div>
+        <script type="module">writeExample("$popover", true)</script>
+
+        <h2>Invoker Commands</h2>
+        <div id="$popover-commandfor">
+            <button commandfor="popover-commandfor" command="toggle-popover">Toggle Popover</button>
+            <div id="popover-commandfor" class="landsoul-popover-top" popover>I am the popover
+                <button type="button" commandfor="popover-commandfor" command="hide-popover">Hide</button>
+            </div>
+
+            <button command="show-modal" commandfor="command-show-dialog">Show Modal Dialog</button>
+            <dialog id="command-show-dialog" closedby="any">
+            I am the dialog
+            <button type="button" commandfor="command-show-dialog" command="close">Close</button>
+            </dialog>
+
+        </div>
+        <script type="module">writeExample("$popover-commandfor", true)</script>
+        <pre class="shj-lang-js">// Polyfill
+import "https://esm.sh/invokers-polyfill";</pre>
+
+        <h2>Interest invokers</h2>
+        <div id="$popover-hint">
+            <button interestfor="popover-hint" style="interest-delay: 0.2s;">hover on me and show tooltip</button>
+
+            <div class="landsoul-popover-top" id="popover-hint" popover=hint> Product callout information here.</div>
+        </div>
+        <script type="module">writeExample("$popover-hint", true)</script>
+        <pre class="shj-lang-js">// Polyfill
+import "https://esm.sh/interestfor";</pre>
     </section>
 
     <section>
@@ -190,6 +218,7 @@
 
     <section>
         <h1>.landsoul-tooltip</h1>
+        <p>Recommend to use `.landsoul-popover` with `popover="hint"` instead of this.</p>
         <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; padding: 2rem;" id="$tooltip">
             <button class="landsoul-tooltip landsoul-tooltip-top" data-tip="Top tooltip">Top</button>
             <button class="landsoul-tooltip landsoul-tooltip-bottom" data-tip="Bottom tooltip">Bottom</button>

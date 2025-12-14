@@ -1,10 +1,9 @@
-[class*="landsoul-dropdown-"] {
+[class*="landsoul-popover-"] {
     &[popover] {
-        all: unset;
+        inset: unset;
         position: fixed;
         // attr() supports type(<custom-ident>) but not type(<dashed-ident>) yet
         // we may use `position-anchor: attr(id type(<dashed-ident>), none)` in the future
-        position-anchor: --landsoul-dropdown;
         margin: 0;
         border: 0;
         overflow: unset;
@@ -14,13 +13,6 @@
         border-radius: var(--landsoul-radius);
         padding: 0.25rem;
 
-        &:not(:popover-open) {
-            display: none;
-        }
-
-        @media (prefers-reduced-motion: no-preference) {
-            transition: opacity 120ms cubic-bezier(0.4, 0, 0.2, 1) 75ms, transform 120ms cubic-bezier(0.4, 0, 0.2, 1) 75ms, display 120ms allow-discrete 75ms;
-        }
 
         &:popover-open {
             opacity: 1;
@@ -39,7 +31,7 @@
 // Popover styles
 // https://anchor-tool.com/
 
-[class*="landsoul-dropdown-bottom"][popover] {
+[class*="landsoul-popover-bottom"][popover] {
     position-area: bottom;
     position-try-fallbacks: flip-block;
     transform: translateY(-0.25rem);
@@ -53,23 +45,23 @@
     }
 }
 
-.landsoul-dropdown-bottom-left[popover] {
+.landsoul-popover-bottom-left[popover] {
     position-area: bottom left;
 }
 
-.landsoul-dropdown-bottom-span-left[popover] {
+.landsoul-popover-bottom-span-left[popover] {
     position-area: bottom span-left;
 }
 
-.landsoul-dropdown-bottom-right[popover] {
+.landsoul-popover-bottom-right[popover] {
     position-area: bottom right;
 }
 
-.landsoul-dropdown-bottom-span-right[popover] {
+.landsoul-popover-bottom-span-right[popover] {
     position-area: bottom span-right;
 }
 
-[class*="landsoul-dropdown-top"][popover] {
+[class*="landsoul-popover-top"][popover] {
     position-area: top;
     position-try-fallbacks: flip-block;
 
@@ -84,23 +76,23 @@
     }
 }
 
-.landsoul-dropdown-top-left[popover] {
+.landsoul-popover-top-left[popover] {
     position-area: top left;
 }
 
-.landsoul-dropdown-top-span-left[popover] {
+.landsoul-popover-top-span-left[popover] {
     position-area: top span-left;
 }
 
-.landsoul-dropdown-top-right[popover] {
+.landsoul-popover-top-right[popover] {
     position-area: top right;
 }
 
-.landsoul-dropdown-top-span-right[popover] {
+.landsoul-popover-top-span-right[popover] {
     position-area: top span-right;
 }
 
-[class*="landsoul-dropdown-left"][popover] {
+[class*="landsoul-popover-left"][popover] {
     position-area: left center;
     position-try-fallbacks: flip-inline;
 
@@ -115,19 +107,19 @@
     }
 }
 
-.landsoul-dropdown-left-top[popover] {
+.landsoul-popover-left-top[popover] {
     position-area: left top;
 }
 
-.landsoul-dropdown-left-span-top[popover] {
+.landsoul-popover-left-span-top[popover] {
     position-area: left span-top;
 }
 
-.landsoul-dropdown-left-span-bottom[popover] {
+.landsoul-popover-left-span-bottom[popover] {
     position-area: left span-bottom;
 }
 
-[class*="landsoul-dropdown-right"][popover] {
+[class*="landsoul-popover-right"][popover] {
     position-area: right center;
     position-try-fallbacks: flip-inline;
 
@@ -142,14 +134,14 @@
     }
 }
 
-.landsoul-dropdown-right-top[popover] {
+.landsoul-popover-right-top[popover] {
     position-area: right top;
 }
 
-.landsoul-dropdown-right-span-top[popover] {
+.landsoul-popover-right-span-top[popover] {
     position-area: right span-top;
 }
 
-.landsoul-dropdown-right-span-bottom[popover] {
+.landsoul-popover-right-span-bottom[popover] {
     position-area: right span-bottom;
 }
