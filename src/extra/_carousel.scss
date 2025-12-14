@@ -1,12 +1,29 @@
 .landsoul-carousel {
-    display: flex;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
+    overflow: auto hidden;
     scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
 
-    &>* {
+    &:not([data-height]) {
+        display: flex;
+    }
+
+    &[data-height] {
+        --height: attr(data-height type(<length> | <percentage>), auto);
+        container-type: size scroll-state;
+        &,
+        & > * {
+            height: var(--height);
+        }
+        columns: 1;
+        &::column {
+            scroll-snap-align: center;
+        }
+    }
+
+    & > * {
         box-sizing: border-box;
-        flex: 0 0 100%;
+        flex-shrink: 0;
         scroll-snap-align: center;
     }
 
@@ -27,19 +44,20 @@
         line-height: 0;
         border-radius: 50%;
         text-align: center;
-        transition: transform var(--landsoul-duration) ease, background-color var(--landsoul-duration) ease;
+        transition: background-color var(--landsoul-duration) ease, opacity var(--landsoul-duration) ease;
         color: var(--landsoul-text);
         background-color: var(--landsoul-surface);
+        opacity: 0.8;
+        backdrop-filter: blur(0.8rem);
     }
 
-    &::scroll-button(*):hover {
-        transform: scale(1.1);
+    &::scroll-button(*):not(:disabled):hover {
         background-color: var(--landsoul-surface-active);
     }
 
-    &::scroll-button(*):active {
-        transform: scale(0.95);
+    &::scroll-button(*):not(:disabled):active {
         background-color: var(--landsoul-surface-active);
+        border: var(--landsoul-border) solid 1px;
     }
 
     &::scroll-button(*):disabled {
@@ -61,6 +79,10 @@
         right: calc(anchor(right) + 0.2rem);
         top: anchor(center);
     }
+
+    &:not(:hover)::scroll-button(*) {
+        opacity: 0;
+    }
 }
 
 /* scroll-marker-group */
@@ -68,20 +90,35 @@
     scroll-marker-group: after;
     scroll-behavior: smooth;
 
+    &:empty::scroll-marker-group {
+        display: none;
+    }
+
     &::scroll-marker-group {
-        position: fixed;
+        $gap: 0.4rem;
+        position: absolute;
         position-anchor: --landsoul-carousel;
         position-area: bottom center;
         transform: translateY(-0.5rem);
-        display: flex;
-        justify-content: center;
-        gap: 0.35rem;
-        padding: 0.25rem 0.5rem;
+        max-inline-size: 33.3%;
+        display: grid;
+        gap: 0.4rem;
+        grid-auto-flow: column;
+        background-color: var(--landsoul-surface);
+        opacity: 0.8;
+        backdrop-filter: blur(0.8rem);
         border-radius: 1rem;
-        background: var(--landsoul-surface);
+        mask: none;
+        overflow-x: auto;
+        scrollbar-width: none;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        overscroll-behavior-x: contain;
+        padding: 0.25rem $gap;
+        scroll-padding-inline: 50%;
     }
 
-    &>*::scroll-marker {
+    & > *::scroll-marker {
         content: "";
         box-sizing: border-box;
         width: 12px;
@@ -91,7 +128,15 @@
         transition: background-color var(--landsoul-duration) ease;
     }
 
-    &>*::scroll-marker:target-current {
+    & > *::scroll-marker:not(:target-current):hover {
+        filter: brightness(0.9);
+    }
+
+    & > *::scroll-marker:not(:target-current):active {
+        border: var(--landsoul-border) solid 1px;
+    }
+
+    & > *::scroll-marker:target-current {
         background-color: var(--landsoul-accent);
     }
 }

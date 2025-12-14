@@ -17,6 +17,11 @@
             background-color: var(--landsoul-surface);
         }
 
+        &:active {
+            background-color: var(--landsoul-surface);
+            filter: brightness(0.96);
+        }
+
         &.active {
             color: var(--landsoul-bg);
             background-color: var(--landsoul-accent);

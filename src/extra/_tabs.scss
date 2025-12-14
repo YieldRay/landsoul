@@ -33,6 +33,15 @@
         border-radius: 0.5rem;
     }
 
+    &>*::scroll-marker:not(:target-current):hover {
+        background-color: var(--landsoul-surface);
+    }
+
+    &>*::scroll-marker:not(:target-current):active {
+        background-color: var(--landsoul-surface);
+        filter: brightness(0.96);
+    }
+
     &>*::scroll-marker:target-current {
         background-color: var(--landsoul-accent);
         color: var(--landsoul-inverse-text);
