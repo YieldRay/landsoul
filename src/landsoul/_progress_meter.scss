@@ -2,7 +2,7 @@ progress {
     --height: 0.5rem;
     height: var(--height);
     line-height: var(--height);
-    background-color: var(--landsoul-surface); /*IE*/
+    background-color: var(--landsoul-surface-low); /*IE*/
     color: var(--landsoul-accent); /*IE*/
     overflow: hidden;
     border: none;
@@ -11,7 +11,7 @@ progress {
         background-color: var(--landsoul-accent);
     }
     &::-webkit-progress-bar {
-        background-color: var(--landsoul-surface);
+        background-color: var(--landsoul-surface-low);
     }
     &::-webkit-progress-value {
         background-color: var(--landsoul-accent);
@@ -19,6 +19,6 @@ progress {
 }
 
 ::-webkit-meter-bar {
-    background-color: var(--landsoul-surface);
+    background-color: var(--landsoul-surface-low);
     border: none;
 }

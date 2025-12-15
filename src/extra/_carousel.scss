@@ -52,18 +52,18 @@
     }
 
     &::scroll-button(*):not(:disabled):hover {
-        background-color: var(--landsoul-surface-active);
+        background-color: var(--landsoul-surface-high);
     }
 
     &::scroll-button(*):not(:disabled):active {
-        background-color: var(--landsoul-surface-active);
+        background-color: var(--landsoul-surface-high);
         border: var(--landsoul-border) solid 1px;
     }
 
     &::scroll-button(*):disabled {
         transform: none;
         cursor: not-allowed;
-        opacity: 0.5;
+        opacity: 0.333;
     }
 
     &::scroll-button(left) {
@@ -124,7 +124,7 @@
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        background-color: var(--landsoul-surface-active);
+        background-color: var(--landsoul-surface-high);
         transition: background-color var(--landsoul-duration) ease;
     }
 

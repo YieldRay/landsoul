@@ -38,8 +38,7 @@
     }
 
     &>*::scroll-marker:not(:target-current):active {
-        background-color: var(--landsoul-surface);
-        filter: brightness(0.96);
+        background-color: var(--landsoul-surface-low);
     }
 
     &>*::scroll-marker:target-current {

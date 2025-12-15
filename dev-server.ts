@@ -3,13 +3,16 @@ import fs from "node:fs";
 import path from "node:path/posix";
 import { pipeline } from "node:stream/promises";
 import { spawn } from "node:child_process";
+import { styleText } from "node:util";
 
 $("sass --watch src:dist");
 
 const server = createDevServer();
 const PORT = 3000;
 server.listen(PORT, () => {
-    console.log(`Dev server running at http://localhost:${PORT}`);
+    console.log(`Dev server running at
+- ${styleText(['cyan'], `http://localhost:${PORT}`)}
+`);
 });
 
 function createDevServer() {

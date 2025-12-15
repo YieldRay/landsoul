@@ -5,8 +5,9 @@
     @include var-light-dark(--landsoul-text, #262626, #e7e7e7);
     @include var-light-dark(--landsoul-inverse-text, #fff, #262626);
     @include var-light-dark(--landsoul-text-on-surface, #5a5a5a, #c0c0c0);
+    @include var-light-dark(--landsoul-surface-low, #f5f5f5, #2a3447);
     @include var-light-dark(--landsoul-surface, #ebebeb, #353e5a);
-    @include var-light-dark(--landsoul-surface-active, #bfbfbf, #4a5670);
+    @include var-light-dark(--landsoul-surface-high, #bfbfbf, #4a5670);
     @include var-light-dark(--landsoul-accent, #2e72f0, #4a90ff);
     @include var-light-dark(--landsoul-danger, #e03e2f, #ff5c4a);
     @include var-light-dark(--landsoul-border, #e3e4e8, #2b414f);
@@ -19,7 +20,6 @@
     --landsoul-duration: 0.25s;
     --landsoul-radius: 0.4rem;
     --landsoul-radius-active: 0.6rem;
-    --landsoul-gradient: linear-gradient(rgb(204, 252, 247), rgb(196, 234, 233), rgb(187, 216, 219), rgb(179, 198, 205), rgb(170, 180, 191));
 
     --landsoul-box-shadow: 0 0 0 0.0625rem var(--landsoul-border),
         0 0 0.125rem var(--landsoul-0-1),

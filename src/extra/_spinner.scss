@@ -9,8 +9,8 @@
         box-sizing: border-box;
         width: var(--size);
         height: var(--size);
-        border: var(--thickness) solid #ccc;
-        border-top-color: #333;
+        border: var(--thickness) solid var(--landsoul-border);
+        border-top-color: var(--landsoul-on-surface);
         border-radius: 50%;
         animation: landsoul-spin var(--duration) linear infinite;
         vertical-align: text-bottom;

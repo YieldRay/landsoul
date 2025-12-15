@@ -20,10 +20,12 @@
                 margin-top: 0;
                 font-size: 1.25rem;
             }
+
             h2 {
                 font-size: 1rem;
                 margin-bottom: 0.5rem;
             }
+
             margin-bottom: 1rem;
         }
 
@@ -50,7 +52,7 @@
             el.insertAdjacentElement('afterend', pre);
         }
         function cleanDOMRecursive(node) {
-            if(node.id?.startsWith('$')) node.removeAttribute('id');
+            if (node.id?.startsWith('$')) node.removeAttribute('id');
             for (const child of node.children) {
                 cleanDOMRecursive(child);
             }
@@ -101,6 +103,8 @@
             <div style="height: 10rem">12</div>
         </div>
         <script type="module">writeExample("$carousel")</script>
+        <p>When <code>data-height</code> is set, the carousel will adjust its height accordingly and automatically
+            <strong>grouped into columns.</strong></p>
     </section>
 
     <section>
@@ -145,13 +149,13 @@
         <p><code>landsoul-popover-right-{top, span-top, bottom, span-bottom}</code></p>
         <p><code>landsoul-popover-left-{top, span-top, bottom, span-bottom}</code></p>
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;" id="$popover">
-        
+
             <button popovertarget="popover-bottom">Bottom</button>
             <div class="landsoul-popover-bottom" id="popover-bottom" popover>popover<br />content</div>
-    
+
             <button popovertarget="popover-top">Top</button>
             <div class="landsoul-popover-top" id="popover-top" popover>popover<br />content</div>
-    
+
             <button popovertarget="popover-left">Left</button>
             <div class="landsoul-popover-left" id="popover-left" popover>popover<br />content</div>
 
@@ -169,8 +173,8 @@
 
             <button command="show-modal" commandfor="command-show-dialog">Show Modal Dialog</button>
             <dialog id="command-show-dialog" closedby="any">
-            I am the dialog
-            <button type="button" commandfor="command-show-dialog" command="close">Close</button>
+                I am the dialog
+                <button type="button" commandfor="command-show-dialog" command="close">Close</button>
             </dialog>
 
         </div>
@@ -198,10 +202,12 @@ import "https://esm.sh/interestfor";</pre>
     <section>
         <h1>.landsoul-spinner</h1>
         <div class="landsoul-spinner" id="$spinner1"></div>
-        <button class="landsoul-spinner" id="$spinner2">Submitting...</button>
+        <div class="landsoul-spinner" id="$spinner2" style="--size: 32px"></div>
+        <button class="landsoul-spinner" id="$spinner3">Submitting...</button>
         <script type="module">
             writeExample("$spinner1");
             writeExample("$spinner2");
+            writeExample("$spinner3");
         </script>
     </section>
 
@@ -227,7 +233,7 @@ import "https://esm.sh/interestfor";</pre>
 
     <section>
         <h1>.landsoul-tooltip</h1>
-        <p>Recommend to use `.landsoul-popover` with `popover="hint"` instead of this.</p>
+        <p>It is recommended to use <code>.landsoul-popover</code> with <code>popover="hint"</code> instead of this.</p>
         <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; padding: 2rem;" id="$tooltip">
             <button class="landsoul-tooltip landsoul-tooltip-top" data-tip="Top tooltip">Top</button>
             <button class="landsoul-tooltip landsoul-tooltip-bottom" data-tip="Bottom tooltip">Bottom</button>
