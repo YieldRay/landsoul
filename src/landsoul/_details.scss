@@ -18,6 +18,10 @@ details {
             background-color: var(--landsoul-surface);
         }
 
+        &:active {
+            background-color: var(--landsoul-surface-low);
+        }
+
         &::marker {
             content: "";
         }
