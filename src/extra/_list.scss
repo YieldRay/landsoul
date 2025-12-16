@@ -21,7 +21,7 @@
             background-color: var(--landsoul-surface-low);
         }
 
-        &.active {
+        &[data-state="selected"] {
             color: var(--landsoul-bg);
             background-color: var(--landsoul-accent);
         }

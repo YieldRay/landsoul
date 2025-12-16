@@ -91,6 +91,9 @@
 
         <section>
             <h1>.landsoul-carousel</h1>
+            <p>
+                When <code>data-height</code> is set, the carousel will adjust its height accordingly and automatically <strong>grouped into columns.</strong>
+            </p>
             <ul class="landsoul-carousel" id="$carousel" role="region">
                 <li style="width: 100%">1</li>
                 <li style="width: 100%">2</li>
@@ -108,9 +111,6 @@
             <script type="module">
                 writeExample("$carousel");
             </script>
-            <p>
-                When <code>data-height</code> is set, the carousel will adjust its height accordingly and automatically <strong>grouped into columns.</strong>
-            </p>
         </section>
 
         <section>
@@ -124,6 +124,7 @@
 
         <section>
             <h1>.landsoul-drawer</h1>
+            <p>An easy-to-use drawer component based on popover API.</p>
 
             <div id="$drawer">
                 <button popovertarget="drawer">Open Drawer (left)</button>
@@ -145,10 +146,19 @@
 
         <section>
             <h1>.landsoul-list</h1>
+            <p>A versatile list component that supports item selection, nested lists, and expandable groups using the <code>&lt;details&gt;</code> element.</p>
+
             <ul class="landsoul-list" id="$list">
                 <li>Item 1</li>
                 <li>Item 2</li>
-                <li class="active">Item 3</li>
+                <li data-state="selected">Item 3</li>
+                <details>
+                    <summary>Item 4</summary>
+                    <ul class="landsoul-list">
+                        <li>Subitem 1</li>
+                        <li>Subitem 2</li>
+                    </ul>
+                </details>
             </ul>
             <script type="module">
                 writeExample("$list");
@@ -227,7 +237,9 @@ import "https://esm.sh/interestfor";</pre
         <section>
             <h1>.landsoul-spinner</h1>
             <div class="landsoul-spinner" id="$spinner1"></div>
-            <div class="landsoul-spinner" id="$spinner2" style="--size: 32px"></div>
+            <p>We can use css var <code>--size</code> or <code>data-size</code> attribute to control the size of the spinner.</p>
+            <div class="landsoul-spinner" id="$spinner2" style="--size: 32px" data-size="32px"></div>
+            <p>We can also use the spinner as a button.</p>
             <button class="landsoul-spinner" id="$spinner3">Submitting...</button>
             <script type="module">
                 writeExample("$spinner1");
@@ -251,7 +263,7 @@ import "https://esm.sh/interestfor";</pre
         <section>
             <h1>.landsoul-tabs</h1>
             <p>
-                <code>.landsoul-tabs</code> is a simple tabs component, each child element represents a tab panel, and data-tab attribute is used for the tab
+                <code>.landsoul-tabs</code> is a simple tabs component, each child element represents a tab panel, and <code>data-tab</code> attribute is used for the tab
                 label.
             </p>
             <div class="landsoul-tabs" id="$tabs" role="tablist">

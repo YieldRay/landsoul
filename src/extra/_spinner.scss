@@ -1,7 +1,9 @@
+@use "../mixins" as *;
+
 .landsoul-spinner {
-    --size: 1rem;
-    --thickness: calc(var(--size) * 0.15);
-    --duration: 1s;
+    @include var-data-attr(--size, "<length>", 1rem);
+    @include var-data-attr(--thickness, "<length>", calc(var(--size) * 0.15));
+    @include var-data-attr(--duration, "<time>", 1s);
 
     &::before {
         content: "";

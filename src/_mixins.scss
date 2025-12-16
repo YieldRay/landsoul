@@ -1,4 +1,8 @@
-@mixin var-light-dark($property, $light, $dark) {
+@mixin var-light-dark($property: string, $light, $dark) {
+    @if str-index($property, "--") != 1 {
+        @error 'var-light-dark expects $property to start with "--" (e.g., --landsoul-accent).';
+    }
+
     #{$property}: $light;
 
     @supports (color: light-dark(white, black)) {
@@ -12,6 +16,18 @@
     // @media screen and (prefers-color-scheme: dark) {
     //     #{$property}: $dark;
     // }
+}
+
+@mixin var-data-attr($property: string, $type: string, $default: null) {
+    @if str-index($property, "--") != 1 {
+        @error 'var-data-attr expects $attr to start with "--" (e.g., --size).';
+    }
+
+    $attr: if(str-index($property, "--") == 1, str-slice($property, 3), $property);
+    #{$property}: #{$default};
+    &[data-#{$attr}] {
+        #{$property}: attr(data-#{$attr} type(#{$type}), #{$default});
+    }
 }
 
 @mixin hover-effect {

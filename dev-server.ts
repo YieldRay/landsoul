@@ -5,7 +5,7 @@ import { pipeline } from "node:stream/promises";
 import { spawn } from "node:child_process";
 import { styleText } from "node:util";
 
-$("sass --watch src:dist");
+$("sass --watch src:dist --silence-deprecation=if-function");
 
 const server = createDevServer();
 const PORT = 3000;
