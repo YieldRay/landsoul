@@ -4,6 +4,8 @@
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
 
+    // no ul/ol reset here, unlike carousel
+
     & > * {
         flex: 0 0 100%;
         scroll-snap-align: center;
