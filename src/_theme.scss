@@ -1,6 +1,7 @@
 @use "./mixins" as *;
 
-:root, :host {
+:root,
+:host {
     @include var-light-dark(--landsoul-bg, #fff, #202021);
     @include var-light-dark(--landsoul-text, #262626, #e7e7e7);
     @include var-light-dark(--landsoul-inverse-text, #fff, #262626);
@@ -21,7 +22,5 @@
     --landsoul-radius: 0.4rem;
     --landsoul-radius-active: 0.6rem;
 
-    --landsoul-box-shadow: 0 0 0 0.0625rem var(--landsoul-border),
-        0 0 0.125rem var(--landsoul-0-1),
-        0 0 1rem var(--landsoul-0-2);
+    --landsoul-box-shadow: 0 0 0 0.0625rem var(--landsoul-border), 0 0 0.125rem var(--landsoul-0-1), 0 0 1rem var(--landsoul-0-2);
 }

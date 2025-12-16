@@ -11,7 +11,7 @@ const server = createDevServer();
 const PORT = 3000;
 server.listen(PORT, () => {
     console.log(`Dev server running at
-- ${styleText(['cyan'], `http://localhost:${PORT}`)}
+- ${styleText(["cyan"], `http://localhost:${PORT}`)}
 `);
 });
 
@@ -35,7 +35,7 @@ function createDevServer() {
                     `data: ${JSON.stringify({
                         eventType,
                         filename,
-                    })}\n\n`
+                    })}\n\n`,
                 );
             });
 
@@ -59,7 +59,7 @@ function createDevServer() {
                         console.log(JSON.parse(data));
                         window.location.reload();
                     });
-                })}\n</head>`
+                })}\n</head>`,
             );
 
         if (req.url === "/") {
@@ -117,7 +117,7 @@ function iife<A extends unknown[]>(fn: (...args: A) => void, ...args: A) {
 }
 
 function iifeScript<A extends unknown[]>(fn: (...args: A) => void, ...args: A) {
-    return `<script>${iife(fn, ...args)}</script>`
+    return `<script>${iife(fn, ...args)}</script>`;
 }
 
 function watchFiles(patterns: string[], listener: fs.WatchListener<string>) {
@@ -125,7 +125,7 @@ function watchFiles(patterns: string[], listener: fs.WatchListener<string>) {
     const watchers = files.map((file) =>
         fs.watch(file, { recursive: true }, (event, filename) => {
             listener(event, filename);
-        })
+        }),
     );
     return {
         close: () => {

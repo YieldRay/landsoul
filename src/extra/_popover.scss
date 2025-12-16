@@ -12,13 +12,16 @@
         background-color: var(--landsoul-bg);
         border-radius: var(--landsoul-radius);
         padding: 0.25rem;
-
+        container-type: anchored;
 
         &:popover-open {
             opacity: 1;
 
             @media (prefers-reduced-motion: no-preference) {
-                transition: opacity 120ms cubic-bezier(0.4, 0, 0.2, 1) 0s, transform 120ms cubic-bezier(0.4, 0, 0.2, 1) 0s, display 120ms allow-discrete 0s;
+                transition:
+                    opacity 120ms cubic-bezier(0.4, 0, 0.2, 1) 0s,
+                    transform 120ms cubic-bezier(0.4, 0, 0.2, 1) 0s,
+                    display 120ms allow-discrete 0s;
             }
 
             @starting-style {
@@ -31,18 +34,44 @@
 // Popover styles
 // https://anchor-tool.com/
 
-[class*="landsoul-popover-bottom"][popover] {
-    position-area: bottom;
-    position-try-fallbacks: flip-block;
-    transform: translateY(-0.25rem);
+@mixin popover($position) {
+    $block: if($position == top or $position == bottom, true, false); // if not $block, then it is inline
+    $transformDir: if($position == top or $position == left, 1, -1);
+    $transformAxis: if($position == top or $position == bottom, Y, X);
+    $fallback: if($block, flip-block, flip-inline);
+
+    @if $block {
+        position-try-fallbacks: flip-block;
+        position-area: #{$position};
+    } @else {
+        position-try-fallbacks: flip-inline;
+        position-area: #{$position} center;
+    }
+
+    transform: translate#{$transformAxis }(#{$transformDir * 0.25rem});
 
     &:popover-open {
-        transform: translateY(0);
-
+        transform: translate#{$transformAxis }(0);
         @starting-style {
-            transform: translateY(-0.25rem);
+            transform: translate#{$transformAxis }(#{$transformDir * 0.25rem});
         }
     }
+
+    // Expect when the popover flips, we want to reverse the transform direction for the animation
+    // Code below does not work as expected
+
+    // @container anchored(fallback: #{$fallback}) {
+    //     transform: translate#{$transformAxis }(#{$transformDir * -0.25rem});
+    //     &:popover-open {
+    //         @starting-style {
+    //             transform: translate#{$transformAxis }(#{$transformDir * -0.25rem});
+    //         }
+    //     }
+    // }
+}
+
+[class*="landsoul-popover-bottom"][popover] {
+    @include popover(bottom);
 }
 
 .landsoul-popover-bottom-left[popover] {
@@ -62,18 +91,7 @@
 }
 
 [class*="landsoul-popover-top"][popover] {
-    position-area: top;
-    position-try-fallbacks: flip-block;
-
-    transform: translateY(0.25rem);
-
-    &:popover-open {
-        transform: translateY(0);
-
-        @starting-style {
-            transform: translateY(0.25rem);
-        }
-    }
+    @include popover(top);
 }
 
 .landsoul-popover-top-left[popover] {
@@ -93,18 +111,7 @@
 }
 
 [class*="landsoul-popover-left"][popover] {
-    position-area: left center;
-    position-try-fallbacks: flip-inline;
-
-    transform: translateX(0.25rem);
-
-    &:popover-open {
-        transform: translateX(0);
-
-        @starting-style {
-            transform: translateX(0.25rem);
-        }
-    }
+    @include popover(left);
 }
 
 .landsoul-popover-left-top[popover] {
@@ -120,18 +127,7 @@
 }
 
 [class*="landsoul-popover-right"][popover] {
-    position-area: right center;
-    position-try-fallbacks: flip-inline;
-
-    transform: translateX(-0.25rem);
-
-    &:popover-open {
-        transform: translateX(0);
-
-        @starting-style {
-            transform: translateX(-0.25rem);
-        }
-    }
+    @include popover(right);
 }
 
 .landsoul-popover-right-top[popover] {

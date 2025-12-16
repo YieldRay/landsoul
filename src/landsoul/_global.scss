@@ -1,7 +1,18 @@
 @use "../mixins" as *;
 
 body {
-    font-family: "Graphik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial,
+    font-family:
+        "Graphik",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen-Sans,
+        Ubuntu,
+        Cantarell,
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
         sans-serif;
     font-size: 14px;
     color: var(--landsoul-text);

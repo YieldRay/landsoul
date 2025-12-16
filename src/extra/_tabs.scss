@@ -4,7 +4,7 @@
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
 
-    &>* {
+    & > * {
         flex: 0 0 100%;
         scroll-snap-align: center;
     }
@@ -19,7 +19,7 @@
         box-sizing: border-box;
     }
 
-    &>*::scroll-marker {
+    & > *::scroll-marker {
         all: unset;
         content: attr(data-tab);
         cursor: pointer;
@@ -33,15 +33,15 @@
         border-radius: 0.5rem;
     }
 
-    &>*::scroll-marker:not(:target-current):hover {
+    & > *::scroll-marker:not(:target-current):hover {
         background-color: var(--landsoul-surface);
     }
 
-    &>*::scroll-marker:not(:target-current):active {
+    & > *::scroll-marker:not(:target-current):active {
         background-color: var(--landsoul-surface-low);
     }
 
-    &>*::scroll-marker:target-current {
+    & > *::scroll-marker:target-current {
         background-color: var(--landsoul-accent);
         color: var(--landsoul-inverse-text);
     }

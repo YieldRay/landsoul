@@ -44,7 +44,9 @@
         line-height: 0;
         border-radius: 50%;
         text-align: center;
-        transition: background-color var(--landsoul-duration) ease, opacity var(--landsoul-duration) ease;
+        transition:
+            background-color var(--landsoul-duration) ease,
+            opacity var(--landsoul-duration) ease;
         color: var(--landsoul-text);
         background-color: var(--landsoul-surface);
         opacity: 0.8;

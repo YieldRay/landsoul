@@ -1,247 +1,267 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>landsoul-utils</title>
+        <style>
+            @import url(./dist/landsoul.css) layer(landsoul);
+            @import url(./dist/extra.css) layer(extra);
+            @import url(./shj.css);
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>landsoul-utils</title>
-    <style>
-        @import url(./dist/landsoul.css) layer(landsoul);
-        @import url(./dist/extra.css) layer(extra);
-        @import url(./shj.css);
+            section {
+                border: dashed var(--landsoul-border);
+                border-radius: var(--landsoul-radius);
+                padding: 1rem;
+                margin-bottom: 1rem;
 
-        section {
-            border: dashed var(--landsoul-border);
-            border-radius: var(--landsoul-radius);
-            padding: 1rem;
-            margin-bottom: 1rem;
-
-            h1 {
-                margin-top: 0;
-                font-size: 1.25rem;
+                h1 {
+                    margin-top: 0;
+                    font-size: 1.25rem;
+                }
+                h2 {
+                    font-size: 1rem;
+                    margin-bottom: 0.5rem;
+                }
             }
 
-            h2 {
-                font-size: 1rem;
-                margin-bottom: 0.5rem;
+            body {
+                max-width: 600px;
+                margin: 2rem auto;
             }
-
-            margin-bottom: 1rem;
-        }
-
-        body {
-            max-width: 600px;
-            margin: 2rem auto;
-        }
-    </style>
-    <script type="module">
-        import "https://esm.sh/interestfor";
-        import "https://esm.sh/invokers-polyfill";
-
-        import { highlightElement } from 'https://unpkg.com/@speed-highlight/core/dist/index.js';
-        const renderer = document.getElementById('renderer');
-
-        function writeExample(id, omitParent = false) {
-            const el = document.getElementById(id);
-            const cloned = el.cloneNode(true);
-            cleanDOMRecursive(cloned);
-            const pre = document.createElement('pre');
-            const rawCode = omitParent ? cloned.innerHTML : cloned.outerHTML;
-            pre.textContent = formatHTML(rawCode);
-            highlightElement(pre, 'html');
-            el.insertAdjacentElement('afterend', pre);
-        }
-        function cleanDOMRecursive(node) {
-            if (node.id?.startsWith('$')) node.removeAttribute('id');
-            for (const child of node.children) {
-                cleanDOMRecursive(child);
-            }
-        }
-        function formatHTML(rawCode) {
-            const renderNode = document.createElement('div');
-            renderNode.textContent = rawCode;
-            renderNode.style.whiteSpace = 'pre-line';
-            renderer.appendChild(renderNode); //! Must append to DOM for browser to measuring correct innerText
-            const code = renderNode.innerText;
-            renderNode.remove();
-            return code.trim().replaceAll(`popover=""`, 'popover')
-        }
-
-        globalThis.writeExample = writeExample;
-        document.querySelectorAll('[class*=shj-lang-]').forEach((el) => highlightElement(el, el.className.match(/shj-lang-([a-z0-9]+)/)[1]));
-    </script>
-</head>
-
-<body>
-    <div id="renderer" style="width: 0; height: 0; overflow: hidden;"></div>
-
-    <header>
-        <h1>Landsoul Extra</h1>
-        <p>Everything works without JavaScript.</p>
-        <pre class="shj-lang-html">&lt;link rel="stylesheet" href="//unpkg.com/landsoul/dist/extra.css" /&gt;</pre>
-        <pre class="shj-lang-css">@import url(//unpkg.com/landsoul/dist/extra.css) layer(extra);</pre>
-        <label><input name="color-scheme" type="radio" value="light dark" checked />System</label>
-        <label><input name="color-scheme" type="radio" value="light" /> Forced Light</label>
-        <label><input name="color-scheme" type="radio" value="dark" /> Forced Dark</label>
-    </header>
-    <br />
-
-    <section>
-        <h1>.landsoul-carousel</h1>
-        <div class="landsoul-carousel" id="$carousel">
-            <div style="width: 100%">1</div>
-            <div style="width: 100%">2</div>
-            <div style="width: 50%">3</div>
-            <div style="width: 50%">4</div>
-            <div style="width: 50%">5</div>
-            <div style="width: 50%">6</div>
-            <div style="width: 33%">7</div>
-            <div style="width: 33%">8</div>
-            <div style="width: 33%">9</div>
-            <div style="width: 100%">10</div>
-            <div style="width: 100%">11</div>
-            <div style="height: 10rem">12</div>
-        </div>
-        <script type="module">writeExample("$carousel")</script>
-        <p>When <code>data-height</code> is set, the carousel will adjust its height accordingly and automatically
-            <strong>grouped into columns.</strong></p>
-    </section>
-
-    <section>
-        <h1>.landsoul-divider</h1>
-        <div class="landsoul-divider" role="separator" id="$divider">Divider Content</div>
-        <script type="module">writeExample("$divider")</script>
-    </section>
-
-    <section>
-        <h1>.landsoul-drawer</h1>
-
-        <div id="$drawer">
-            <button popovertarget="drawer">Open Drawer (left)</button>
-            <div class="landsoul-drawer-left" id="drawer" popover>left</div>
-
-            <button popovertarget="drawer-bottom">Open Drawer (bottom)</button>
-            <div class="landsoul-drawer-bottom" id="drawer-bottom" popover>bottom</div>
-
-            <button popovertarget="drawer-right">Open Drawer (right)</button>
-            <div class="landsoul-drawer-right" id="drawer-right" popover>right</div>
-
-            <button popovertarget="drawer-top">Open Drawer (top)</button>
-            <div class="landsoul-drawer-top" id="drawer-top" popover>top</div>
-        </div>
-        <script type="module">writeExample("$drawer", true)</script>
-    </section>
-
-    <section>
-        <h1>.landsoul-list</h1>
-        <ul class="landsoul-list" id="$list">
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li class="active">Item 3</li>
-        </ul>
-        <script type="module">writeExample("$list")</script>
-    </section>
-
-    <section>
-        <h1>.landsoul-popover</h1>
-        <p><code>landsoul-popover-bottom-{left, span-left, right, span-right}</code></p>
-        <p><code>landsoul-popover-top-{left, span-left, right, span-right}</code></p>
-        <p><code>landsoul-popover-right-{top, span-top, bottom, span-bottom}</code></p>
-        <p><code>landsoul-popover-left-{top, span-top, bottom, span-bottom}</code></p>
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap;" id="$popover">
-
-            <button popovertarget="popover-bottom">Bottom</button>
-            <div class="landsoul-popover-bottom" id="popover-bottom" popover>popover<br />content</div>
-
-            <button popovertarget="popover-top">Top</button>
-            <div class="landsoul-popover-top" id="popover-top" popover>popover<br />content</div>
-
-            <button popovertarget="popover-left">Left</button>
-            <div class="landsoul-popover-left" id="popover-left" popover>popover<br />content</div>
-
-            <button popovertarget="popover-right">Right</button>
-            <div class="landsoul-popover-right" id="popover-right" popover>popover<br />content</div>
-        </div>
-        <script type="module">writeExample("$popover", true)</script>
-
-        <h2>Invoker Commands</h2>
-        <div id="$popover-commandfor">
-            <button commandfor="popover-commandfor" command="toggle-popover">Toggle Popover</button>
-            <div id="popover-commandfor" class="landsoul-popover-top" popover>I am the popover
-                <button type="button" commandfor="popover-commandfor" command="hide-popover">Hide</button>
-            </div>
-
-            <button command="show-modal" commandfor="command-show-dialog">Show Modal Dialog</button>
-            <dialog id="command-show-dialog" closedby="any">
-                I am the dialog
-                <button type="button" commandfor="command-show-dialog" command="close">Close</button>
-            </dialog>
-
-        </div>
-        <script type="module">writeExample("$popover-commandfor", true)</script>
-        <pre class="shj-lang-js">// Polyfill
-import "https://esm.sh/invokers-polyfill";</pre>
-
-        <h2>Interest invokers</h2>
-        <div id="$popover-hint">
-            <button interestfor="popover-hint" style="interest-delay: 0.2s;">hover on me and show tooltip</button>
-
-            <div class="landsoul-popover-top" id="popover-hint" popover=hint> Product callout information here.</div>
-        </div>
-        <script type="module">writeExample("$popover-hint", true)</script>
-        <pre class="shj-lang-js">// Polyfill
-import "https://esm.sh/interestfor";</pre>
-    </section>
-
-    <section>
-        <h1>.landsoul-skeleton</h1>
-        <div class="landsoul-skeleton" style="width: 200px; height: 20px;" id="$skeleton"></div>
-        <script type="module">writeExample("$skeleton")</script>
-    </section>
-
-    <section>
-        <h1>.landsoul-spinner</h1>
-        <div class="landsoul-spinner" id="$spinner1"></div>
-        <div class="landsoul-spinner" id="$spinner2" style="--size: 32px"></div>
-        <button class="landsoul-spinner" id="$spinner3">Submitting...</button>
+        </style>
         <script type="module">
-            writeExample("$spinner1");
-            writeExample("$spinner2");
-            writeExample("$spinner3");
+            import "https://esm.sh/interestfor";
+            import "https://esm.sh/invokers-polyfill";
+
+            import { highlightElement } from "https://unpkg.com/@speed-highlight/core/dist/index.js";
+            const renderer = document.getElementById("renderer");
+
+            function writeExample(id, omitParent = false) {
+                const el = document.getElementById(id);
+                const cloned = el.cloneNode(true);
+                cleanDOMRecursive(cloned);
+                const pre = document.createElement("pre");
+                const rawCode = omitParent ? cloned.innerHTML : cloned.outerHTML;
+                pre.textContent = formatHTML(rawCode);
+                highlightElement(pre, "html");
+                el.insertAdjacentElement("afterend", pre);
+            }
+            function cleanDOMRecursive(node) {
+                if (node.id?.startsWith("$")) node.removeAttribute("id");
+                for (const child of node.children) {
+                    cleanDOMRecursive(child);
+                }
+            }
+            function formatHTML(rawCode) {
+                const renderNode = document.createElement("div");
+                renderNode.textContent = rawCode;
+                renderNode.style.whiteSpace = "pre-line";
+                renderer.appendChild(renderNode); //! Must append to DOM for browser to measuring correct innerText
+                const code = renderNode.innerText;
+                renderNode.remove();
+                return code.trim().replaceAll(`popover=""`, "popover");
+            }
+
+            globalThis.writeExample = writeExample;
+            document.querySelectorAll("[class*=shj-lang-]").forEach((el) => highlightElement(el, el.className.match(/shj-lang-([a-z0-9]+)/)[1]));
         </script>
-    </section>
+    </head>
 
+    <body>
+        <div id="renderer" style="width: 0; height: 0; overflow: hidden"></div>
 
-    <section>
-        <h1>.landsoul-switch</h1>
-        <label id="$switch">
-            <input type="checkbox" class="landsoul-switch" role="switch" />
-            Toggle Switch
-        </label>
-        <script type="module">writeExample("$switch", true)</script>
-    </section>
+        <header>
+            <h1>Landsoul Extra</h1>
+            <p>Everything works without JavaScript.</p>
+            <pre class="shj-lang-html">&lt;link rel="stylesheet" href="//unpkg.com/landsoul/dist/extra.css" /&gt;</pre>
+            <pre class="shj-lang-css">@import url(//unpkg.com/landsoul/dist/extra.css) layer(extra);</pre>
+            <label><input name="color-scheme" type="radio" value="light dark" checked />System</label>
+            <label><input name="color-scheme" type="radio" value="light" /> Forced Light</label>
+            <label><input name="color-scheme" type="radio" value="dark" /> Forced Dark</label>
+        </header>
+        <br />
 
-    <section>
-        <h1>.landsoul-tabs</h1>
-        <div class="landsoul-tabs" id="$tabs">
-            <div data-tab="Tab 1">One</div>
-            <div data-tab="Tab 2">Two</div>
-            <div data-tab="Tab 3">Three</div>
-        </div>
-        <script type="module">writeExample("$tabs")</script>
-    </section>
+        <section>
+            <h1>.landsoul-carousel</h1>
+            <div class="landsoul-carousel" id="$carousel">
+                <div style="width: 100%">1</div>
+                <div style="width: 100%">2</div>
+                <div style="width: 50%">3</div>
+                <div style="width: 50%">4</div>
+                <div style="width: 50%">5</div>
+                <div style="width: 50%">6</div>
+                <div style="width: 33%">7</div>
+                <div style="width: 33%">8</div>
+                <div style="width: 33%">9</div>
+                <div style="width: 100%">10</div>
+                <div style="width: 100%">11</div>
+                <div style="height: 10rem">12</div>
+            </div>
+            <script type="module">
+                writeExample("$carousel");
+            </script>
+            <p>
+                When <code>data-height</code> is set, the carousel will adjust its height accordingly and automatically <strong>grouped into columns.</strong>
+            </p>
+        </section>
 
-    <section>
-        <h1>.landsoul-tooltip</h1>
-        <p>It is recommended to use <code>.landsoul-popover</code> with <code>popover="hint"</code> instead of this.</p>
-        <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; padding: 2rem;" id="$tooltip">
-            <button class="landsoul-tooltip landsoul-tooltip-top" data-tip="Top tooltip">Top</button>
-            <button class="landsoul-tooltip landsoul-tooltip-bottom" data-tip="Bottom tooltip">Bottom</button>
-            <button class="landsoul-tooltip landsoul-tooltip-left" data-tip="Left tooltip">Left</button>
-            <button class="landsoul-tooltip landsoul-tooltip-right" data-tip="Right tooltip">Right</button>
-        </div>
-        <script type="module">writeExample("$tooltip", true)</script>
-    </section>
-</body>
+        <section>
+            <h1>.landsoul-divider</h1>
+            <div class="landsoul-divider" role="separator" id="$divider">Divider Content</div>
+            <script type="module">
+                writeExample("$divider");
+            </script>
+        </section>
 
+        <section>
+            <h1>.landsoul-drawer</h1>
+
+            <div id="$drawer">
+                <button popovertarget="drawer">Open Drawer (left)</button>
+                <div class="landsoul-drawer-left" id="drawer" popover>left</div>
+
+                <button popovertarget="drawer-bottom">Open Drawer (bottom)</button>
+                <div class="landsoul-drawer-bottom" id="drawer-bottom" popover>bottom</div>
+
+                <button popovertarget="drawer-right">Open Drawer (right)</button>
+                <div class="landsoul-drawer-right" id="drawer-right" popover>right</div>
+
+                <button popovertarget="drawer-top">Open Drawer (top)</button>
+                <div class="landsoul-drawer-top" id="drawer-top" popover>top</div>
+            </div>
+            <script type="module">
+                writeExample("$drawer", true);
+            </script>
+        </section>
+
+        <section>
+            <h1>.landsoul-list</h1>
+            <ul class="landsoul-list" id="$list">
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li class="active">Item 3</li>
+            </ul>
+            <script type="module">
+                writeExample("$list");
+            </script>
+        </section>
+
+        <section>
+            <h1>.landsoul-popover</h1>
+            <p><code>landsoul-popover-bottom-{left, span-left, right, span-right}</code></p>
+            <p><code>landsoul-popover-top-{left, span-left, right, span-right}</code></p>
+            <p><code>landsoul-popover-right-{top, span-top, bottom, span-bottom}</code></p>
+            <p><code>landsoul-popover-left-{top, span-top, bottom, span-bottom}</code></p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap" id="$popover">
+                <button popovertarget="popover-bottom">Bottom</button>
+                <div class="landsoul-popover-bottom" id="popover-bottom" popover>popover<br />content</div>
+
+                <button popovertarget="popover-top">Top</button>
+                <div class="landsoul-popover-top" id="popover-top" popover>popover<br />content</div>
+
+                <button popovertarget="popover-left">Left</button>
+                <div class="landsoul-popover-left" id="popover-left" popover>popover<br />content</div>
+
+                <button popovertarget="popover-right">Right</button>
+                <div class="landsoul-popover-right" id="popover-right" popover>popover<br />content</div>
+            </div>
+            <script type="module">
+                writeExample("$popover", true);
+            </script>
+
+            <h2>Invoker Commands</h2>
+            <div id="$popover-commandfor">
+                <button commandfor="popover-commandfor" command="toggle-popover">Toggle Popover</button>
+                <div id="popover-commandfor" class="landsoul-popover-top" popover>
+                    I am the popover
+                    <button type="button" commandfor="popover-commandfor" command="hide-popover">Hide</button>
+                </div>
+
+                <button command="show-modal" commandfor="command-show-dialog">Show Modal Dialog</button>
+                <dialog id="command-show-dialog" closedby="any">
+                    I am the dialog
+                    <button type="button" commandfor="command-show-dialog" command="close">Close</button>
+                </dialog>
+            </div>
+            <script type="module">
+                writeExample("$popover-commandfor", true);
+            </script>
+            <pre class="shj-lang-js">
+// Polyfill
+import "https://esm.sh/invokers-polyfill";</pre
+            >
+
+            <h2>Interest invokers</h2>
+            <div id="$popover-hint">
+                <button interestfor="popover-hint" style="interest-delay: 0.2s">hover on me and show tooltip</button>
+
+                <div class="landsoul-popover-top" id="popover-hint" popover="hint">Product callout information here.</div>
+            </div>
+            <script type="module">
+                writeExample("$popover-hint", true);
+            </script>
+            <pre class="shj-lang-js">
+// Polyfill
+import "https://esm.sh/interestfor";</pre
+            >
+        </section>
+
+        <section>
+            <h1>.landsoul-skeleton</h1>
+            <div class="landsoul-skeleton" style="width: 200px; height: 20px" id="$skeleton"></div>
+            <script type="module">
+                writeExample("$skeleton");
+            </script>
+        </section>
+
+        <section>
+            <h1>.landsoul-spinner</h1>
+            <div class="landsoul-spinner" id="$spinner1"></div>
+            <div class="landsoul-spinner" id="$spinner2" style="--size: 32px"></div>
+            <button class="landsoul-spinner" id="$spinner3">Submitting...</button>
+            <script type="module">
+                writeExample("$spinner1");
+                writeExample("$spinner2");
+                writeExample("$spinner3");
+            </script>
+        </section>
+
+        <section>
+            <h1>.landsoul-switch</h1>
+            <label id="$switch">
+                <input type="checkbox" class="landsoul-switch" role="switch" />
+                Toggle Switch
+            </label>
+            <script type="module">
+                writeExample("$switch", true);
+            </script>
+        </section>
+
+        <section>
+            <h1>.landsoul-tabs</h1>
+            <div class="landsoul-tabs" id="$tabs">
+                <div data-tab="Tab 1">One</div>
+                <div data-tab="Tab 2">Two</div>
+                <div data-tab="Tab 3">Three</div>
+            </div>
+            <script type="module">
+                writeExample("$tabs");
+            </script>
+        </section>
+
+        <section>
+            <h1>.landsoul-tooltip</h1>
+            <p>It is recommended to use <code>.landsoul-popover</code> with <code>popover="hint"</code> instead of this.</p>
+            <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; padding: 2rem" id="$tooltip">
+                <button class="landsoul-tooltip landsoul-tooltip-top" data-tip="Top tooltip">Top</button>
+                <button class="landsoul-tooltip landsoul-tooltip-bottom" data-tip="Bottom tooltip">Bottom</button>
+                <button class="landsoul-tooltip landsoul-tooltip-left" data-tip="Left tooltip">Left</button>
+                <button class="landsoul-tooltip landsoul-tooltip-right" data-tip="Right tooltip">Right</button>
+            </div>
+            <script type="module">
+                writeExample("$tooltip", true);
+            </script>
+        </section>
+    </body>
 </html>

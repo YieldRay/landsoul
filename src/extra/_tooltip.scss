@@ -38,7 +38,9 @@
         & > &-content,
         &[data-tip]:before,
         &:after {
-            transition: opacity 180ms cubic-bezier(0.4, 0, 0.2, 1) 75ms, transform 180ms cubic-bezier(0.4, 0, 0.2, 1) 75ms;
+            transition:
+                opacity 180ms cubic-bezier(0.4, 0, 0.2, 1) 75ms,
+                transform 180ms cubic-bezier(0.4, 0, 0.2, 1) 75ms;
         }
     }
 
@@ -52,7 +54,9 @@
                 opacity: 1;
 
                 @media (prefers-reduced-motion: no-preference) {
-                    transition: opacity 180ms cubic-bezier(0.4, 0, 0.2, 1) 0s, transform 180ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+                    transition:
+                        opacity 180ms cubic-bezier(0.4, 0, 0.2, 1) 0s,
+                        transform 180ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
                 }
             }
         }
@@ -161,7 +165,6 @@
             &[data-tip]:before {
                 transform: translateX(0.25rem) translateY(-50%);
             }
-
             &:after {
                 transform: translateX(0) translateY(-50%) rotate(90deg);
             }

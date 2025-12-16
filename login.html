@@ -1,94 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login</title>
+        <link rel="stylesheet" href="dist/landsoul.css" />
+        <style>
+            :root,
+            body {
+                height: 100%;
+                margin: 0;
+            }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="dist/landsoul.css">
-    <style>
-        :root,
-        body {
-            height: 100%;
-            margin: 0;
-        }
+            * {
+                box-sizing: border-box;
+                user-select: none;
+            }
 
-        * {
-            box-sizing: border-box;
-            user-select: none;
-        }
-
-        main {
-            min-height: 100vh;
-            display: grid;
-            grid-template:
-                "header right" 4rem
-                "left right" auto
-                / 1fr 1fr;
-        }
-
-        .center {
-            text-align: center;
-            text-wrap: pretty;
-        }
-
-        @media (max-width: 768px) {
             main {
+                min-height: 100vh;
+                display: grid;
                 grid-template:
-                    "header" 4rem
-                    "left" auto
-                    / 1fr;
+                    "header right" 4rem
+                    "left right" auto
+                    / 1fr 1fr;
             }
 
-            section[style*="grid-area: right"] {
-                display: none;
+            .center {
+                text-align: center;
+                text-wrap: pretty;
             }
-        }
-    </style>
-</head>
 
-<body>
-    <main>
-        <header style="grid-area: header; font-size: 1.5rem; padding: 1rem">Acme Inc.</header>
+            @media (max-width: 768px) {
+                main {
+                    grid-template:
+                        "header" 4rem
+                        "left" auto
+                        / 1fr;
+                }
 
-        <section style="grid-area: left; width: 100%; max-width: 400px; margin: auto; padding: 1rem">
-            <form method="get" action="dashboard.html">
-                <div class="center">
-                    <h5>Login to your account</h5>
-                    <div>Enter your email below<br /> to login to your account</div>
-                </div>
-                <label>
-                    <div>
-                        <span>Email</span>
+                section[style*="grid-area: right"] {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <header style="grid-area: header; font-size: 1.5rem; padding: 1rem">Acme Inc.</header>
+
+            <section style="grid-area: left; width: 100%; max-width: 400px; margin: auto; padding: 1rem">
+                <form method="get" action="dashboard.html">
+                    <div class="center">
+                        <h5>Login to your account</h5>
+                        <div>
+                            Enter your email below<br />
+                            to login to your account
+                        </div>
                     </div>
-                    <input style="width: 100%" type="email" placeholder="m@example.com" required />
-                </label>
-                <br />
+                    <label>
+                        <div>
+                            <span>Email</span>
+                        </div>
+                        <input style="width: 100%" type="email" placeholder="m@example.com" required />
+                    </label>
+                    <br />
 
-                <label>
-                    <div>
-                        <span>Password</span>
-                        <a href="#">Forgot your password?</a>
+                    <label>
+                        <div>
+                            <span>Password</span>
+                            <a href="#">Forgot your password?</a>
+                        </div>
+                        <input style="width: 100%" type="password" placeholder="Password" />
+                    </label>
+                    <br />
+                    <br />
+
+                    <div class="center">
+                        <button style="width: 100%; background: var(--landsoul-accent); color: var(--landsoul-inverse-text)">Login</button>
+                        <div style="color: var(--landsoul-text-on-surface)">Or continue with</div>
+                        <button style="width: 100%">Login with SSO</button>
+                        <div>Don't have an account? <a href="signup.html">Sign up</a></div>
                     </div>
-                    <input style="width: 100%" type="password" placeholder="Password" />
-                </label>
-                <br />
-                <br />
+                </form>
+            </section>
 
-                <div class="center">
-                    <button
-                        style="width: 100%; background: var(--landsoul-accent); color: var(--landsoul-inverse-text)">Login</button>
-                    <div style="color: var(--landsoul-text-on-surface)">Or continue with</div>
-                    <button style="width: 100%">Login with SSO</button>
-                    <div>Don't have an account? <a href="signup.html">Sign up</a></div>
-                </div>
-            </form>
-        </section>
-
-        <section
-            style="grid-area: right; background-color: rgb(234,234,234); background-image: url('https://ui.shadcn.com/placeholder.svg'); background-size: cover; background-position: center;">
-        </section>
-    </main>
-</body>
-
+            <section
+                style="
+                    grid-area: right;
+                    background-color: rgb(234, 234, 234);
+                    background-image: url(&quot;https://ui.shadcn.com/placeholder.svg&quot;);
+                    background-size: cover;
+                    background-position: center;
+                "
+            ></section>
+        </main>
+    </body>
 </html>
