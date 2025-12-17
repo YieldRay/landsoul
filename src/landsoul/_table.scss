@@ -44,6 +44,9 @@ table {
         white-space: nowrap;
         tr {
             background-color: var(--landsoul-bg);
+            &:hover {
+                background-color: var(--landsoul-surface-low);
+            }
             // &:nth-child(2n) {
             //     background-color: var(--landsoul-surface);
             // }
@@ -56,12 +59,13 @@ table {
 }
 
 table {
-    outline: 0.125rem solid var(--landsoul-border);
-    outline-offset: -0.125rem;
+    outline: 0.0625rem solid var(--landsoul-border);
+    outline-offset: -0.0625rem;
 }
 
 th,
 td {
-    outline: 0.0625rem solid var(--landsoul-border);
-    outline-offset: -0.0625rem;
+    // outline: 0.0625rem solid var(--landsoul-border);
+    // outline-offset: -0.0625rem;
+    border-bottom: 0.0625rem solid var(--landsoul-border);
 }
