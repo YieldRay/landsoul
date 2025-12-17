@@ -9,7 +9,7 @@
     ],
     "scripts": {
         "dev": "node dev-server.ts",
-        "build": "rm -rf ./dist && sass src:dist --no-source-map && postcss ./dist/*.css -d ./dist",
+        "build": "rm -rf ./dist && sass src:dist --no-source-map --silence-deprecation=if-function && postcss ./dist/*.css -d ./dist",
         "format": "prettier --write ."
     },
     "repository": {
