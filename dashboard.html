@@ -149,7 +149,14 @@
                     <span class="landsoul-popover-top" id="create-new-project" popover="hint">Create New Project</span>
                 </div>
                 <br />
-                <input class="inline-full" type="search" placeholder="Search..." />
+                <input class="inline-full" type="search" placeholder="Search..." list="browser-names" />
+                <datalist id="browser-names">
+                    <option value="Edge" />
+                    <option value="Firefox" />
+                    <option value="Chrome" />
+                    <option value="Opera" />
+                    <option value="Safari" />
+                </datalist>
                 <br />
                 <br />
 
@@ -253,6 +260,37 @@
                     <h5>Welcome to Landsoul Dashboard</h5>
                     <p>This is an example dashboard layout using Landsoul styles.</p>
                 </div>
+
+                <div class="card">
+                    <h6>FAQ</h6>
+                    <details name="group">
+                        <summary>What is Landsoul?</summary>
+                        <p>Landsoul is a modern CSS framework that provides clean and accessible styling for HTML elements with minimal configuration.</p>
+                    </details>
+
+                    <details name="group">
+                        <summary>How do I install Landsoul?</summary>
+                        <p>You can install Landsoul via npm with <code>npm install landsoul</code> or include it directly from a CDN in your HTML.</p>
+                    </details>
+
+                    <details name="group">
+                        <summary>Is Landsoul customizable?</summary>
+                        <p>
+                            Yes! Landsoul uses CSS custom properties (variables) for theming, making it easy to customize colors, spacing, and other design
+                            tokens.
+                        </p>
+                    </details>
+                </div>
+
+                <!-- <div class="card">
+                    <h6>Range Control</h6>
+                    <input type="range" value="50" min="1" max="100" list="steps" />
+                    <datalist id="steps">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </datalist>
+                </div> -->
 
                 <div class="card">
                     <div class="space-between inline-full">
