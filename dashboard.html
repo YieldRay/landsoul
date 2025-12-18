@@ -284,12 +284,16 @@
 
                 <!-- <div class="card">
                     <h6>Range Control</h6>
-                    <input type="range" value="50" min="1" max="100" list="steps" />
+
                     <datalist id="steps">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
                     </datalist>
+                    <input oninput="this.nextElementSibling.value = this.value" type="range" min="1" max="5" list="steps" />
+                    <output>3</output>
                 </div> -->
 
                 <div class="card">
