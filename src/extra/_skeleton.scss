@@ -1,5 +1,6 @@
 .landsoul-skeleton {
     --duration: 2s;
+    user-select: none;
     background: unset;
     background: linear-gradient(90deg, var(--landsoul-surface) 25%, var(--landsoul-surface-high) 50%, var(--landsoul-surface) 75%);
     background-size: 200% 100%;

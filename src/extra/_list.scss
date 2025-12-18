@@ -2,6 +2,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    user-select: none; // list item act like a button, so disable text selection
 
     hr {
         margin: 0;

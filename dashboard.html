@@ -55,10 +55,6 @@
                         background-color: var(--landsoul-bg);
                     }
                 }
-
-                nav#menu {
-                    user-select: none;
-                }
             }
 
             .header {
@@ -141,7 +137,7 @@
     <body>
         <div id="root">
             <!-- Navigation: popover on compact, sidebar on wide -->
-            <nav id="menu" class="landsoul-drawer" popover="auto">
+            <nav id="menu" class="landsoul-drawer-left" popover="auto">
                 <h6 popovertarget="menu" popovertargetaction="hide">Landsoul</h6>
 
                 <div class="space-between">
@@ -265,7 +261,7 @@
                             <button>Edit</button>
                             <button
                                 popovertarget="delete-dialog"
-                                popoveraction="show"
+                                popovertargetaction="show"
                                 style="color: var(--landsoul-inverse-text); background-color: var(--landsoul-danger)"
                             >
                                 Delete
@@ -277,11 +273,11 @@
                                         value="confirm"
                                         style="color: var(--landsoul-inverse-text); background-color: var(--landsoul-accent)"
                                         popovertarget="delete-dialog"
-                                        popoveraction="hide"
+                                        popovertargetaction="hide"
                                     >
                                         Confirm
                                     </button>
-                                    <button value="cancel" popovertarget="delete-dialog" popoveraction="hide">Cancel</button>
+                                    <button value="cancel" popovertarget="delete-dialog" popovertargetaction="hide">Cancel</button>
                                 </form>
                             </dialog>
                         </div>

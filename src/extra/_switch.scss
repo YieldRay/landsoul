@@ -34,4 +34,10 @@ input[type="checkbox"].landsoul-switch {
             transform: translateX(calc(-100% - calc(var(--size) * 0.1)));
         }
     }
+
+    &:active {
+        &::after {
+            width: calc(var(--size) * 0.8 * 1.125);
+        }
+    }
 }
