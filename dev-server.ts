@@ -68,9 +68,15 @@ function createDevServer() {
             return res.end(rewriteSSE(html));
         }
 
-        const filepath = path.join(process.cwd(), new URL(req.url, `http://${req.headers.host}`).pathname.slice(1));
+        const partialFilepath = new URL(req.url, `http://${req.headers.host}`).pathname.slice(1);
+        const filepath = path.join(process.cwd(), partialFilepath);
 
         if (!fs.existsSync(filepath)) {
+            if (fs.existsSync(filepath + ".html")) {
+                const html = fs.readFileSync(filepath + ".html", "utf-8");
+                res.writeHead(200, { "Content-Type": "text/html" });
+                return res.end(rewriteSSE(html));
+            }
             res.writeHead(404);
             return res.end("Not Found");
         }

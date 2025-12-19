@@ -6,6 +6,8 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     border-radius: var(--landsoul-radius-active);
+    border: 0.0625rem solid var(--landsoul-border);
+
     caption {
         padding: 0.5rem;
     }
@@ -21,9 +23,12 @@ table {
 
     thead th {
         top: 0;
+        box-shadow: inset 0 -0.0625rem 0 0 var(--landsoul-border);
     }
+
     tfoot th {
         bottom: 0;
+        box-shadow: inset 0 0.0625rem 0 0 var(--landsoul-border);
     }
 
     // sticky first column if there are row headers
@@ -55,25 +60,14 @@ table {
     td,
     th {
         padding: 0.25rem 0.5rem;
+        border-bottom: 0.0625rem solid var(--landsoul-border);
     }
-}
 
-table {
-    outline: 0.0625rem solid var(--landsoul-border);
-    outline-offset: -0.0625rem;
-}
-
-thead, tfoot {
-    border-inline: 0.0625rem solid var(--landsoul-border);
-}
-
-thead {
-    border-top: 0.0625rem solid var(--landsoul-border);
-}
-
-th,
-td {
-    // outline: 0.0625rem solid var(--landsoul-border);
-    // outline-offset: -0.0625rem;
-    border-bottom: 0.0625rem solid var(--landsoul-border);
+    // remove border-bottom from last row
+    tr:last-child {
+        td,
+        th {
+            border-bottom: none;
+        }
+    }
 }

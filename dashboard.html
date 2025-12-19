@@ -11,6 +11,7 @@
             @import url(//unpkg.com/normalize.css) layer(normalize);
             @import url(./dist/landsoul.css) layer(landsoul);
             @import url(./dist/extra.css) layer(extra);
+            @import url(./shj.css);
 
             :root,
             body {
@@ -296,6 +297,115 @@
                     <output>3</output>
                 </div> -->
 
+                <div style="margin-block: 1rem">
+                    <table style="max-height: 50vh">
+                        <thead>
+                            <tr>
+                                <th>Keyword</th>
+                                <th>Description</th>
+                                <th>Sample</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th><code>AccentColor</code></th>
+                                <td>Background of accented user interface controls.</td>
+                                <td style="background-color: AccentColor"></td>
+                            </tr>
+                            <tr>
+                                <th><code>AccentColorText</code></th>
+                                <td>Text of accented user interface controls.</td>
+                                <td style="background-color: AccentColorText"></td>
+                            </tr>
+                            <tr>
+                                <th><code>ActiveText</code></th>
+                                <td>Text of active links.</td>
+                                <td style="background-color: ActiveText"></td>
+                            </tr>
+                            <tr>
+                                <th><code>ButtonBorder</code></th>
+                                <td>Base border color of controls.</td>
+                                <td style="background-color: ButtonBorder"></td>
+                            </tr>
+                            <tr>
+                                <th><code>ButtonFace</code></th>
+                                <td>Background color of controls.</td>
+                                <td style="background-color: ButtonFace"></td>
+                            </tr>
+                            <tr>
+                                <th><code>ButtonText</code></th>
+                                <td>Text color of controls.</td>
+                                <td style="background-color: ButtonText"></td>
+                            </tr>
+                            <tr>
+                                <th><code>Canvas</code></th>
+                                <td>Background of application content or documents.</td>
+                                <td style="background-color: Canvas"></td>
+                            </tr>
+                            <tr>
+                                <th><code>CanvasText</code></th>
+                                <td>Text color in application content or documents.</td>
+                                <td style="background-color: CanvasText"></td>
+                            </tr>
+                            <tr>
+                                <th><code>Field</code></th>
+                                <td>Background of input fields.</td>
+                                <td style="background-color: Field"></td>
+                            </tr>
+                            <tr>
+                                <th><code>FieldText</code></th>
+                                <td>Text in input fields.</td>
+                                <td style="background-color: FieldText"></td>
+                            </tr>
+                            <tr>
+                                <th><code>GrayText</code></th>
+                                <td>Text color for disabled items (for example, a disabled control).</td>
+                                <td style="background-color: GrayText"></td>
+                            </tr>
+                            <tr>
+                                <th><code>Highlight</code></th>
+                                <td>Background of selected items.</td>
+                                <td style="background-color: Highlight"></td>
+                            </tr>
+                            <tr>
+                                <th><code>HighlightText</code></th>
+                                <td>Text color of selected items.</td>
+                                <td style="background-color: HighlightText"></td>
+                            </tr>
+                            <tr>
+                                <th><code>LinkText</code></th>
+                                <td>Text of non-active, non-visited links.</td>
+                                <td style="background-color: LinkText"></td>
+                            </tr>
+                            <tr>
+                                <th><code>Mark</code></th>
+                                <td>Background of text that has been specially marked (such as by the HTML <code>mark</code> element).</td>
+                                <td style="background-color: Mark"></td>
+                            </tr>
+                            <tr>
+                                <th><code>MarkText</code></th>
+                                <td>Text that has been specially marked (such as by the HTML <code>mark</code> element).</td>
+                                <td style="background-color: MarkText"></td>
+                            </tr>
+                            <tr>
+                                <th><code>SelectedItem</code></th>
+                                <td>Background of selected items, for example, a selected checkbox.</td>
+                                <td style="background-color: SelectedItem"></td>
+                            </tr>
+                            <tr>
+                                <th><code>SelectedItemText</code></th>
+                                <td>Text of selected items.</td>
+                                <td style="background-color: SelectedItemText"></td>
+                            </tr>
+                            <tr>
+                                <th><code>VisitedText</code></th>
+                                <td>Text of visited links.</td>
+                                <td style="background-color: VisitedText"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <div class="card">
                     <div class="space-between inline-full">
                         <h6>Total Visitors</h6>
@@ -324,6 +434,7 @@
                             </dialog>
                         </div>
                     </div>
+
                     <div style="height: 400px">
                         <canvas style="width: 100%" id="myChart"></canvas>
                     </div>
