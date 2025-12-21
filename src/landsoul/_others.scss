@@ -1,5 +1,9 @@
 @use "../mixins" as *;
 
+a:focus {
+    outline-color: var(--landsoul-surface-high);
+}
+
 hr {
     border: none;
     border-top: solid 0.15rem var(--landsoul-border);
@@ -18,6 +22,10 @@ pre {
     font-family: Consolas, monospace;
     background-color: var(--landsoul-surface);
     border-radius: var(--landsoul-radius);
+
+    &:focus-visible {
+        outline: solid 0.125rem var(--landsoul-surface-high);
+    }
 }
 
 samp {

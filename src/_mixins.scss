@@ -42,7 +42,7 @@
     }
 }
 
-@mixin outline-focus($thickness: 0.0625rem, $color: var(--landsoul-text)) {
+@mixin outline-focus($thickness: 0.0625rem, $color: var(--landsoul-surface-high)) {
     outline-offset: 0;
     transition: outline-offset var(--landsoul-duration) ease;
 
