@@ -17,8 +17,14 @@
     &::scroll-marker-group {
         display: inline-flex;
         align-items: center;
-        height: 2rem;
+        min-height: 2rem;
         box-sizing: border-box;
+        overflow-x: auto;
+        scrollbar-width: none;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        overscroll-behavior-x: contain;
+        scroll-padding-inline: 66.6%;
     }
 
     & > *::scroll-marker {
@@ -27,6 +33,7 @@
         cursor: pointer;
         box-sizing: border-box;
         height: 1.6rem;
+        white-space: nowrap;
         display: grid;
         place-items: center;
         padding: 0 0.75rem;
