@@ -9,4 +9,23 @@ dialog {
     overflow: auto;
     width: min(260px, calc(100vw - 2px));
     box-shadow: var(--landsoul-box-shadow);
+
+    &,
+    &::backdrop {
+        transition:
+            transform var(--landsoul-duration) ease,
+            opacity var(--landsoul-duration) ease;
+    }
+
+    &:popover-open,
+    &[open] {
+        opacity: 1;
+        @starting-style {
+            opacity: 0.666;
+            transform: scale(0.99);
+            &::backdrop {
+                opacity: 0;
+            }
+        }
+    }
 }
