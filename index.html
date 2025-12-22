@@ -62,14 +62,16 @@
             <section style="margin-top: 2rem">
                 <details>
                     <summary>How to revert to default styles?</summary>
-                    You can use CSS <a target="_blank" href="https://developer.mozilla.org/docs/Web/CSS/Reference/Values/revert"><code>all: revert</code></a> to
-                    revert to default styles. For example:
+                    You can use CSS
+                    <a target="_blank" href="https://developer.mozilla.org/docs/Web/CSS/Reference/Values/revert"><code>all: revert</code></a>
+                    to revert to default styles. For example:
                     <pre class="shj-lang-html">&lt;button style="all: revert"&gt;&lt;/button&gt;</pre>
                     Results in:
                     <button style="all: revert">revert</button>
                     <br />
                     If you are using CSS <code>@layer</code>, you can also use the
-                    <a target="_blank" href="https://developer.mozilla.org/docs/Web/CSS/Reference/Values/revert-layer"><code>revert-layer</code></a> keyword.
+                    <a target="_blank" href="https://developer.mozilla.org/docs/Web/CSS/Reference/Values/revert-layer"><code>revert-layer</code></a>
+                    keyword.
                     <br />
                     For example, if you imported Landsoul in a layer named <code>landsoul</code>:
                     <pre class="shj-lang-css">@layer landsoul { button, button * { all: revert-layer; } }</pre>

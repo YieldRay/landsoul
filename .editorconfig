@@ -6,10 +6,7 @@ end_of_line = lf
 insert_final_newline = true
 charset = utf-8
 trim_trailing_whitespace = true
-max_line_length = 120
-
-# Indentation for code files
-[*.{js,ts,jsx,tsx,json,css,scss,sass,html}]
+max_line_length = 160
 indent_style = space
 indent_size = 4
 
