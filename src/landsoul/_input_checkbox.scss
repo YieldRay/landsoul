@@ -1,6 +1,7 @@
 input[type="checkbox"] {
     --size: 1.25rem;
     appearance: none;
+    margin: 0;
     vertical-align: text-bottom;
     cursor: pointer;
     display: inline-block;
@@ -16,7 +17,10 @@ input[type="checkbox"] {
     &::after {
         content: "";
         opacity: 0;
-        transition: opacity calc(var(--landsoul-duration) * 0.5);
+        clip-path: inset(100% 0 0 0);
+        transition:
+            clip-path var(--landsoul-duration) cubic-bezier(0.4, 0, 0.2, 1),
+            opacity var(--landsoul-duration) cubic-bezier(0.4, 0, 0.2, 1);
         position: absolute;
         display: inline-block;
         width: calc(var(--size) * 0.3);
@@ -31,6 +35,7 @@ input[type="checkbox"] {
     &:checked {
         &::after {
             opacity: 1;
+            clip-path: inset(0 0 0 0);
         }
     }
 
