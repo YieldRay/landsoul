@@ -1,0 +1,48 @@
+.landsoul-scrollbar {
+    /* The size of scroll bar */
+    --scrollbar-width: 0.8rem;
+
+    @supports selector(-webkit-scrollbar) {
+        &::-webkit-scrollbar {
+            width: var(--scrollbar-width);
+            height: var(--scrollbar-width);
+            background: var(--landsoul-surface-low);
+            transition: all var(--landsoul-duration);
+        }
+
+        /* The track of scrooll bar */
+        &::-webkit-scrollbar-track {
+            border: calc(var(--scrollbar-width) * 0.4) solid transparent;
+            background-color: var(--landsoul-0-1);
+            background-clip: padding-box;
+        }
+
+        /* The thumb of scroll bar */
+        &::-webkit-scrollbar-thumb {
+            border: calc(var(--scrollbar-width) * 0.4) solid transparent;
+            background-color: var(--landsoul-0-2);
+            background-clip: padding-box;
+            cursor: grab;
+            &:hover {
+                border: calc(var(--scrollbar-width) * 0.3125) solid transparent;
+                background-color: var(--landsoul-0-3);
+            }
+            &:active {
+                cursor: grabbing;
+            }
+        }
+
+        &::-webkit-scrollbar-corner {
+            background-color: var(--landsoul-surface-low);
+        }
+    }
+
+    // fallback for none-WebKit browsers
+    @supports not selector(-webkit-scrollbar) {
+        scrollbar-width: thin;
+        scrollbar-color: var(--landsoul-0-1) transparent;
+        &:hover {
+            scrollbar-color: var(--landsoul-0-2) transparent;
+        }
+    }
+}
