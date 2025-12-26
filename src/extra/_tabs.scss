@@ -29,7 +29,7 @@
 
     & > *::scroll-marker {
         all: unset;
-        content: attr(data-tab);
+        content: attr(data-label);
         cursor: pointer;
         box-sizing: border-box;
         height: 1.6rem;
