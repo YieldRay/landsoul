@@ -22,10 +22,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v5
+              uses: actions/checkout@v6
 
             - name: Install Node.js
-              uses: actions/setup-node@v5
+              uses: actions/setup-node@v6
               with:
                   node-version: lts/*
                   package-manager-cache: false
@@ -46,7 +46,7 @@ jobs:
 
             - name: Release on GitHub
               if: ${{ steps.publish.outputs.type }}
-              uses: softprops/action-gh-release@v1
+              uses: softprops/action-gh-release@2
               with:
                   tag_name: v${{ steps.publish.outputs.version }}
                   draft: false
