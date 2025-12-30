@@ -26,5 +26,13 @@
             color: var(--landsoul-bg);
             background-color: var(--landsoul-accent);
         }
+
+        &,
+        & > * {
+            display: block;
+            // this makes the whole list item clickable, even the inner link
+            color: var(--landsoul-text);
+            text-decoration: none;
+        }
     }
 }
