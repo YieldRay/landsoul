@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
         <title>Settings</title>
         <script type="module" src="https://esm.sh/interestfor"></script>
         <script type="module" src="https://esm.sh/invokers-polyfill"></script>
@@ -14,6 +14,35 @@
             body {
                 margin: 0;
                 user-select: none;
+                -webkit-user-drag: none;
+                -webkit-touch-callout: none;
+                -webkit-tap-highlight-color: transparent;
+                overscroll-behavior: none;
+                overflow: hidden;
+            }
+
+            * {
+                scrollbar-width: thin;
+            }
+
+            html,
+            body,
+            .shell,
+            .layout {
+                box-sizing: border-box;
+                height: 100%;
+                width: 100%;
+            }
+
+            .sidebar,
+            .main {
+                overflow: auto;
+            }
+
+            input,
+            textarea,
+            [contenteditable="true"] {
+                user-select: text;
             }
 
             .shell {
@@ -131,7 +160,43 @@
                 min-width: 0;
                 overflow-wrap: anywhere;
             }
+
+            @media (max-width: 768px) {
+                .layout {
+                    grid-template: "nav" "main" 1fr / 1fr;
+                }
+
+                .sidebar {
+                    grid-area: nav;
+                    border-bottom: 1px solid var(--landsoul-border);
+                    overflow-x: auto;
+                    overflow-y: hidden;
+                }
+
+                .sidebar nav ul {
+                    display: flex;
+                    flex-direction: row;
+                    white-space: nowrap;
+                }
+            }
         </style>
+        <script>
+            document.addEventListener(
+                "dragstart",
+                function (event) {
+                    event.preventDefault();
+                },
+                false,
+            );
+
+            document.addEventListener(
+                "contextmenu",
+                function (event) {
+                    event.preventDefault();
+                },
+                false,
+            );
+        </script>
     </head>
     <body>
         <div class="shell">
