@@ -31,7 +31,7 @@
             }
         </style>
         <script type="module">
-            import { highlightElement } from "https://unpkg.com/@speed-highlight/core/dist/index.js";
+            import { highlightElement } from "https://esm.sh/@speed-highlight/core";
             document.querySelectorAll("[class*=shj-lang-]").forEach((el) => highlightElement(el, el.className.match(/shj-lang-([a-z0-9]+)/)[1]));
         </script>
     </head>
