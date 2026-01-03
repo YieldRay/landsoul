@@ -46,7 +46,7 @@ jobs:
 
             - name: Release on GitHub
               if: ${{ steps.publish.outputs.type }}
-              uses: softprops/action-gh-release@2
+              uses: softprops/action-gh-release@v2
               with:
                   tag_name: v${{ steps.publish.outputs.version }}
                   draft: false
