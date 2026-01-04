@@ -14,13 +14,13 @@
             @import url(./shj.css);
 
             :root,
-            body {
+            body,
+            #root {
                 height: 100%;
                 overflow: hidden;
             }
 
             #root {
-                min-height: 100vh;
                 display: grid;
                 grid-template:
                     "header header" min-content
@@ -84,10 +84,7 @@
                 grid-area: main;
                 padding: 1rem;
                 scrollbar-gutter: stable;
-
-                @media (width >= 720px) {
-                    overflow-y: auto;
-                }
+                overflow-y: auto;
             }
 
             .footer {
