@@ -33,7 +33,7 @@
 
 .landsoul-drawer {
     &-left {
-        width: min(320px, calc(100vw - 2px));
+        width: min(320px, calc(100vw - 2rem));
 
         &[popover] {
             height: 100vh;
@@ -49,7 +49,7 @@
     }
 
     &-right {
-        width: min(320px, calc(100vw - 2px));
+        width: min(320px, calc(100vw - 2rem));
 
         &[popover] {
             margin-left: auto;
@@ -69,7 +69,7 @@
         width: 100vw;
 
         &[popover] {
-            height: min(320px, calc(100vh - 2px));
+            height: min(320px, calc(100vh - 2rem));
             translate: 0 -100%;
 
             &:popover-open {
@@ -86,7 +86,7 @@
 
         &[popover] {
             margin-top: auto;
-            height: min(320px, calc(100vh - 2px));
+            height: min(320px, calc(100vh - 2rem));
             translate: 0 100%;
 
             &:popover-open {
