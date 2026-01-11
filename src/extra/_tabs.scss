@@ -11,6 +11,11 @@
         scroll-snap-align: center;
     }
 
+    &::scroll-button(*),
+    &::scroll-marker-group {
+        -webkit-tap-highlight-color: transparent;
+    }
+
     scroll-marker-group: before;
     scroll-behavior: smooth;
 
