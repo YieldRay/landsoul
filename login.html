@@ -52,30 +52,27 @@
 
             <section style="grid-area: left; width: 100%; max-width: 400px; margin: auto; padding: 1rem">
                 <form method="get" action="dashboard.html">
-                    <div class="center">
-                        <h5>Login to your account</h5>
-                        <div>
-                            Enter your email below<br />
-                            to login to your account
-                        </div>
+                    <div class="center" style="margin-bottom: 1.25rem">
+                        <h4 style="margin-block: 0.25rem">Login to your account</h4>
+                        <div style="color: var(--landsoul-text-on-surface)">Enter your email below to login to your account</div>
                     </div>
-                    <label>
-                        <div>
-                            <span>Email</span>
-                        </div>
-                        <input style="width: 100%" type="email" placeholder="m@example.com" required />
-                    </label>
-                    <br />
 
-                    <label>
-                        <div>
-                            <span>Password</span>
-                            <a href="#">Forgot your password?</a>
-                        </div>
-                        <input style="width: 100%" type="password" placeholder="Password" />
-                    </label>
-                    <br />
-                    <br />
+                    <div style="display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 0.75rem">
+                        <label>
+                            <div>
+                                <span>Email</span>
+                            </div>
+                            <input style="width: 100%" type="email" placeholder="m@example.com" required />
+                        </label>
+
+                        <label>
+                            <div style="display: flex; justify-content: space-between">
+                                <span>Password</span>
+                                <a href="#">Forgot your password?</a>
+                            </div>
+                            <input style="width: 100%" type="password" placeholder="Password" />
+                        </label>
+                    </div>
 
                     <div class="center">
                         <button style="width: 100%; background: var(--landsoul-accent); color: var(--landsoul-inverse-text)">Login</button>

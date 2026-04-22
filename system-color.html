@@ -37,6 +37,17 @@
                     opacity: 0;
                 }
             }
+
+            .landsoul-color-table td:last-child {
+                min-width: 9rem;
+            }
+
+            .landsoul-swatch {
+                height: 1.8rem;
+                border-radius: 0.35rem;
+                border: 1px solid var(--landsoul-border);
+                box-shadow: inset 0 0 0 1px var(--landsoul-0-1);
+            }
         </style>
     </head>
 
@@ -45,12 +56,98 @@
             <label><input name="color-scheme" type="radio" value="light dark" checked />System</label>
             <label><input name="color-scheme" type="radio" value="light" /> Forced Light</label>
             <label><input name="color-scheme" type="radio" value="dark" /> Forced Dark</label>
-            <blockquote>
-                Port of
-                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/system-color">MDN Web Docs</a>
-            </blockquote>
         </header>
 
+        <br />
+
+        <h1>Landsoul Color</h1>
+        <blockquote>All values come from <code>src/_theme.scss</code>. Click any token to copy it.</blockquote>
+        <section>
+            <table class="landsoul-color-table">
+                <thead>
+                    <tr>
+                        <th>Variable</th>
+                        <th>Description</th>
+                        <th>Sample</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>--landsoul-bg</code></td>
+                        <td>Page background</td>
+                        <td><div class="landsoul-swatch" style="background-color: var(--landsoul-bg)"></div></td>
+                    </tr>
+                    <tr>
+                        <td><code>--landsoul-text</code></td>
+                        <td>Primary text color</td>
+                        <td><div class="landsoul-swatch" style="background-color: var(--landsoul-text)"></div></td>
+                    </tr>
+                    <tr>
+                        <td><code>--landsoul-inverse-text</code></td>
+                        <td>Inverse text color</td>
+                        <td><div class="landsoul-swatch" style="background-color: var(--landsoul-inverse-text)"></div></td>
+                    </tr>
+                    <tr>
+                        <td><code>--landsoul-text-on-surface</code></td>
+                        <td>Secondary text on surfaces</td>
+                        <td><div class="landsoul-swatch" style="background-color: var(--landsoul-text-on-surface)"></div></td>
+                    </tr>
+                    <tr>
+                        <td><code>--landsoul-surface-low</code></td>
+                        <td>Low emphasis surface</td>
+                        <td><div class="landsoul-swatch" style="background-color: var(--landsoul-surface-low)"></div></td>
+                    </tr>
+                    <tr>
+                        <td><code>--landsoul-surface</code></td>
+                        <td>Base surface color</td>
+                        <td><div class="landsoul-swatch" style="background-color: var(--landsoul-surface)"></div></td>
+                    </tr>
+                    <tr>
+                        <td><code>--landsoul-surface-high</code></td>
+                        <td>High emphasis surface</td>
+                        <td><div class="landsoul-swatch" style="background-color: var(--landsoul-surface-high)"></div></td>
+                    </tr>
+                    <tr>
+                        <td><code>--landsoul-accent</code></td>
+                        <td>Brand accent color</td>
+                        <td><div class="landsoul-swatch" style="background-color: var(--landsoul-accent)"></div></td>
+                    </tr>
+                    <tr>
+                        <td><code>--landsoul-danger</code></td>
+                        <td>Danger and error color</td>
+                        <td><div class="landsoul-swatch" style="background-color: var(--landsoul-danger)"></div></td>
+                    </tr>
+                    <tr>
+                        <td><code>--landsoul-border</code></td>
+                        <td>Border color</td>
+                        <td><div class="landsoul-swatch" style="background-color: var(--landsoul-border)"></div></td>
+                    </tr>
+                    <tr>
+                        <td><code>--landsoul-0-1</code></td>
+                        <td>Utility alpha overlay 10%</td>
+                        <td><div class="landsoul-swatch" style="background-color: var(--landsoul-0-1)"></div></td>
+                    </tr>
+                    <tr>
+                        <td><code>--landsoul-0-2</code></td>
+                        <td>Utility alpha overlay 20%</td>
+                        <td><div class="landsoul-swatch" style="background-color: var(--landsoul-0-2)"></div></td>
+                    </tr>
+                    <tr>
+                        <td><code>--landsoul-0-3</code></td>
+                        <td>Utility alpha overlay 30%</td>
+                        <td><div class="landsoul-swatch" style="background-color: var(--landsoul-0-3)"></div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <br />
+
+        <h1>System Color</h1>
+        <blockquote>
+            Port of
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/system-color">MDN Web Docs</a>
+        </blockquote>
         <section>
             <h2 id="syntax">Syntax</h2>
             <p>Note that these keywords are <em>case insensitive</em>, but are listed here with mixed case for readability.</p>
@@ -358,20 +455,30 @@
             for (const code of codes) {
                 code.onclick = () => {
                     navigator.clipboard.writeText(code.textContent.trim());
-                    const tip = document.createElement("dialog");
+
+                    const tip = Object.assign(document.createElement("dialog"), {
+                        textContent: "Copied!",
+                        style: `
+                            position: fixed;
+                            top: 10px;
+                            right: 10px;
+                            padding: 5px 10px;
+                            transition-property: opacity, display;
+                            transition-duration: 0.5s;
+                            transition-behavior: allow-discrete;
+                        `,
+                    });
                     tip.show();
-                    tip.textContent = "Copied!";
-                    tip.style.position = "fixed";
-                    tip.style.top = "10px";
-                    tip.style.right = "10px";
-                    tip.style.padding = "5px";
+
                     document.body.appendChild(tip);
                     setTimeout(() => {
-                        tip.style.display = "none";
-                        tip.style.opacity = "0";
+                        Object.assign(tip.style, {
+                            display: "none",
+                            opacity: "0",
+                        });
                         raf2(() => {
                             tip.addEventListener("transitionend", () => {
-                                document.body.removeChild(tip);
+                                tip.remove();
                             });
                         });
                     }, 1500);
