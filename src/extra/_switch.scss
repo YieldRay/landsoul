@@ -1,6 +1,7 @@
 input[type="checkbox"].landsoul-switch {
     --size: 1.25rem;
     all: unset;
+    display: inline-block;
     appearance: none;
     width: calc(var(--size) * 1.75);
     height: var(--size);

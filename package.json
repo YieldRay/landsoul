@@ -30,13 +30,13 @@
         "registry": "https://registry.npmjs.org"
     },
     "devDependencies": {
-        "@types/node": "^24.12.2",
-        "autoprefixer": "^10.5.0",
-        "cssnano": "^7.1.7",
-        "postcss": "^8.5.10",
+        "@types/node": "^24.13.2",
+        "autoprefixer": "^10.5.2",
+        "cssnano": "^8.0.2",
+        "postcss": "^8.5.16",
         "postcss-cli": "^11.0.1",
-        "postcss-preset-env": "^11.2.1",
-        "prettier": "^3.8.3",
-        "sass": "^1.99.0"
+        "postcss-preset-env": "^11.3.2",
+        "prettier": "^3.9.4",
+        "sass": "^1.101.0"
     }
 }
