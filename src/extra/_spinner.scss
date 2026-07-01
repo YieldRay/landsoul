@@ -12,7 +12,7 @@
         width: var(--size);
         height: var(--size);
         border: var(--thickness) solid var(--landsoul-border);
-        border-top-color: var(--landsoul-on-surface);
+        border-top-color: var(--landsoul-text-on-surface);
         border-radius: 50%;
         animation: landsoul-spin var(--duration) linear infinite;
         vertical-align: text-bottom;

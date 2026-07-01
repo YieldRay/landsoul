@@ -21,4 +21,20 @@ progress {
 ::-webkit-meter-bar {
     background-color: var(--landsoul-surface-low);
     border: none;
+    border-radius: 0.5rem;
+}
+
+::-webkit-meter-optimum-value {
+    background-color: var(--landsoul-accent);
+    border-radius: 0.5rem;
+}
+
+::-webkit-meter-suboptimum-value {
+    background-color: orange;
+    border-radius: 0.5rem;
+}
+
+::-webkit-meter-even-less-good-value {
+    background-color: var(--landsoul-danger);
+    border-radius: 0.5rem;
 }
