@@ -22,10 +22,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v6
+              uses: actions/checkout@v7
 
             - name: Install Node.js
-              uses: actions/setup-node@v6
+              uses: actions/setup-node@v7
               with:
                   node-version: lts/*
                   package-manager-cache: false
@@ -40,13 +40,12 @@ jobs:
               id: publish
               uses: JS-DevTools/npm-publish@v4
               with:
-                  token: ${{secrets.NPM_TOKEN}}
                   access: public
                   provenance: true
 
             - name: Release on GitHub
               if: ${{ steps.publish.outputs.type }}
-              uses: softprops/action-gh-release@v2
+              uses: softprops/action-gh-release@v3
               with:
                   tag_name: v${{ steps.publish.outputs.version }}
                   draft: false
@@ -60,13 +59,13 @@ jobs:
                   cp *.html gh-pages
 
             - name: Setup Pages
-              uses: actions/configure-pages@v5
+              uses: actions/configure-pages@v6
 
             - name: Upload artifact
-              uses: actions/upload-pages-artifact@v4
+              uses: actions/upload-pages-artifact@v5
               with:
                   path: "./gh-pages"
 
             - name: Deploy to GitHub Pages
               id: deployment
-              uses: actions/deploy-pages@v4
+              uses: actions/deploy-pages@v5
