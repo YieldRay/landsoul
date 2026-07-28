@@ -7,6 +7,7 @@ dialog {
     border-radius: 2rem;
     padding: 1rem;
     overflow: auto;
+    box-sizing: border-box;
     width: min(260px, calc(100vw - 2px));
     box-shadow: var(--landsoul-box-shadow);
 
